@@ -1,15 +1,50 @@
+# --- YOUR CURRENT SETTINGS (Merged & Refined) ---
 *.iml
 .gradle
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
 *.hprof
+
+# --- PROFESSIONAL IDE & TOOLING (The " Meerkat" Update) ---
+# We ignore the entire .idea folder to prevent deployment targets, 
+# device caches, and AI (Studio Bot) history from being committed.
+.idea/
+# EXCEPTION: We allow the VCS file so contributors know it's a Git repo
+!.idea/vcs.xml
+# EXCEPTION: We allow the code styles if you have specific formatting
+!.idea/codeStyles/
+
+# --- ANDROID SPECIFIC ---
+# Ignore built APKs and AABs (they should be in Releases, not the repo)
+*.apk
+*.ap_
+*.aab
+*.dex
+
+# Ignore generated Google Services (if used in future)
+google-services.json
+
+# --- SECURITY & PRIVACY (CRITICAL for FOSS) ---
+# Never commit your signing keys or passwords
+*.jks
+*.keystore
+*.p12
+*.key
+signing.properties
+
+# --- SYSTEM & TEMP FILES ---
+# Ignore OS-generated files that clutter the repo
+Thumbs.db
+*.swp
+*~
+.stackdump
+
+# --- GRADLE WRAPPER ---
+# We explicitly DO NOT ignore these. FOSS projects need the wrapper 
+# to ensure anyone can build your app without installing Gradle.
+# !gradle/wrapper/gradle-wrapper.jar
+# !gradle/wrapper/gradle-wrapper.properties
