@@ -1,0 +1,189 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.nukie.ambientvolume.debug"
+4    android:versionCode="4"
+5    android:versionName="1.3.0-debug" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="28"
+9        android:targetSdkVersion="34" />
+10
+11    <!-- Permission to record audio for ambient noise detection -->
+12    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+12-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:7:5-71
+12-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:7:22-68
+13
+14    <!-- Permission to modify system and Bluetooth volume -->
+15    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+15-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:10:5-80
+15-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:10:22-77
+16
+17    <!-- Permissions for Bluetooth Management (Android 12+ / API 31+) -->
+18    <!-- Required to connect to and manage Bluetooth devices -->
+19    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+19-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:14:5-76
+19-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:14:22-73
+20    <uses-permission
+20-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:15:5-120
+21        android:name="android.permission.BLUETOOTH_SCAN"
+21-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:15:22-70
+22        android:usesPermissionFlags="neverForLocation" />
+22-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:15:71-117
+23
+24    <!-- Legacy Bluetooth permissions for backward compatibility (optional but good practice) -->
+25    <uses-permission
+25-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:18:5-95
+26        android:name="android.permission.BLUETOOTH"
+26-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:18:22-65
+27        android:maxSdkVersion="30" />
+27-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:18:66-92
+28    <uses-permission
+28-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:19:5-101
+29        android:name="android.permission.BLUETOOTH_ADMIN"
+29-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:19:22-71
+30        android:maxSdkVersion="30" />
+30-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:19:72-98
+31
+32    <!-- Permissions for Foreground Service and Notifications -->
+33    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+33-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:22:5-77
+33-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:22:22-74
+34    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+34-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:23:5-88
+34-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:23:22-85
+35    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+35-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:24:5-77
+35-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:24:22-74
+36
+37    <!-- Permission to deep link directly to battery optimization settings -->
+38    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+38-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:27:5-95
+38-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:27:22-92
+39
+40    <!-- Permission for haptic feedback on volume changes -->
+41    <uses-permission android:name="android.permission.VIBRATE" />
+41-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:30:5-66
+41-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:30:22-63
+42
+43    <permission
+43-->[androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\8.12\transforms\f157c09feabecd21c91604474aacb0d1\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
+44        android:name="com.nukie.ambientvolume.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+44-->[androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\8.12\transforms\f157c09feabecd21c91604474aacb0d1\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
+45        android:protectionLevel="signature" />
+45-->[androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\8.12\transforms\f157c09feabecd21c91604474aacb0d1\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
+46
+47    <uses-permission android:name="com.nukie.ambientvolume.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+47-->[androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\8.12\transforms\f157c09feabecd21c91604474aacb0d1\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
+47-->[androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\8.12\transforms\f157c09feabecd21c91604474aacb0d1\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
+48
+49    <application
+49-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:32:5-52:19
+50        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+50-->[androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\8.12\transforms\f157c09feabecd21c91604474aacb0d1\transformed\core-1.18.0\AndroidManifest.xml:28:18-86
+51        android:debuggable="true"
+52        android:extractNativeLibs="false"
+53        android:icon="@drawable/ic_adaptive_volume"
+53-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:33:9-52
+54        android:label="@string/app_name"
+54-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:34:9-41
+55        android:supportsRtl="true"
+55-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:35:9-35
+56        android:testOnly="true"
+57        android:theme="@android:style/Theme.DeviceDefault.NoActionBar" >
+57-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:36:9-71
+58        <activity
+58-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:37:9-44:20
+59            android:name="com.nukie.ambientvolume.MainActivity"
+59-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:38:13-41
+60            android:exported="true" >
+60-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:39:13-36
+61            <intent-filter>
+61-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:40:13-43:29
+62                <action android:name="android.intent.action.MAIN" />
+62-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:41:17-69
+62-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:41:25-66
+63
+64                <category android:name="android.intent.category.LAUNCHER" />
+64-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:42:17-77
+64-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:42:27-74
+65            </intent-filter>
+66        </activity>
+67
+68        <!-- Ambient Volume Background Service -->
+69        <service
+69-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:47:9-51:36
+70            android:name="com.nukie.ambientvolume.service.VolumeControlService"
+70-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:48:13-57
+71            android:exported="false"
+71-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:49:13-37
+72            android:foregroundServiceType="microphone" />
+72-->C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:50:13-55
+73
+74        <provider
+74-->[androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\6c2201fcd768d9a5b5900fe41af36d4f\transformed\emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
+75            android:name="androidx.startup.InitializationProvider"
+75-->[androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\6c2201fcd768d9a5b5900fe41af36d4f\transformed\emoji2-1.4.0\AndroidManifest.xml:25:13-67
+76            android:authorities="com.nukie.ambientvolume.debug.androidx-startup"
+76-->[androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\6c2201fcd768d9a5b5900fe41af36d4f\transformed\emoji2-1.4.0\AndroidManifest.xml:26:13-68
+77            android:exported="false" >
+77-->[androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\6c2201fcd768d9a5b5900fe41af36d4f\transformed\emoji2-1.4.0\AndroidManifest.xml:27:13-37
+78            <meta-data
+78-->[androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\6c2201fcd768d9a5b5900fe41af36d4f\transformed\emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+79                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+79-->[androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\6c2201fcd768d9a5b5900fe41af36d4f\transformed\emoji2-1.4.0\AndroidManifest.xml:30:17-75
+80                android:value="androidx.startup" />
+80-->[androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\6c2201fcd768d9a5b5900fe41af36d4f\transformed\emoji2-1.4.0\AndroidManifest.xml:31:17-49
+81            <meta-data
+81-->[androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\8.12\transforms\cd3bd01133a5647a7b1d0c2b9c1b2a50\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:29:13-31:52
+82                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+82-->[androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\8.12\transforms\cd3bd01133a5647a7b1d0c2b9c1b2a50\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:30:17-78
+83                android:value="androidx.startup" />
+83-->[androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\8.12\transforms\cd3bd01133a5647a7b1d0c2b9c1b2a50\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:31:17-49
+84            <meta-data
+84-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+85                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+85-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+86                android:value="androidx.startup" />
+86-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+87        </provider>
+88
+89        <receiver
+89-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+90            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+90-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+91            android:directBootAware="false"
+91-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+92            android:enabled="true"
+92-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+93            android:exported="true"
+93-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+94            android:permission="android.permission.DUMP" >
+94-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+95            <intent-filter>
+95-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+96                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+96-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+96-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+97            </intent-filter>
+98            <intent-filter>
+98-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+99                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+99-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+99-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+100            </intent-filter>
+101            <intent-filter>
+101-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+102                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+102-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+102-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+103            </intent-filter>
+104            <intent-filter>
+104-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+105                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+105-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+105-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\8.12\transforms\aebe730b1386670428b32c8e03cd76f7\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+106            </intent-filter>
+107        </receiver>
+108    </application>
+109
+110</manifest>
