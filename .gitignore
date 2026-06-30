@@ -6,6 +6,7 @@
 .externalNativeBuild
 .gradle/
 .kotlin/
+.kotlin/errors
 .vscode
 /Ambient_Volume_prompt.md
 /build
