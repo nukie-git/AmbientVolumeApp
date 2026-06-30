@@ -48,3 +48,29 @@ Thumbs.db
 # to ensure anyone can build your app without installing Gradle.
 # !gradle/wrapper/gradle-wrapper.jar
 # !gradle/wrapper/gradle-wrapper.properties
+
+# --- KOTLIN TOOLING ---
+# Kotlin daemon state, session caches, and incremental compilation data
+.kotlin/
+
+# --- ENVIRONMENT & SECRETS ---
+# Never commit environment variable files — these may contain API keys or tokens
+.env
+*.env
+# Additional signing config file name variants
+keystore.properties
+
+# --- LOGS ---
+# Log files may capture sensitive debug output or stack traces
+*.log
+
+# --- BUILD OUTPUT ---
+# Ignore release-specific build output directory
+/app/release/
+
+# --- EDITOR & TOOLING OVERRIDES ---
+# VS Code workspace settings (for contributors using VS Code)
+.vscode/
+# Backup and temporary files created by editors
+*.bak
+*.tmp
