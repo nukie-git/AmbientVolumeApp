@@ -18,22 +18,19 @@
 
 package com.nukie.ambientvolume
 
-import com.nukie.ambientvolume.BuildConfig
-
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import android.media.AudioManager
-import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.content.ComponentName
+import androidx.core.net.toUri
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.app.NotificationManagerCompat
-import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -54,7 +51,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.annotation.StringRes
-import com.nukie.ambientvolume.R
 import com.nukie.ambientvolume.service.*
 import com.nukie.ambientvolume.ui.*
 import com.nukie.ambientvolume.ui.theme.AmbientVolumeTheme
@@ -73,12 +69,25 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import android.app.AlertDialog as AndroidAlertDialog
 
+/**
+ * The main activity of the Ambient Volume application.
+ *
+ * This activity serves as the primary entry point and hosts the main UI components,
+ * including navigation between the monitor, engine, and settings screens.
+ * It also handles service lifecycle management and log exportation.
+ */
 class MainActivity : ComponentActivity() {
     private val exportLogsLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("text/plain")) { uri ->
         uri?.let { saveLogsToUri(it) }
     }
 
-    private fun saveLogsToUri(uri: android.net.Uri) {
+    /**
+     * Saves the current debug logs to the specified [uri] using the system's
+     * Storage Access Framework.
+     *
+     * @param uri The URI where the logs should be saved.
+     */
+    private fun saveLogsToUri(uri: Uri) {
         try {
             contentResolver.openOutputStream(uri)?.use { outputStream ->
                 val logFile = DebugLogger.getLogFile(this)
@@ -90,13 +99,19 @@ class MainActivity : ComponentActivity() {
                     outputStream.write(getString(R.string.error_no_logs_found).toByteArray())
                 }
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             // Error handled by system SAF dialog usually
         }
     }
 
+    /**
+     * Checks if a specific service is currently running.
+     *
+     * @param serviceClass The class of the service to check.
+     * @return True if the service is running, false otherwise.
+     */
     private fun isServiceRunning(serviceClass: Class<*>): Boolean {
-        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
         @Suppress("DEPRECATION")
         for (service in manager.getRunningServices(Int.MAX_VALUE)) {
             if (serviceClass.name == service.service.className) {
@@ -106,17 +121,17 @@ class MainActivity : ComponentActivity() {
         return false
     }
 
+    /**
+     * Shows a dialog prompting the user to restart the volume control service
+     * if it has stopped unexpectedly.
+     */
     private fun showRestartDialog() {
         AndroidAlertDialog.Builder(this)
             .setTitle(getString(R.string.dialog_engine_stopped_title))
             .setMessage(getString(R.string.dialog_engine_stopped_message))
             .setPositiveButton(getString(R.string.button_restart)) { _, _ ->
                 val intent = Intent(this, VolumeControlService::class.java)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(intent)
-                } else {
-                    startService(intent)
-                }
+                startForegroundService(intent)
             }
             .setNegativeButton(getString(R.string.button_ignore), null)
             .show()
@@ -132,7 +147,7 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            var useSystemTheme by remember { mutableStateOf(true) }
+            var useSystemTheme by remember { mutableStateOf(value = true) }
             val lifecycleOwner = LocalLifecycleOwner.current
 
             DisposableEffect(lifecycleOwner) {
@@ -143,11 +158,7 @@ class MainActivity : ComponentActivity() {
                                 // Self-healing: auto-restart if DataStore confirms it was active
                                 if (ProfileManager.getServiceWasActive()) {
                                     val intent = Intent(this@MainActivity, VolumeControlService::class.java)
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                        startForegroundService(intent)
-                                    } else {
-                                        startService(intent)
-                                    }
+                                    startForegroundService(intent)
                                 } else if (AudioStateRepository.isServiceRunning.value) {
                                     // Fallback: in-memory flag says running but DataStore says not — show dialog
                                     showRestartDialog()
@@ -165,13 +176,15 @@ class MainActivity : ComponentActivity() {
             AmbientVolumeTheme(useSystemTheme = useSystemTheme) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
                     PermissionsWrapper {
                         MainNavigation(
                             useSystemTheme = useSystemTheme,
                             onThemeToggle = { useSystemTheme = it },
-                            onExportLogs = { exportLogsLauncher.launch("ambient_volume_debug_${System.currentTimeMillis()}.log") }
+                            onExportLogs = {
+                                exportLogsLauncher.launch("ambient_volume_debug_${System.currentTimeMillis()}.log")
+                            },
                         )
                     }
                 }
@@ -180,17 +193,30 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-enum class ScreenTab(val route: String, val icon: androidx.compose.ui.graphics.vector.ImageVector, @StringRes val labelRes: Int) {
-    MONITOR("monitor", Icons.Default.Monitor, R.string.tab_monitor),
-    ENGINE("engine", Icons.Default.Tune, R.string.tab_engine),
-    SETTINGS("settings", Icons.Default.Settings, R.string.tab_settings)
+/**
+ * Defines the available screens in the main navigation.
+ *
+ * @property icon The icon associated with the tab.
+ * @property labelRes The string resource ID for the tab's label.
+ */
+enum class ScreenTab(val icon: androidx.compose.ui.graphics.vector.ImageVector, @get:StringRes val labelRes: Int) {
+    MONITOR(Icons.Default.Monitor, R.string.tab_monitor),
+    ENGINE(Icons.Default.Tune, R.string.tab_engine),
+    SETTINGS(Icons.Default.Settings, R.string.tab_settings)
 }
 
+/**
+ * The top-level navigation composable that manages the pager and bottom bar.
+ *
+ * @param useSystemTheme Whether to use the system theme or a specific app theme.
+ * @param onThemeToggle Callback triggered when the theme is toggled.
+ * @param onExportLogs Callback triggered when the user requests to export logs.
+ */
 @Composable
 fun MainNavigation(
     useSystemTheme: Boolean,
     onThemeToggle: (Boolean) -> Unit,
-    onExportLogs: () -> Unit
+    onExportLogs: () -> Unit,
 ) {
     var selectedTab by remember { mutableStateOf(ScreenTab.MONITOR) }
     val pendingVolumeDecision by AudioStateRepository.pendingVolumeDecision.collectAsStateWithLifecycle()
@@ -312,6 +338,13 @@ fun MainNavigation(
 }
 
 
+/**
+ * The monitor screen displays real-time audio levels and service controls.
+ *
+ * This screen includes a visual indicator of the current dB level, a button to start or
+ * stop the volume control service, and sliders for volume adjustment. In debug builds,
+ * it also shows a live engine visualizer.
+ */
 @Composable
 fun MonitorScreen() {
     val context = LocalContext.current
@@ -322,9 +355,9 @@ fun MonitorScreen() {
     val meanInterval by AudioStateRepository.meanInterval.collectAsStateWithLifecycle()
     val audioManager = remember { context.getSystemService(Context.AUDIO_SERVICE) as AudioManager }
     val maxVolume = remember { audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC).toFloat() }
-    var showAppInfoDialog by remember { mutableStateOf(false) }
+    var showAppInfoDialog by remember { mutableStateOf(value = false) }
 
-    var showMicInfo by remember { mutableStateOf(false) }
+    var showMicInfo by remember { mutableStateOf(value = false) }
 
     Column(
         modifier = Modifier
@@ -426,10 +459,7 @@ fun MonitorScreen() {
             onClick = {
                 val intent = Intent(context, VolumeControlService::class.java)
                 if (isServiceRunning) context.stopService(intent)
-                else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent)
-                    else context.startService(intent)
-                }
+                else context.startForegroundService(intent)
             },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
@@ -530,6 +560,12 @@ fun MonitorScreen() {
     }
 }
 
+/**
+ * The engine screen allows users to configure the adaptive volume parameters.
+ *
+ * Users can select environmental profiles, adjust sensitivity (step size), and
+ * configure smoothing (averaging period) for the volume control logic.
+ */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun EngineScreen() {
@@ -636,13 +672,23 @@ fun EngineScreen() {
     }
 }
 
+/**
+ * The settings screen provides general application configuration and diagnostic tools.
+ *
+ * It includes options for theme selection, haptic feedback, hearing safety features,
+ * and battery optimization settings. In debug builds, it also provides access to
+ * debug log management.
+ *
+ * @param useSystemTheme Current theme setting.
+ * @param onThemeToggle Callback to change the theme setting.
+ * @param onExportLogs Callback to export debug logs.
+ */
 @Composable
 fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, onExportLogs: () -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val vibrateEnabled by AudioStateRepository.vibrateEnabled.collectAsStateWithLifecycle()
     val hearingSafetyEnabled by AudioStateRepository.hearingSafetyEnabled.collectAsStateWithLifecycle()
-    val currentDb by AudioStateRepository.currentDb.collectAsStateWithLifecycle()
     val oemType = remember { OEMManager.getDetectedOEM(context) }
     var showPersistenceAssistant by remember { mutableStateOf(false) }
 
@@ -734,6 +780,11 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, on
     }
 }
 
+/**
+ * A styled card container used for grouping related UI elements in the dashboard.
+ *
+ * @param content The composable content to be displayed inside the card.
+ */
 @Composable
 fun DashboardCard(content: @Composable ColumnScope.() -> Unit) {
     Card(
@@ -753,6 +804,17 @@ fun DashboardCard(content: @Composable ColumnScope.() -> Unit) {
     )
 }
 
+/**
+ * A dialog that assists users in configuring system settings to ensure the app
+ * can run reliably in the background.
+ *
+ * It provides shortcuts to battery optimization settings, OEM-specific autostart
+ * settings, and notification permissions.
+ *
+ * @param oem The detected OEM type for specific background management settings.
+ * @param isDuraSpeed Whether DuraSpeed management is detected (common on Mediatek devices).
+ * @param onDismiss Callback triggered when the dialog is dismissed.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: () -> Unit) {
@@ -824,11 +886,11 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
                     if (!isBatteryIgnored) {
                         try {
                             val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
-                                data = Uri.parse("package:${context.packageName}")
+                                data = "package:${context.packageName}".toUri()
                                 flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
                             }
                             context.startActivity(intent)
-                        } catch (e: Exception) {
+                        } catch (_: Exception) {
                             val intent = Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS).apply {
                                 flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
                             }
@@ -853,7 +915,7 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
                             val i = oem.intent
                             i.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
                             context.startActivity(i)
-                        } catch (e: Exception) {
+                        } catch (_: Exception) {
                             // Fallback to app details
                             val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
                                 data = Uri.fromParts("package", context.packageName, null)
@@ -911,6 +973,14 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
     }
 }
 
+/**
+ * A single item within a checklist, typically used in the persistence assistant.
+ *
+ * @param title The title of the task.
+ * @param description A brief description or status of the task.
+ * @param isDone Whether the task is completed or requires attention.
+ * @param onClick Callback triggered when the item is clicked.
+ */
 @Composable
 fun ChecklistItem(title: String, description: String, isDone: Boolean, onClick: () -> Unit) {
     Surface(

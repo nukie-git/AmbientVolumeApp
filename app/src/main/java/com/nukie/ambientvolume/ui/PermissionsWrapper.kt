@@ -11,7 +11,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import android.os.PowerManager
 import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -31,6 +30,15 @@ import androidx.core.content.ContextCompat
 
 import com.nukie.ambientvolume.R
 
+/**
+ * A wrapper component that manages the requesting and state of required permissions.
+ *
+ * This component checks for necessary permissions (Audio Record, Bluetooth, and Notifications)
+ * based on the Android version and ensures they are granted before rendering the main application [content].
+ * It handles rationale dialogs and provides a path to system settings if permissions are permanently denied.
+ *
+ * @param content The composable content to be displayed once all required permissions are granted.
+ */
 @Composable
 fun PermissionsWrapper(content: @Composable () -> Unit) {
     val context = LocalContext.current
@@ -41,33 +49,35 @@ fun PermissionsWrapper(content: @Composable () -> Unit) {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.BLUETOOTH_SCAN,
-            Manifest.permission.POST_NOTIFICATIONS
+            Manifest.permission.POST_NOTIFICATIONS,
         )
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         arrayOf(
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.BLUETOOTH_CONNECT,
-            Manifest.permission.BLUETOOTH_SCAN
+            Manifest.permission.BLUETOOTH_SCAN,
         )
     } else {
         arrayOf(
-            Manifest.permission.RECORD_AUDIO
+            Manifest.permission.RECORD_AUDIO,
         )
     }
 
     // 2. Permission State Handler
     var allPermissionsGranted by remember {
-        mutableStateOf(permissionsToRequest.all {
-            ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
-        })
+        mutableStateOf(
+            permissionsToRequest.all { permission ->
+                ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+            },
+        )
     }
 
-    var showRationaleDialog by remember { mutableStateOf(false) }
-    var showSettingsDialog by remember { mutableStateOf(false) }
+    var showRationaleDialog by remember { mutableStateOf(value = false) }
+    var showSettingsDialog by remember { mutableStateOf(value = false) }
 
     // 3. Request Logic
     val permissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestMultiplePermissions()
+        contract = ActivityResultContracts.RequestMultiplePermissions(),
     ) { permissions ->
         val granted = permissions.entries.all { it.value }
         if (granted) {
@@ -105,13 +115,13 @@ fun PermissionsWrapper(content: @Composable () -> Unit) {
                     imageVector = Icons.Filled.Info,
                     contentDescription = null,
                     modifier = Modifier.size(64.dp),
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = MaterialTheme.colorScheme.primary,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = stringResource(R.string.core_permissions_required),
                     style = MaterialTheme.typography.titleMedium,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -122,13 +132,21 @@ fun PermissionsWrapper(content: @Composable () -> Unit) {
                 title = { Text(stringResource(R.string.dialog_permissions_required_title)) },
                 text = { Text(stringResource(R.string.dialog_permissions_required_message)) },
                 confirmButton = {
-                    TextButton(onClick = {
-                        showRationaleDialog = false
-                        permissionLauncher.launch(permissionsToRequest)
-                    }) { Text(stringResource(R.string.button_grant)) }
+                    TextButton(
+                        onClick = {
+                            showRationaleDialog = false
+                            permissionLauncher.launch(permissionsToRequest)
+                        }
+                    ) {
+                        Text(stringResource(R.string.button_grant))
+                    }
                 },
                 dismissButton = {
-                    TextButton(onClick = { showRationaleDialog = false }) { Text(stringResource(R.string.button_deny)) }
+                    TextButton(
+                        onClick = { showRationaleDialog = false }
+                    ) {
+                        Text(stringResource(R.string.button_deny))
+                    }
                 }
             )
         }
@@ -139,29 +157,39 @@ fun PermissionsWrapper(content: @Composable () -> Unit) {
                 title = { Text(stringResource(R.string.dialog_permissions_denied_title)) },
                 text = { Text(stringResource(R.string.dialog_permissions_denied_message)) },
                 confirmButton = {
-                    TextButton(onClick = {
-                        showSettingsDialog = false
-                        openAppSettings(context)
-                    }) { Text(stringResource(R.string.button_open_settings)) }
+                    TextButton(
+                        onClick = {
+                            showSettingsDialog = false
+                            openAppSettings(context)
+                        }
+                    ) {
+                        Text(stringResource(R.string.button_open_settings))
+                    }
                 },
                 dismissButton = {
-                    TextButton(onClick = { showSettingsDialog = false }) { Text(stringResource(R.string.button_cancel)) }
+                    TextButton(
+                        onClick = { showSettingsDialog = false }
+                    ) {
+                        Text(stringResource(R.string.button_cancel))
+                    }
                 }
             )
         }
     }
 }
 
-// Helper function to deep-link to App Settings
+/**
+ * Navigates the user to the application's system settings page.
+ *
+ * This is used as a fallback when permissions are permanently denied and must be
+ * manually enabled by the user in the system settings.
+ *
+ * @param context The context used to start the activity.
+ */
 fun openAppSettings(context: Context) {
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
         data = Uri.fromParts("package", context.packageName, null)
         flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
     }
     context.startActivity(intent)
-}
-
-fun isIgnoringBatteryOptimizations(context: Context): Boolean {
-    val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
-    return powerManager.isIgnoringBatteryOptimizations(context.packageName)
 }
