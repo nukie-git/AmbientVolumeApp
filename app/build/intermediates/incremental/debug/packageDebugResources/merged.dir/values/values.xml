@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="icon_background">#006064</color>
+    <color name="primary">#0058CB</color>
+    <color name="secondary_container">#BAC3FF</color>
+    <string name="app_description">Listening to ambient noise to adapt volume...</string>
+    <string name="app_name">Ambient Volume</string>
+    <string name="core_permissions_required">Core permissions are required for the Adaptive Volume Engine.</string>
+    <string name="instant_label">Instant</string>
+    <string name="interaction_title">Interaction</string>
+    <string name="live_engine_title">Live Engine View</string>
+    <string name="mean_label">Mean</string>
+    <string name="privacy_note">Privacy Note: The green dot in your status bar is expected. The app is sensing noise levels to adjust volume, but does not record or store any audio.</string>
+    <string name="sensitivity_title">Sensitivity</string>
+    <string name="service_title">Volume Engine is Active</string>
+    <string name="smoothing_title">Smoothing</string>
+    <string name="step_size_title">Adjustment Step Size</string>
+    <string name="vibrate_subtitle_off">No haptic feedback</string>
+    <string name="vibrate_subtitle_on">Short haptic tick on every step</string>
+    <string name="vibrate_title">Vibrate on Volume Change</string>
+</resources>

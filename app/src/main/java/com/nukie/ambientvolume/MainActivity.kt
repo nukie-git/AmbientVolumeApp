@@ -68,6 +68,7 @@ import android.app.ActivityManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import android.app.AlertDialog as AndroidAlertDialog
 
 class MainActivity : ComponentActivity() {
@@ -188,8 +189,8 @@ fun MainNavigation(
     onExportLogs: () -> Unit
 ) {
     var selectedTab by remember { mutableStateOf(ScreenTab.MONITOR) }
-    val pendingVolumeDecision by AudioStateRepository.pendingVolumeDecision.collectAsState()
-    val hearingSafetyEnabled by AudioStateRepository.hearingSafetyEnabled.collectAsState()
+    val pendingVolumeDecision by AudioStateRepository.pendingVolumeDecision.collectAsStateWithLifecycle()
+    val hearingSafetyEnabled by AudioStateRepository.hearingSafetyEnabled.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val pagerState = rememberPagerState(pageCount = { ScreenTab.entries.size })
@@ -283,7 +284,7 @@ fun MainNavigation(
             }
             
             // 60/60 Hearing Safety Modal
-            val safetyThresholdReached by AudioStateRepository.safetyThresholdReached.collectAsState()
+            val safetyThresholdReached by AudioStateRepository.safetyThresholdReached.collectAsStateWithLifecycle()
             if (safetyThresholdReached && hearingSafetyEnabled) {
                 AlertDialog(
                     onDismissRequest = { /* Persistent until acknowledged */ },
@@ -310,11 +311,11 @@ fun MainNavigation(
 @Composable
 fun MonitorScreen() {
     val context = LocalContext.current
-    val currentDb by AudioStateRepository.currentDb.collectAsState()
-    val rollingMeanDb by AudioStateRepository.rollingMeanDb.collectAsState()
-    val currentVolumePercent by AudioStateRepository.currentVolume.collectAsState()
-    val isServiceRunning by AudioStateRepository.isServiceRunning.collectAsState()
-    val meanInterval by AudioStateRepository.meanInterval.collectAsState()
+    val currentDb by AudioStateRepository.currentDb.collectAsStateWithLifecycle()
+    val rollingMeanDb by AudioStateRepository.rollingMeanDb.collectAsStateWithLifecycle()
+    val currentVolumePercent by AudioStateRepository.currentVolume.collectAsStateWithLifecycle()
+    val isServiceRunning by AudioStateRepository.isServiceRunning.collectAsStateWithLifecycle()
+    val meanInterval by AudioStateRepository.meanInterval.collectAsStateWithLifecycle()
     val audioManager = remember { context.getSystemService(Context.AUDIO_SERVICE) as AudioManager }
     val maxVolume = remember { audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC).toFloat() }
     var showAppInfoDialog by remember { mutableStateOf(false) }
@@ -488,7 +489,7 @@ fun MonitorScreen() {
 
         // Debug Metric: Ambient Noise dB (Monitor Tab - Conditional Debug Build)
         if (BuildConfig.DEBUG) {
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = "Debug Metric: Ambient Noise ${currentDb.roundToInt()} dB",
                 style = MaterialTheme.typography.bodySmall,
@@ -529,9 +530,9 @@ fun MonitorScreen() {
 @Composable
 fun EngineScreen() {
     val scope = rememberCoroutineScope()
-    val activeProfile by AudioStateRepository.activeProfile.collectAsState()
-    val stepSize by AudioStateRepository.stepSize.collectAsState()
-    val meanInterval by AudioStateRepository.meanInterval.collectAsState()
+    val activeProfile by AudioStateRepository.activeProfile.collectAsStateWithLifecycle()
+    val stepSize by AudioStateRepository.stepSize.collectAsStateWithLifecycle()
+    val meanInterval by AudioStateRepository.meanInterval.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
@@ -635,9 +636,9 @@ fun EngineScreen() {
 fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, onExportLogs: () -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val vibrateEnabled by AudioStateRepository.vibrateEnabled.collectAsState()
-    val hearingSafetyEnabled by AudioStateRepository.hearingSafetyEnabled.collectAsState()
-    val currentDb by AudioStateRepository.currentDb.collectAsState()
+    val vibrateEnabled by AudioStateRepository.vibrateEnabled.collectAsStateWithLifecycle()
+    val hearingSafetyEnabled by AudioStateRepository.hearingSafetyEnabled.collectAsStateWithLifecycle()
+    val currentDb by AudioStateRepository.currentDb.collectAsStateWithLifecycle()
     val oemType = remember { OEMManager.getDetectedOEM(context) }
     var showPersistenceAssistant by remember { mutableStateOf(false) }
 

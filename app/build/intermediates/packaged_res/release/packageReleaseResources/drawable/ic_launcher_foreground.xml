@@ -1,0 +1,83 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Glassmorphism Effect: 
+         1. Subtle white frost layer (semi-transparent)
+         2. Main Sleek Wave with 2-stop Primary-to-Secondary Container gradient
+         3. Alpha-blend for depth -->
+
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.55"
+        android:scaleY="0.55">
+
+        <!-- Frost Layer (Glass Background for the group) -->
+        <path
+            android:fillColor="#1AFFFFFF"
+            android:pathData="M16,20 L92,20 L92,88 L16,88 Z" />
+
+        <!-- Microphone capsule -->
+        <path android:pathData="M20,32 C20,28.69 22.69,26 26,26 L28,26 C31.31,26 34,28.69 34,32 L34,56 C34,59.31 31.31,62 28,62 L26,62 C22.69,62 20,59.31 20,56 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:startX="20" android:startY="54" android:endX="96" android:endY="54" android:type="linear">
+                    <item android:offset="0" android:color="@color/primary" />
+                    <item android:offset="1" android:color="@color/secondary_container" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Mic stand -->
+        <path android:pathData="M18,64 C18,70.63 23.37,76 30,76 L30,80 L24,80 L24,84 L30,84 L30,80">
+            <aapt:attr name="android:fillColor">
+                <gradient android:startX="20" android:startY="54" android:endX="96" android:endY="54" android:type="linear">
+                    <item android:offset="0" android:color="@color/primary" />
+                    <item android:offset="1" android:color="@color/secondary_container" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Sound wave bars (Glass effect: slightly transparent) -->
+        <group android:alpha="0.9">
+            <path android:pathData="M42,38 C42,35.79 43.79,34 46,34 C48.21,34 50,35.79 50,38 L50,70 C50,72.21 48.21,74 46,74 C43.79,74 42,72.21 42,70 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient android:startX="20" android:startY="54" android:endX="96" android:endY="54" android:type="linear">
+                        <item android:offset="0" android:color="@color/primary" />
+                        <item android:offset="1" android:color="@color/secondary_container" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <path android:pathData="M56,26 C56,23.79 57.79,22 60,22 C62.21,22 64,23.79 64,26 L64,82 C64,84.21 62.21,86 60,86 C57.79,86 56,84.21 56,82 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient android:startX="20" android:startY="54" android:endX="96" android:endY="54" android:type="linear">
+                        <item android:offset="0" android:color="@color/primary" />
+                        <item android:offset="1" android:color="@color/secondary_container" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <path android:pathData="M70,34 C70,31.79 71.79,30 74,30 C76.21,30 78,31.79 78,34 L78,74 C78,76.21 76.21,78 74,78 C71.79,78 70,76.21 70,74 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient android:startX="20" android:startY="54" android:endX="96" android:endY="54" android:type="linear">
+                        <item android:offset="0" android:color="@color/primary" />
+                        <item android:offset="1" android:color="@color/secondary_container" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+        </group>
+
+        <!-- Speaker cone -->
+        <path android:pathData="M84,40 L84,68 L88,68 L96,76 L96,32 L88,40 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:startX="20" android:startY="54" android:endX="96" android:endY="54" android:type="linear">
+                    <item android:offset="0" android:color="@color/primary" />
+                    <item android:offset="1" android:color="@color/secondary_container" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+    </group>
+</vector>

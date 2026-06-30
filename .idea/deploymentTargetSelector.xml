@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="app">
+      <SelectionState runConfigName="AmbientVolume">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2026-05-12T09:00:24.680152100Z">
           <Target type="DEFAULT_BOOT">

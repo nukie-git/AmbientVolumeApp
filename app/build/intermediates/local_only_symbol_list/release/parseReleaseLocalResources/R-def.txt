@@ -1,0 +1,27 @@
+R_DEF: Internal format may change without notice
+local
+color icon_background
+color primary
+color secondary_container
+drawable ic_adaptive_volume
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable ic_launcher_monochrome
+drawable ic_stat_wave
+mipmap ic_launcher
+mipmap ic_launcher_new
+string app_description
+string app_name
+string core_permissions_required
+string instant_label
+string interaction_title
+string live_engine_title
+string mean_label
+string privacy_note
+string sensitivity_title
+string service_title
+string smoothing_title
+string step_size_title
+string vibrate_subtitle_off
+string vibrate_subtitle_on
+string vibrate_title

@@ -1,0 +1,404 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:2:1-71:12
+INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:2:1-71:12
+INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:2:1-71:12
+INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:2:1-71:12
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2fd2ddfe829bb0c657fabe9949b9ab60\transformed\navigationevent\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigationevent:navigationevent-compose-android:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\c48a9460a034222bf939c4f989d4d6bf\transformed\navigationevent-compose\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material3:material3-android:1.2.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\d4925a0a69b0a8a66801f38cbc3a37f3\transformed\material3-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-ripple-android:1.6.8] C:\Users\nukie\.gradle\caches\9.4.1\transforms\ea7054eda08787e984258ddd485c1a0d\transformed\material-ripple-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.8] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2a7d5bb7e44e6767ac6ccd5d87a6b6bd\transformed\material-icons-extended-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.8] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e9fa967e11819d48fcb2d119f885e112\transformed\material-icons-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\084aa225c94cd423111ebf6e296dcd1d\transformed\foundation-layout-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\286e6df41c8b9594a0f8f636dc610c0f\transformed\foundation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\19f7d262b59e36acf6dfa9ca01e02573\transformed\animation-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\b460a708d4f89a95380634f584dee191\transformed\animation-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\35891e7271779aa3840d3f3e4d39a9d4\transformed\ui-geometry\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb82237633f04e1e69f145af6719c477\transformed\ui-tooling-preview\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-util-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\9e7ab360f2bad0178a411edc21fbf2ee\transformed\ui-util\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\44c8b06ab047bec07736133162747873\transformed\ui-unit\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e077cabcb6655104ab7d5d063b334e8b\transformed\ui-text\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\50c4e52ae9ca2a3891bd9e646672ca2f\transformed\ui-graphics-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\deed3ed349fa1b314751c2a78b53d6a6\transformed\ui-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-ktx:1.13.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\866aac29cb83dcfc7371a52d5f581199\transformed\activity-ktx-1.13.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity:1.13.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\a37a8537f929737b426f89a4c16d1901\transformed\activity-1.13.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-compose:1.13.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\acfe36d77e3d80d5457016da6a1b315f\transformed\activity-compose-1.13.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6833360bc27fb671c785222871f1258e\transformed\lifecycle-viewmodel-ktx-2.10.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3a91cf830880f80921e827504894ff61\transformed\lifecycle-livedata-core-2.10.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\43e8f85c408f8e2f65504a9ead3362fd\transformed\lifecycle-viewmodel\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\87e6d02e4c6978b2102a960f562e512d\transformed\runtime-annotation\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb4deb54224881d7c99e82a5440ca9df\transformed\savedstate-ktx-1.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\fcc8a6c8e506e7d7c1a1f59cdcce4ce3\transformed\savedstate\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate-compose-android:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\29e6fa7c516b44d2bc296d79c64889cb\transformed\savedstate-compose\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3cb4d70d7c4c81ab8c4e88f52ab0e0fc\transformed\runtime\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\c698c72e1ae998d3bf62b624b64d8dae\transformed\runtime-saveable\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\dc4cb0df8e7872c8588ed4701f368409\transformed\lifecycle-runtime-compose\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\d0cfc1591c7d48fb10c796d8e0333631\transformed\lifecycle-viewmodel-savedstate\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\dfbbe6192767ae80a9227ca150cbdc8f\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\59bb312a030b73eebc82787223535a77\transformed\core-ktx-1.18.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\cb1bfa292af505f769c1e50e273a18fd\transformed\autofill-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3bbabdaeea3dd7d20a65fc8b7d9c8403\transformed\graphics-path-1.0.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4716bbed4fa2b91b08a8ea91f927bf2b\transformed\lifecycle-runtime\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\bcd5a6b3239bf395578d0988634902dd\transformed\lifecycle-runtime-ktx\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.datastore:datastore-core-android:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6e1c11427182491b25270913b62756dd\transformed\datastore-core-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.datastore:datastore-android:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6fdf5d44421465b53db0bec22fd85ff5\transformed\datastore-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.datastore:datastore-preferences-android:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\cd6f973a6b487213227dc95d00d3dbb6\transformed\datastore-preferences-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4868206569eb6aca11c932aef09b2bef\transformed\core-viewtree-1.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e226618f115baacbc6ea6c267a4e1ade\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3aaedc10cda945ce5cb774eca28e9ad9\transformed\tracing-1.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3f203369729f5ebed6c5ec420c8b7968\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\83aa4466e14c9d0b2ca1cda685a0dbcd\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\cc2a793e7deead1bc79f0ddf1adfccf0\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\c171eb6dd62ef1222e1a99643f48c403\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:2:1-7:12
+	package
+		INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:6:5-71
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:6:22-68
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:9:5-80
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:9:22-77
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:13:5-76
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:13:22-73
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:14:5-120
+	android:usesPermissionFlags
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:14:71-117
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:14:22-70
+uses-permission#android.permission.BLUETOOTH
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:17:5-95
+	android:maxSdkVersion
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:17:66-92
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:17:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:18:5-101
+	android:maxSdkVersion
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:18:72-98
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:18:22-71
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:21:5-77
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:21:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE_MICROPHONE
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:22:5-88
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:22:22-85
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:23:5-77
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:23:22-74
+uses-permission#android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:26:5-95
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:26:22-92
+uses-permission#android.permission.VIBRATE
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:29:5-66
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:29:22-63
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:32:5-81
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:32:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:35:5-107
+	android:maxSdkVersion
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:35:78-104
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:35:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:36:5-108
+	android:maxSdkVersion
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:36:79-105
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:36:22-78
+application
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:38:5-69:19
+INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:38:5-69:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e226618f115baacbc6ea6c267a4e1ade\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e226618f115baacbc6ea6c267a4e1ade\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\83aa4466e14c9d0b2ca1cda685a0dbcd\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\83aa4466e14c9d0b2ca1cda685a0dbcd\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:42:9-35
+	android:label
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:41:9-41
+	android:roundIcon
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:40:9-52
+	android:icon
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:39:9-47
+	android:theme
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:43:9-71
+activity#com.nukie.ambientvolume.MainActivity
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:44:9-51:20
+	android:exported
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:46:13-36
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:45:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:47:13-50:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:48:17-69
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:48:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:49:17-77
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:49:27-74
+service#com.nukie.ambientvolume.service.VolumeControlService
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:54:9-58:36
+	android:exported
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:56:13-37
+	tools:targetApi
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:58:13-33
+	android:foregroundServiceType
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:57:13-55
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:55:13-57
+receiver#com.nukie.ambientvolume.BootReceiver
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:61:9-68:20
+	android:exported
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:63:13-36
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:62:13-41
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MY_PACKAGE_REPLACED
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:64:13-67:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:65:17-79
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:65:25-76
+action#android.intent.action.MY_PACKAGE_REPLACED
+ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:66:17-84
+	android:name
+		ADDED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml:66:25-81
+uses-sdk
+INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2fd2ddfe829bb0c657fabe9949b9ab60\transformed\navigationevent\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2fd2ddfe829bb0c657fabe9949b9ab60\transformed\navigationevent\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-compose-android:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\c48a9460a034222bf939c4f989d4d6bf\transformed\navigationevent-compose\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-compose-android:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\c48a9460a034222bf939c4f989d4d6bf\transformed\navigationevent-compose\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material3:material3-android:1.2.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\d4925a0a69b0a8a66801f38cbc3a37f3\transformed\material3-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.2.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\d4925a0a69b0a8a66801f38cbc3a37f3\transformed\material3-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.8] C:\Users\nukie\.gradle\caches\9.4.1\transforms\ea7054eda08787e984258ddd485c1a0d\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.8] C:\Users\nukie\.gradle\caches\9.4.1\transforms\ea7054eda08787e984258ddd485c1a0d\transformed\material-ripple-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.8] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2a7d5bb7e44e6767ac6ccd5d87a6b6bd\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.8] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2a7d5bb7e44e6767ac6ccd5d87a6b6bd\transformed\material-icons-extended-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.8] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e9fa967e11819d48fcb2d119f885e112\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.8] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e9fa967e11819d48fcb2d119f885e112\transformed\material-icons-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\084aa225c94cd423111ebf6e296dcd1d\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\084aa225c94cd423111ebf6e296dcd1d\transformed\foundation-layout-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\286e6df41c8b9594a0f8f636dc610c0f\transformed\foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\286e6df41c8b9594a0f8f636dc610c0f\transformed\foundation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\19f7d262b59e36acf6dfa9ca01e02573\transformed\animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\19f7d262b59e36acf6dfa9ca01e02573\transformed\animation-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\b460a708d4f89a95380634f584dee191\transformed\animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.7.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\b460a708d4f89a95380634f584dee191\transformed\animation-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\35891e7271779aa3840d3f3e4d39a9d4\transformed\ui-geometry\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\35891e7271779aa3840d3f3e4d39a9d4\transformed\ui-geometry\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb82237633f04e1e69f145af6719c477\transformed\ui-tooling-preview\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb82237633f04e1e69f145af6719c477\transformed\ui-tooling-preview\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\9e7ab360f2bad0178a411edc21fbf2ee\transformed\ui-util\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\9e7ab360f2bad0178a411edc21fbf2ee\transformed\ui-util\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\44c8b06ab047bec07736133162747873\transformed\ui-unit\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\44c8b06ab047bec07736133162747873\transformed\ui-unit\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e077cabcb6655104ab7d5d063b334e8b\transformed\ui-text\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e077cabcb6655104ab7d5d063b334e8b\transformed\ui-text\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\50c4e52ae9ca2a3891bd9e646672ca2f\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\50c4e52ae9ca2a3891bd9e646672ca2f\transformed\ui-graphics-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\deed3ed349fa1b314751c2a78b53d6a6\transformed\ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\deed3ed349fa1b314751c2a78b53d6a6\transformed\ui-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.13.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\866aac29cb83dcfc7371a52d5f581199\transformed\activity-ktx-1.13.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.13.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\866aac29cb83dcfc7371a52d5f581199\transformed\activity-ktx-1.13.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity:1.13.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\a37a8537f929737b426f89a4c16d1901\transformed\activity-1.13.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.13.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\a37a8537f929737b426f89a4c16d1901\transformed\activity-1.13.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-compose:1.13.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\acfe36d77e3d80d5457016da6a1b315f\transformed\activity-compose-1.13.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.13.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\acfe36d77e3d80d5457016da6a1b315f\transformed\activity-compose-1.13.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6833360bc27fb671c785222871f1258e\transformed\lifecycle-viewmodel-ktx-2.10.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6833360bc27fb671c785222871f1258e\transformed\lifecycle-viewmodel-ktx-2.10.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3a91cf830880f80921e827504894ff61\transformed\lifecycle-livedata-core-2.10.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3a91cf830880f80921e827504894ff61\transformed\lifecycle-livedata-core-2.10.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\43e8f85c408f8e2f65504a9ead3362fd\transformed\lifecycle-viewmodel\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\43e8f85c408f8e2f65504a9ead3362fd\transformed\lifecycle-viewmodel\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\87e6d02e4c6978b2102a960f562e512d\transformed\runtime-annotation\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\87e6d02e4c6978b2102a960f562e512d\transformed\runtime-annotation\AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb4deb54224881d7c99e82a5440ca9df\transformed\savedstate-ktx-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb4deb54224881d7c99e82a5440ca9df\transformed\savedstate-ktx-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\fcc8a6c8e506e7d7c1a1f59cdcce4ce3\transformed\savedstate\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\fcc8a6c8e506e7d7c1a1f59cdcce4ce3\transformed\savedstate\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-compose-android:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\29e6fa7c516b44d2bc296d79c64889cb\transformed\savedstate-compose\AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-compose-android:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\29e6fa7c516b44d2bc296d79c64889cb\transformed\savedstate-compose\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3cb4d70d7c4c81ab8c4e88f52ab0e0fc\transformed\runtime\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3cb4d70d7c4c81ab8c4e88f52ab0e0fc\transformed\runtime\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\c698c72e1ae998d3bf62b624b64d8dae\transformed\runtime-saveable\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.9.2] C:\Users\nukie\.gradle\caches\9.4.1\transforms\c698c72e1ae998d3bf62b624b64d8dae\transformed\runtime-saveable\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\dc4cb0df8e7872c8588ed4701f368409\transformed\lifecycle-runtime-compose\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\dc4cb0df8e7872c8588ed4701f368409\transformed\lifecycle-runtime-compose\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\d0cfc1591c7d48fb10c796d8e0333631\transformed\lifecycle-viewmodel-savedstate\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\d0cfc1591c7d48fb10c796d8e0333631\transformed\lifecycle-viewmodel-savedstate\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\dfbbe6192767ae80a9227ca150cbdc8f\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\dfbbe6192767ae80a9227ca150cbdc8f\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\59bb312a030b73eebc82787223535a77\transformed\core-ktx-1.18.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\59bb312a030b73eebc82787223535a77\transformed\core-ktx-1.18.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\cb1bfa292af505f769c1e50e273a18fd\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\cb1bfa292af505f769c1e50e273a18fd\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3bbabdaeea3dd7d20a65fc8b7d9c8403\transformed\graphics-path-1.0.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3bbabdaeea3dd7d20a65fc8b7d9c8403\transformed\graphics-path-1.0.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4716bbed4fa2b91b08a8ea91f927bf2b\transformed\lifecycle-runtime\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4716bbed4fa2b91b08a8ea91f927bf2b\transformed\lifecycle-runtime\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\bcd5a6b3239bf395578d0988634902dd\transformed\lifecycle-runtime-ktx\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\bcd5a6b3239bf395578d0988634902dd\transformed\lifecycle-runtime-ktx\AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-core-android:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6e1c11427182491b25270913b62756dd\transformed\datastore-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-core-android:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6e1c11427182491b25270913b62756dd\transformed\datastore-core-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-android:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6fdf5d44421465b53db0bec22fd85ff5\transformed\datastore-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-android:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6fdf5d44421465b53db0bec22fd85ff5\transformed\datastore-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-preferences-android:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\cd6f973a6b487213227dc95d00d3dbb6\transformed\datastore-preferences-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-preferences-android:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\cd6f973a6b487213227dc95d00d3dbb6\transformed\datastore-preferences-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4868206569eb6aca11c932aef09b2bef\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4868206569eb6aca11c932aef09b2bef\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e226618f115baacbc6ea6c267a4e1ade\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e226618f115baacbc6ea6c267a4e1ade\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3aaedc10cda945ce5cb774eca28e9ad9\transformed\tracing-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3aaedc10cda945ce5cb774eca28e9ad9\transformed\tracing-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3f203369729f5ebed6c5ec420c8b7968\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\3f203369729f5ebed6c5ec420c8b7968\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\83aa4466e14c9d0b2ca1cda685a0dbcd\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\83aa4466e14c9d0b2ca1cda685a0dbcd\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\cc2a793e7deead1bc79f0ddf1adfccf0\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\cc2a793e7deead1bc79f0ddf1adfccf0\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\c171eb6dd62ef1222e1a99643f48c403\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\c171eb6dd62ef1222e1a99643f48c403\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\nukie\apps\AmbientVolumeApp\app\src\main\AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e226618f115baacbc6ea6c267a4e1ade\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\nukie\.gradle\caches\9.4.1\transforms\e226618f115baacbc6ea6c267a4e1ade\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\2582bd6311c5dfe79b37394765e559e6\transformed\emoji2-1.4.0\AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:30:17-78
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
+permission#com.nukie.ambientvolume.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
+uses-permission#com.nukie.ambientvolume.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.18.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\nukie\.gradle\caches\9.4.1\transforms\4f19be83ce32f88f5793eb72b5e94cc1\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
