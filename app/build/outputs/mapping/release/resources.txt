@@ -1,43 +1,27 @@
-Marking string:app_name:2131296258 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:hide_graphics_layer_in_inspector_tag:2131034159 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:default_error_message:2131296270 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:close_drawer:2131296267 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:close_sheet:2131296268 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:dropdown_menu:2131296272 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:navigation_menu:2131296335 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:range_end:2131296338 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:range_start:2131296339 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:inspection_slot_table_set:2131034165 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:wrapped_composition_tag:2131034203 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:tag_window_insets_animation_callback:2131034192 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:tag_on_apply_window_listener:2131034183 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:tag_compat_insets_dispatch:2131034182 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:default_popup_window_title:2131296271 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:view_tree_view_model_store_owner:2131034202 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:view_tree_saved_state_registry_owner:2131034201 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:live_engine_title:2131296277 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:instant_label:2131296275 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:mean_label:2131296334 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:view_tree_navigation_event_dispatcher_owner:2131034199 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:view_tree_on_back_pressed_dispatcher_owner:2131034200 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:compose_view_saveable_id_tag:2131034154 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:default_popup_window_title:2131296271 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:tag_state_description:2131034187 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:state_empty:2131296345 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:view_tree_navigation_event_dispatcher_owner:2131034199 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:tag_window_insets_animation_callback:2131034192 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:tag_compat_insets_dispatch:2131034182 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:tag_on_apply_window_listener:2131034183 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:inspection_slot_table_set:2131034165 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:wrapped_composition_tag:2131034203 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:state_empty:2131296346 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking string:indeterminate:2131296274 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:state_off:2131296346 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:state_on:2131296347 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:selected:2131296340 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:not_selected:2131296336 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:template_percent:2131296352 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:state_off:2131296347 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:state_on:2131296348 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:selected:2131296341 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:not_selected:2131296337 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:template_percent:2131296353 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking string:in_progress:2131296273 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:view_tree_lifecycle_owner:2131034198 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:tag_accessibility_actions:2131034178 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:accessibility_action_clickable_span:2131034112 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:tag_accessibility_clickable_spans:2131034179 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:consume_window_insets_tag:2131034155 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:androidx_startup:2131296256 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:default_error_message:2131296270 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:app_name:2131296258 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:hide_in_inspector_tag:2131034161 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:hide_graphics_layer_in_inspector_tag:2131034159 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:pooling_container_listener_holder_tag:2131034174 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:tag_state_description:2131034187 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:accessibility_custom_action_0:2131034113 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:accessibility_custom_action_1:2131034114 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:accessibility_custom_action_2:2131034125 reachable: referenced from in_memory_r8_base_classes0.dex
@@ -70,31 +54,48 @@ Marking id:accessibility_custom_action_28:2131034134 reachable: referenced from 
 Marking id:accessibility_custom_action_29:2131034135 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:accessibility_custom_action_30:2131034137 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:accessibility_custom_action_31:2131034138 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:tab:2131296351 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:switch_role:2131296350 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:report_drawn:2131034175 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:vibrate_title:2131296357 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:tooltip_description:2131296353 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:tooltip_label:2131296354 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:is_pooling_container_tag:2131034166 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:tab:2131296352 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:switch_role:2131296351 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:tooltip_description:2131296354 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:tooltip_label:2131296355 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:smoothing_title:2131296344 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:sensitivity_title:2131296342 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:step_size_title:2131296350 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:tag_accessibility_actions:2131034178 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:accessibility_action_clickable_span:2131034112 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:tag_accessibility_clickable_spans:2131034179 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking id:view_tree_disjoint_parent:2131034197 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking id:androidx_compose_ui_view_composition_context:2131034150 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:vibrate_title:2131296358 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:view_tree_lifecycle_owner:2131034198 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:androidx_startup:2131296256 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:is_pooling_container_tag:2131034166 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:close_drawer:2131296267 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:close_sheet:2131296268 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:dropdown_menu:2131296272 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:navigation_menu:2131296336 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:range_end:2131296339 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking string:range_start:2131296340 reachable: referenced from in_memory_r8_base_classes0.dex
 Marking style:DialogWindowTheme:2131361792 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking style:FloatingDialogWindowTheme:2131361793 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:smoothing_title:2131296343 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:sensitivity_title:2131296341 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking string:step_size_title:2131296349 reachable: referenced from in_memory_r8_base_classes0.dex
-Marking drawable:ic_adaptive_volume:2130968576 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking style:FloatingDialogWindowTheme:2131361795 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:consume_window_insets_tag:2131034155 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:view_tree_on_back_pressed_dispatcher_owner:2131034200 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:report_drawn:2131034175 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking id:androidx_compose_ui_view_composition_context:2131034150 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking drawable:ic_stat_wave:2130968592 reachable: referenced from in_memory_r8_base_classes0.dex
+Marking mipmap:ic_launcher_new:2131230721 reachable: referenced from in_memory_r8_base_classes0.dex
 android.content.res.Resources#getIdentifier present: true
 Web content present: false
 Referenced Strings:
 callerContext
+androidx.compose.material3.internal.A...
 valueCase_
 descriptor
 ​
 java.lang.Integer
 oneofIndex_
 android.widget.ViewGroup
+stylusHoverIcon
+androidx.compose.material3.pulltorefr...
 TAKEN
 preferences_pb
 zIndex
@@ -116,11 +117,11 @@ Shown
 sharedPrefs.all
 size
 ACTION_PRESS_AND_HOLD
-kotlinx.coroutines.DefaultExecutor
 left
+kotlinx.coroutines.DefaultExecutor
 FocusOwnerImpl:dispatchKeyEvent
-$profile
 magnifier
+$profile
 JvmSystemFileSystem
 Strategy.HighQuality
 produceFile
@@ -128,8 +129,8 @@ role
 C
 S_RESUMING_BY_RCV
 SurfaceContainerHigh
-emoji2.text.DefaultEmojiConfig
 Selection
+emoji2.text.DefaultEmojiConfig
 androidx.compose.foundation.lazy.layo...
 H
 Prefix
@@ -150,16 +151,17 @@ androidx.datastore.core.StorageConnec...
 EXTRA_BENCHMARK_OPERATION
 _
 a
-b
-Autostart
-completedExpandBuffersAndPauseFlag$vo...
 Center
-c
+Autostart
+b
+completedExpandBuffersAndPauseFlag$vo...
 address
+c
 ACTION_CLEAR_ACCESSIBILITY_FOCUS
 d
 Infinity
 Compose:unobserve
+hearing_safety_enabled
 presenceField
 effectiveDirectAddress
 kotlin.String
@@ -168,30 +170,34 @@ m
 OnClick
 r
 s
-java.lang.Module
 SUSPEND
+java.lang.Module
 TypefaceCompatApi26Impl
 CARDINALITY_REPEATED
 x
 y
+com.nukie.ambientvolume.service.Profi...
 appContext
 ProgressBarRangeInfo
+safety_cumulative_millis
 CornerExtraSmallTop
 Start
+androidx.compose.material3.DatePicker...
 heightInLines
-compute
 isTagEnabled
+compute
 emailAddress
 Placement
+RIGHT_WORD
 Checkbox
 Multiply
 ACTION_SCROLL_FORWARD
-compose:lazy:prefetch:compose
-focusableInNonTouchMode
 $observer
+compose:lazy:prefetch:compose
 Short
 Expanded
 STRICT
+ExpandOrCollapseIndicator
 HyperOS
 preferencesProto.preferencesMap
 Rgb
@@ -202,21 +208,22 @@ Bottom
 End
 child
 androidx.view.accessibility.Accessibi...
+UNDO
 COMPLETING_WAITING_CHILDREN
 RESULT_BASELINE_PROFILE_NOT_FOUND
 Standard
 $this$buildClassSerialDescriptor
-androidx.datastore.core.MultiProcessC...
 RESULT_DELETE_SKIP_FILE_SUCCESS
+androidx.datastore.core.MultiProcessC...
+PAGE_DOWN
 writeScope
-androidx.compose.material3.DatePicker...
 SDK_INT
 WordBreak.None
 unsupported
 provider
 root
-kotlinx.coroutines.main.delay
 NaN
+kotlinx.coroutines.main.delay
 FIXED32_LIST_PACKED
 navigationBars
 GlobalSnapshotManager.android.kt
@@ -232,7 +239,7 @@ args
 Preferences.kt
 readDataOrHandleCorruption
 syntax
-enableDismissFromStartToEnd
+adaptive_volume_v182_channel
 ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE
 android.view.View$AttachInfo
 java.lang.Float
@@ -247,12 +254,12 @@ SharingStarted.Eagerly
 TransformOriginInterruptionHandling
 BodySmall
 com.nukie.ambientvolume.service.Profi...
+androidx.compose.material3.SearchBar_...
 LookaheadLayingOut
 androidx.profileinstaller.action.SAVE...
 android.os.Build$VERSION
-androidx.compose.material3.AnchoredDr...
-LocalGraphicsContext
 executor
+LocalGraphicsContext
 primitiveSerializer
 androidx.datastore.core.DataStoreImpl...
 block
@@ -265,20 +272,24 @@ ACTION_SET_EXTENDED_SELECTION
 toggleableState
 EmojiSupportMatch.Default
 byte
-$this$Button
 TextSubstitution
+$this$Button
 androidx.compose.material3.RangeSlide...
 Square
+NEW_LINE
 defaultMinSize
 Modulate
 creditCardNumber
 androidx.datastore.core.DataStoreImpl...
 indication
 NothingSerialDescriptor
+com.nukie.ambientvolume.service.Profi...
 birthDateYear
 initialState
 ACTION_SCROLL_IN_DIRECTION
-androidx.compose.material3.AnchoredDr...
+LINE_RIGHT
+Restart
+androidx.compose.material3.DateRangeP...
 maxTextLength
 VIEW_DISAPPEAR
 top
@@ -286,7 +297,6 @@ ACTION_PAGE_UP
 Unreachable
 FloatAnimation
 java.lang.String
-androidx.compose.material3.BasicToolt...
 kind_
 subClass
 adjustVolumeBasedOnDb
@@ -295,6 +305,7 @@ $context
 spotColor
 Outline
 Unspecified
+androidx.compose.material3.internal.I...
 Default
 AndroidEdgeEffectOverscrollEffect
 invisible_actions
@@ -302,64 +313,64 @@ LookaheadMeasuring
 comparator
 Slider.kt
 names
-androidx.compose.material3.AnchoredDr...
 Lighten
 All
 New
-$animatedInstant$delegate
 Carousel
-androidx.compose.material3.TimePicker...
 MaxTextLength
 workerCtl$volatile
 android.widget.CheckBox
 $onDismiss
 graphicsLayerBlock
 android.view.accessibility.extra.DATA...
-OnSecondaryContainer
 Plus
+OnSecondaryContainer
 yMMMd
 void
 Tertiary
 statusBarStyle
+PrimaryNotEditable
 android.car.EXTENSIONS
 Filled.Tune
+SELECT_PAGE_UP
 compose:lazy:prefetch:nested
+animateToThreshold
 TYPE_UNKNOWN
-actualSerializer
 StructuralEqualityPolicy
+actualSerializer
 BYTES_LIST
-_id
 Library
-kotlin.Throwable
+_id
 androidx.datastore.preferences.core.P...
+kotlin.Throwable
 _handled$volatile
 RequestFocus
 com.nukie.ambientvolume.service.Profi...
-androidx.compose.material3.BasicToolt...
 Horizontal
 displayCutout
 androidx.compose.material3.LabelKt$Ha...
 NO_VALUE
+isRefreshing
 sendAccessibilitySemanticsStructureCh...
 concreteClass
 Companion
 InMeasureBlock
-androidx.compose.material3.BasicToolt...
 SFIXED64_LIST_PACKED
-times
 kotlin.Annotation
 SkipSubtreeAndContinueTraversal
+REDO
 paddingFrom
 ် ဴ ့ ဵ ျ ြ ဳ ွ
 Invalid
-High
-Strictness.None
 elevation
+Strictness.None
+High
 androidx.compose.material3.TooltipSta...
 pipState
 BITMAP
 mandatorySystemGestures
 OkioStorage.kt
+SwitchAccess
 newConfig
 clearAndSetSemantics
 Array
@@ -371,34 +382,34 @@ UNKNOWN
 initialExtras
 mean_interval_seconds
 DstOut
-arcSpline
-isReversed
 fileName
 getByte
 setMeanInterval
 _isCompleting$volatile
-accessibility
 Bradford
+accessibility
 polyBase2Serializers
 UINT32
-Deny
-MappedInteractionSource.kt
 STOP_AND_RESET_REPLAY_CACHE
+MappedInteractionSource.kt
+Deny
 ambientShadowColor
 impl
 password
 kotlinx.coroutines.scheduler.keep.ali...
+DELETE_NEXT_CHAR
 DisplayMedium
 state
 CompanionObject
 element
-pointerInputEventHandler
 $showPersistenceAssistant$delegate
+pointerInputEventHandler
 ACTION_SCROLL_DOWN
 LOOSE
+SELECT_RIGHT_WORD
 SelectionHandleInfo
-android.view.ViewRootImpl
 BasicTooltip.android.kt
+android.view.ViewRootImpl
 TYPE_SFIXED64
 TextDecoration.
 .class
@@ -417,11 +428,11 @@ copyMemory
 CollectionInfo
 Rtl
 GetTextLayoutResult
+SELECT_LINE_END
 colors
 classAnnotations
 ToggleableState
 ComposeInternal
-enableDismissFromEndToStart
 builder
 liveRegion
 STANDARD
@@ -433,6 +444,7 @@ widthIn
 getParent
 NEW_BUILDER
 BOOL_VALUE
+hapticFeedbackEnabled
 Normal
 runnable
 README
@@ -441,14 +453,13 @@ InnerCircle
 PaneTitle
 arrayIndexScale
 Hint
-androidx.compose.material3.TimePicker...
 source
 align
 TYPE_SFIXED32
 SelectionStart
 Compose:Composer.dispose
-Compose
 Container
+Compose
 java.lang.Short
 Search
 OnTertiary
@@ -463,6 +474,7 @@ Eraser
 INTEGER
 UINT32_LIST_PACKED
 androidx.datastore.preferences.protob...
+DELETE_PREV_CHAR
 weight
 com.iqoo.secure
 UINT64
@@ -473,10 +485,11 @@ phoneNumber
 peekByte
 Medium
 Enter
-androidx.compose.material3.SnapFlingB...
 androidx.compose.material3.DatePicker...
+SecondaryEditable
 INTERRUPTED_RCV
 MESSAGE_LIST
+androidx.compose.material3.ClockDialN...
 font_variation_settings
 DpAnimation
 androidx.compose.material3.ButtonElev...
@@ -486,8 +499,9 @@ Stylus
 SEALED
 androidx.compose.material3.Navigation...
 CREATED
-ContentOrRtl
 NO_OWNER
+ContentOrRtl
+touchBoundsExpansion
 $colorScheme
 com.nukie.ambientvolume.service.Profi...
 matchParentSize
@@ -495,9 +509,7 @@ androidx.content.action.LOAD_EMOJI_FONT
 generatedSerializer
 InverseOnSurface
 Password
-androidx.compose.material3.AnchoredDr...
 SurfaceTint
-androidx.compose.material3.BottomShee...
 Fab
 EXTRA_SKIP_FILE_OPERATION
 start
@@ -508,13 +520,15 @@ pair
 Paragraph
 BOOL_LIST
 BOOL
+PASTE
 XIAOMI
-short
 Sentences
+short
 FALSE
 MINUTES
 androidx.compose.material3.SnackbarHo...
 HeadlineSmall
+android.intent.action.MY_PACKAGE_REPL...
 COMPLETING_RETRY
 Strategy.Unspecified
 OrBuilderList
@@ -522,7 +536,6 @@ shadow
 colorFilter
 TypefaceCompat.createFromFontInfo
 CornerExtraLargeTop
-overscroll
 android.widget.RadioButton
 android.widget.ImageView
 ACCESSIBILITY_CLICKABLE_SPAN_ID
@@ -560,12 +573,14 @@ SharingStarted.Lazily
 kotlin.collections.HashSet
 java.lang.Throwable
 /data/misc/profiles/cur/0/
+androidx.compose.material3.internal.A...
 handleUpdate
 Outlined
 ApplyPending
 className
 AnchoredDraggable.kt
 kotlin.collections.ArrayList
+animateToHidden
 getDefaultInstance
 android.widget.SeekBar
 sourceCenter
@@ -578,10 +593,12 @@ value.stringSet.stringsList
 ACTION_DRAG_START
 producePath
 androidx.datastore.migrations.SharedP...
+androidx.compose.material3.internal.B...
 targetBytes
 FIXED32_LIST
-.immediate
 SecureOff
+TAB
+.immediate
 getCurrentOffsetDb
 char
 None
@@ -600,22 +617,23 @@ vibrator_manager
 CollectionItemInfo
 BoundReached
 KEY_COMPONENT_ACTIVITY_REGISTERED_KEYS
+checked
 trailingIcon
 onPreviewKeyEvent
 ALIGN_RIGHT
 CLOSE_HANDLER_INVOKED
 produceNewData
 java.lang.Cloneable
+onRefresh
 Compose:deactivate
 format
 kotlin.uuid.Uuid
-androidx.datastore.core.DataStoreImpl...
 _rootCause$volatile
-history
+androidx.datastore.core.DataStoreImpl...
 Alpha8
+history
 LabelLarge
-DismissedToStart
-androidx.compose.material3.AnchoredDr...
+SELECT_LEFT_WORD
 androidx.datastore.core.DataStoreImpl...
 doRun
 targetUnit
@@ -624,6 +642,7 @@ androidx.compose.ui.semantics.shapeRect
 android.support.action.showsUserInter...
 TYPE_INT32
 $allPermissionsGranted$delegate
+SELECT_NEXT_PARAGRAPH
 com.nukie.ambientvolume
 CLOSED
 LocalImageVectorCache
@@ -634,16 +653,16 @@ INT32_LIST_PACKED
 LineHeightStyle.Trim.None
 findViewByAccessibilityIdTraversal
 Idle
+HardLight
 androidx.compose.material3.SliderKt$S...
 androidx.datastore.core.DataStoreImpl...
-HardLight
 requiredWidth
 inlineDescriptor
 NULL_VALUE
 SINT64_LIST_PACKED
 androidx.compose.material3.Scrollable...
-$isServiceRunning$delegate
 kotlin.String.Companion
+$isServiceRunning$delegate
 padding
 process
 LocalDensity
@@ -651,12 +670,14 @@ requiredSizeIn
 ActiveParent
 ACTION_SHOW_TOOLTIP
 clear
-zoom
 jClass
+zoom
 value_
 addFontFromAssetManager
+PullToRefreshModifierNode
 androidx.compose.material3.ExitAlways...
 VECTOR
+LEFT_WORD
 third
 DstOver
 mAttachInfo
@@ -668,15 +689,15 @@ android.view.ViewStructure.extra.EXTR...
 insertInorderBarrier
 kotlin.Cloneable
 com.nukie.ambientvolume.service.Profi...
-androidx.compose.material3.BasicToolt...
 SurfaceContainerHighest
-androidx.compose.material3.BasicToolt...
 path
 CornerLargeEnd
 shared_prefs
 Decimal
+androidx.compose.material3.internal.B...
 Button
 kotlin.reflect.jvm.internal.Reflectio...
+androidx.compose.material3.internal.B...
 PARKING
 CutText
 COLLAPSED
@@ -686,14 +707,14 @@ DEFAULT_TEST_TAG
 addObserver
 drawWithCache
 TertiaryContainer
-ContentQueryWrapper.query
 profile
 com.nukie.ambientvolume.service.Profi...
+ContentQueryWrapper.query
 LIBRARY
 ClearTextSubstitution
 SFIXED32_LIST
-ON_ANY
 Filled.Monitor
+ON_ANY
 tryLock
 androidx.datastore.core.DataStoreImpl...
 guava.concurrent.generate_cancellatio...
@@ -716,6 +737,8 @@ OnAutofillText
 androidx.datastore.core.DataStoreImpl...
 androidx.datastore.core.DataStoreImpl...
 DROP_LATEST
+androidx.compose.material3.AnalogTime...
+setHearingSafetyEnabled
 ExitTransition.KeepUntilTransitionsFi...
 androidx.datastore.core.DataStoreImpl...
 isSensitiveData
@@ -727,6 +750,7 @@ RESULT_DESIRED_FORMAT_UNSUPPORTED
 PrimaryContainer
 ENGINE
 typeParams
+SELECT_LINE_RIGHT
 fields_
 EnterTransition.None
 PERMIT
@@ -743,32 +767,34 @@ Dismissed
 Linearity.Linear
 CornerSmall
 VIVO
+$lifecycleOwner
 CancelTraversal
 listener
 $.
+sizeTransform
 dir
 Filled.PlayArrow
 AwaitContinuation
 Compose:onForgotten
-kotlin.Boolean
 Clickable
+kotlin.Boolean
 List
 androidx.datastore.core.SingleProcess...
 snapElevation
 shouldMigrate
-androidx.compose.material3.ModalBotto...
 DORMANT
 parcel
 coordinator
 TertiaryFixedDim
 NavigationDrawer.kt
+SELECT_HOME
 Redirected
 SearchBar.android.kt
 android.permission.RECORD_AUDIO
 Weight
 Role
-androidx.compose.material3.Selectable...
 $audioManager
+androidx.compose.material3.Selectable...
 isVertical
 defaultValue_
 com.nukie.ambientvolume.service.Profi...
@@ -781,8 +807,8 @@ Measurement
 font_weight
 FabPosition.Center
 AndroidOwner:onMeasure
-AndroidUiDispatcher.android.kt
 TERMINATED
+AndroidUiDispatcher.android.kt
 compositionLocalMap
 bitField0_
 ACTION_SET_SELECTION
@@ -797,7 +823,6 @@ RecordingIC
 polyBase2NamedSerializers
 ProfileInstaller
 alpha
-animateToCurrent$material3_release
 java.lang.Boolean
 selector
 requestTypeUrl_
@@ -806,9 +831,11 @@ Leading
 owner
 classSimpleName
 strings_
+ModalBottomSheet.kt
 Grant
-onDispatchEventsCompleted
+SELECT_DOWN
 androidx.compose.ui.platform.WrappedC...
+IconCompat
 TitleMedium
 NUMBER_VALUE
 und
@@ -829,23 +856,25 @@ updateDisplayListIfDirty
 OnSurface
 SFIXED64_LIST
 InsertTextAtCursor
-androidx.activity.result.contract.ext...
+androidx.compose.material3.internal.A...
 androidx.compose.ui.platform.AndroidP...
 _removedRef$volatile
+androidx.activity.result.contract.ext...
 rotationX
 rotationY
 rotationZ
 androidx.view.accessibility.Accessibi...
+androidx.compose.material3.internal.A...
 lock
 action
 text
 Captured
-androidx.compose.material3.InternalMu...
 LocalFontFamilyResolver
 blockingTasksInBuffer$volatile
 primary.prof
 ȈȈ
 encoder
+androidx.compose.material3.pulltorefr...
 $this$collectionSize
 translationX
 field
@@ -854,24 +883,25 @@ onSizeChanged
 androidx.datastore.preferences.protob...
 translationY
 arch_disk_io_
-StartEllipsis
 com.nukie.ambientvolume.service.Volum...
+StartEllipsis
 GET_DEFAULT_INSTANCE
 LocalClipboardManager
-ACTION_CLEAR_SELECTION
 TestTagsAsResourceId
+ACTION_CLEAR_SELECTION
 Right
+switchThumb
 androidx.compose.material3.ExposedDro...
 ALWAYS
-Off
 InvisibleToUser
+Off
 DpSize.Unspecified
 jsonName_
 file
 BYTE_STRING
 fileHandle
 traversalIndex
-performFling
+androidx.compose.material3.internal.B...
 CancellableContinuation
 map
 Linearity.FontHinting
@@ -895,7 +925,9 @@ RESUMED
 onClick
 instance
 KEY_COMPONENT_ACTIVITY_PENDING_RESULT
+onFocusStateChange
 kotlin.Pair
+consumed$volatile
 Luminosity
 COMMUTE
 LineHeightStyle.Trim.FirstLineTop
@@ -903,12 +935,12 @@ com.samsung.android.sm.ui.battery.Bat...
 compositingStrategy
 cornerRadius
 fillMaxHeight
-mVisibleInsets
 ContinueTraversal
+mVisibleInsets
 isEditable
+androidx.compose.material3.pulltorefr...
 fillParentMaxWidth
 Primary
-animateDecay
 selected
 Chip.kt
 TopLeft
@@ -921,7 +953,7 @@ interrupted
 DataStoreImpl.kt
 fill
 separator
-androidx.compose.material3.BasicToolt...
+onWheelScrollStopped
 personMiddleName
 painter
 entries
@@ -938,18 +970,20 @@ NonCancellable
 UNDISPATCHED
 androidx.compose.ui.semantics.shapeRe...
 Src
+maxIntrinsicHeight
+scrollingContainer
 ACTION_SCROLL_RIGHT
 TYPE_STRING
-GetScrollViewportLength
 CalendarModel
+GetScrollViewportLength
 AndroidComposeViewAccessibilityDelega...
 cSerializer
 peekLong
+Clear
 androidx.savedstate.SavedStateRegistry
 UINT32_LIST
-Clear
-$this$DashboardCard
 asyncTraceEnd
+$this$DashboardCard
 Label.kt
 transform
 androidx.compose.material3.TooltipSta...
@@ -958,30 +992,31 @@ STARTED
 defaultInstance
 Round
 Inactive
-$animatedMean$delegate
 NeverEqualPolicy
 androidx.compose.material3.AppBarKt
 com.nukie.ambientvolume.service.Volum...
 interceptedTextInputSession
 DONE_RCV
 Error
-uuidString
 Trace
+uuidString
 androidx.core.view.inputmethod.Editor...
-bytes
 setActiveProfile
+bytes
 Closed
-collectionItemInfo
 androidx.datastore.preferences.protob...
+collectionItemInfo
 Completed
 callback
 RESUME_TOKEN
 ContentCapture:sendAppearEvents
 ACTION_PASTE
+wrapContentWidth
 properties
 android.graphics.FontFamily
 Vertical
 SINT32_LIST
+SELECT_LEFT_CHAR
 PUBLICATION
 navigationBarsIgnoringVisibility
 NEVER
@@ -1001,6 +1036,7 @@ height
 PACKED_VECTOR
 imeAnimationSource
 androidx.compose.material3.DatePicker...
+CUT
 Background
 dismissAction
 module
@@ -1008,23 +1044,25 @@ ContentCapture:changeChecker
 Butt
 com.mediatek.duraspeed
 input_method
-slopeArray
 PartiallyExpanded
 androidx.compose.material3.ClockDialN...
 Expand
 setCurrentState
+com.nukie.ambientvolume.service.Profi...
 OnTertiaryContainer
 TYPE_SINT32
 0s
 kotlin.Function
 0x
+androidx.compose.material3.DatePicker...
 onDoubleClick
 long
 min
-ACTION_PAGE_DOWN
+EqualWeight
 kotlinx.coroutines.channels.defaultBu...
-Surface.kt
+ACTION_PAGE_DOWN
 classes_to_restore
+Surface.kt
 showSnackbar
 isTraversalGroup
 Exclusion
@@ -1032,8 +1070,11 @@ getBoolean
 setCustomOffset
 FIXED64_LIST
 kotlin.UInt
+androidx.compose.material3.DatePicker...
 SECONDS
+androidx.compose.material3.internal.A...
 tabIndicatorOffset
+android.intent.action.CREATE_DOCUMENT
 androidx.compose.material3.ChipElevat...
 yyyy
 STRING
@@ -1053,8 +1094,8 @@ FontFamily.Default
 getAllUncoveredSemanticsNodesToIntObj...
 androidx.profileinstaller.action.INST...
 kSerializer
-nativeCanvas
 ON_START
+nativeCanvas
 KEY_COMPONENT_ACTIVITY_LAUNCHED_KEYS
 birthDateFull
 getAccessibilityViewId
@@ -1064,12 +1105,14 @@ requiredSize
 collection
 androidx.datastore.core.okio.OkioWrit...
 WARNING
-minLines
 BOOLEAN
+minLines
 eSerializer
 android.view.DisplayInfo
 profileInstalled
-$this$AnimatedContent
+1.9.0
+android.intent.action.BOOT_COMPLETED
+androidx.compose.material3.ModalBotto...
 semanticAction
 writeData$datastore_core_release
 alloc
@@ -1082,15 +1125,16 @@ innerPadding
 Ȉ
 Compose:applyChanges
 InputText
+SELECT_LINE_START
 androidx.compose.material3.ClockDialN...
 options_
 cameraDistance
 keyDesc
 ColorBurn
+androidx.compose.material3.ThumbNode$...
 Empty
 serializableClass
 onBackPressedCallback
-androidx.compose.material3.ModalBotto...
 androidx.datastore.core.DataStoreImpl...
 android.view.accessibility.extra.EXTR...
 UNRECOGNIZED
@@ -1100,6 +1144,7 @@ registry
 androidx.compose.material3.SliderKt
 slideAnimation
 creditCardExpirationYear
+DELETE_NEXT_WORD
 elementDescriptor
 _decisionAndIndex$volatile
 AndroidComposeView.android.kt
@@ -1109,10 +1154,10 @@ debug.layout
 $onThemeToggle
 number_
 LocalResourceIdCache
-androidx.compose.material3.BasicToolt...
 comment
 java.lang.Object
 STARTTHUMB
+androidx.compose.material3.AnalogTime...
 dexopt/baseline.profm
 extendedPostalCode
 kotlinx.coroutines.bufferedChannel.se...
@@ -1122,22 +1167,22 @@ Strictness.Normal
 prefix
 ByteString
 keyDescriptor
-VolumeControlServiceChannel
+DELETE_TO_LINE_END
 LiveRegion
 state1
 getViewRootImpl
 offsetAnimation
 permissions
 delimiter
-androidx.compose.material3.BasicToolt...
 NONE
 kotlinx.coroutines.semaphore.maxSpinC...
-ShutDown
 nestedName
+ShutDown
 androidx.datastore.core.DataStoreImpl...
 version_
+LEFT_CHAR
 java.util.Set
-androidx.compose.material3.SnapFlingB...
+SELECT_PAGE_DOWN
 readIfAbsent
 androidx.datastore.core.DataMigration...
 androidx.compose.ui.semantics.shapeCo...
@@ -1145,6 +1190,7 @@ Suffix
 LegacyCalendarModel
 Switch
 M/y
+androidx.compose.material3.AnalogTime...
 stylusHandwriting
 TopBar
 result_code
@@ -1154,19 +1200,20 @@ _delayed$volatile
 SimpleActor.kt
 DELETE_SKIP_FILE
 $scope
-Heading
 fillMaxWidth
+Heading
 gender
 androidx.compose.ui.semantics.id
 kotlin.collections.MutableMap
 signature
-ActivityResultRegistry
 createFromFamiliesWithDefault
+ActivityResultRegistry
 DisplayLarge
 androidx.compose.ui.platform.GlobalSn...
 Clip
 savedStateRegistry
 NO_THREAD_ELEMENTS
+ambient_volume_debug_
 INTERRUPTED_SEND
 Visible
 velocityVector
@@ -1175,14 +1222,13 @@ DOUBLE
 event
 TYPE_GROUP
 SecondaryFixedDim
+COPY
 minWidth
 PENDING
 BottomSheetScaffold.kt
 androidx.profileinstaller.action.BENC...
 kotlin.ULong
 LabelMedium
-$this$Canvas
-DismissedToEnd
 kotlinx.serialization.Polymorphic
 updateSemanticsNodesCopyAndPanes
 androidx.compose.material3.Selectable...
@@ -1191,29 +1237,29 @@ outState
 kotlin.
 vibrate_on_change
 subclass
-java.lang.Comparable
 ACTION_SET_TEXT
+java.lang.Comparable
 EndDateInput
 DefaultEntryHolder
 first
 AndroidOwner:outOfFrameExecutor
 DstAtop
-IsContainer
 UnfocusedEmpty
+IsContainer
 msg
 Done
 Characters
 EndToStart
+threshold
 OnPrimaryFixed
-float
 Cursor
+float
 elementName
 CornerNone
 reference
 SINT64
-java.lang.Enum
 BodyLarge
-androidx.compose.material3.ModalBotto...
+java.lang.Enum
 progressBarRangeInfo
 TextField
 from
@@ -1223,17 +1269,18 @@ SecondaryFixed
 CARDINALITY_OPTIONAL
 offset
 com.miui.securitycenter
-bottom
+com.nukie.ambientvolume.service.Profi...
 Strategy.Balanced
+bottom
 _exceptionsHolder$volatile
 decoder
-StopInput
 0123456789abcdef
+StopInput
 Softlight
 DATA
 Content
-androidx.core.view.inputmethod.Editor...
 FocusTransactions:requestFocus
+androidx.core.view.inputmethod.Editor...
 file_id
 Tabs
 file.absoluteFile
@@ -1245,15 +1292,17 @@ AndroidOwner:measureAndLayout
 androidx.datastore.preferences.protob...
 android.text.EmojiConsistency
 producerIndex$volatile
-localRect
 ACTION_CUT
+localRect
 Strictness.Unspecified
+DESELECT
 ro.mi.os.version.name
 kotlin.Byte
 androidx.compose.material3.Navigation...
 _parentHandle$volatile
 array
 TYPE_DOUBLE
+androidx.compose.material3.internal.A...
 BasicTooltip.kt
 latestEvent
 SelectableGroup
@@ -1264,16 +1313,16 @@ Secondary
 REUSABLE_CLAIMED
 0x%08x
 TestTag
-TitleLarge
 resources
-fontMetrics
+TitleLarge
 Filled.Settings
+fontMetrics
 int
 SnackbarHost.kt
 heightIn
 RootFocusTarget
-androidx.activity.result.contract.act...
 com.coloros.safecenter.permission.sta...
+androidx.activity.result.contract.act...
 providers
 exception
 STRING_LIST
@@ -1282,15 +1331,14 @@ _state$volatile
 androidx.compose.ui.platform.ChainedP...
 IsTraversalGroup
 androidx.activity.result.contract.ext...
-$isBatteryIgnored$delegate
-String
-androidx.compose.ui.layout.WindowInse...
 SETTINGS
-writeData
+androidx.compose.ui.layout.WindowInse...
+String
+$isBatteryIgnored$delegate
 ExitTransition.None
+writeData
 actionIntent
 CROSSED
-focusGroup
 androidx.compose.ui.platform.WindowIn...
 Compose:sideeffects
 androidx.datastore.core.SimpleActor$o...
@@ -1298,13 +1346,14 @@ SegmentedButton.kt
 WordBreak.Unspecified
 androidx.datastore.core.DataStoreImpl...
 animateElevation
-runApproach
 VerbatimTts
 androidx.compose.material3.Navigation...
 AndroidOwner:onTouch
 androidx.activity.result.contract.act...
 SetSelection
+androidx.compose.material3.internal.A...
 androidx.datastore.core.DataMigration...
+androidx.compose.material3.internal.A...
 androidx.datastore.core.okio.OkioRead...
 DragGestureDetectorCopy.kt
 kotlin.jvm.functions.
@@ -1312,22 +1361,21 @@ androidx.compose.material3.LabelKt$Ha...
 kotlinx.coroutines.scheduler.default....
 $showAppInfoDialog$delegate
 Xor
-longSnap
 2
 $useSystemTheme$delegate
 VerticalScrollAxisRange
 DAYS
 AppBar.kt
-keySerializer
 LookaheadPlacement
+keySerializer
 LayingOut
 MESSAGE
 ContentOrLtr
 ModalBottomSheet.android.kt
 CUSTOM
 LocalInputManager
-EmojiCompat.EmojiCompatInitializer.run
 oneofStoredType
+EmojiCompat.EmojiCompatInitializer.run
 androidx.compose.ui.platform.AndroidC...
 annotation
 RESULT_PARSE_EXCEPTION
@@ -1335,13 +1383,14 @@ ColorDodge
 Hyphens.None
 Compose:recompose
 TopRight
-androidx.compose.material3.DatePicker...
+ACTION_RESET_SAFETY
+androidx.compose.material3.internal.B...
 androidx.compose.material3.CardElevat...
 androidx.lifecycle.BundlableSavedStat...
 package:
+this$0
 enumvalue_
 RootDragAndDropNode
-lastTargetValue
 Initial
 Startup
 acc
@@ -1351,7 +1400,6 @@ com.coloros.safecenter
 androidx.profileinstaller.action.SKIP...
 ack
 Miter
-fling
 Gpu
 TYPE_FIXED32
 androidx.compose.material3.SliderKt$s...
@@ -1366,6 +1414,7 @@ com.samsung.android.lool
 _resumed$volatile
 addressCountry
 add
+PrimaryEditable
 systemfont
 RadioButton
 IsSensitiveData
@@ -1381,12 +1430,13 @@ alignment
 _invoked$volatile
 textSubstitution
 kotlin.collections.MutableCollection
-layoutInScroll
 responseTypeUrl_
+androidx.compose.material3.internal.I...
 ACTION_CLEAR_FOCUS
 Em
 getDouble
 ACTION_SCROLL_BACKWARD
+anchors
 FIXED32
 androidx.compose.material3.SegmentedB...
 WordBreak.Phrase
@@ -1406,19 +1456,21 @@ checkForSemanticsChanges
 androidx.view.accessibility.Accessibi...
 UserInput
 label
+minIntrinsicWidth
 message
 ACTION_DRAG_DROP
+service_was_active
 Mouse
 Offset.Unspecified
 blendMode
 syntax_
-SharedPreferencesMigration.android.kt
 Measuring
+SharedPreferencesMigration.android.kt
 Previous
-FontProvider.getProvider
 SurfaceContainerLow
-ImeAction
+FontProvider.getProvider
 START
+ImeAction
 SurfaceDim
 PageDown
 creditCardExpirationDay
@@ -1429,23 +1481,20 @@ OutlineVariant
 release
 UNDEFINED
 Go
-androidx.compose.material3.AnchoredDr...
 isShowingTextSubstitution
 PostExit
 OnBackground
 ACTION_CONTEXT_CLICK
 number
-androidx.compose.material3.ModalBotto...
 messageInfoFactory
-androidx.compose.material3.ModalBotto...
 dexopt/baseline.prof
 property
 kotlinx.coroutines.internal.StackTrac...
 Hidden
 createSegment
 androidx.compose.material3.EnterAlway...
-_isCompleted$volatile
 Settings
+_isCompleted$volatile
 UINT64_LIST_PACKED
 LinkTestMarker
 shape
@@ -1485,20 +1534,22 @@ androidx.view.accessibility.Accessibi...
 Strategy.Simple
 kotlin.Long
 .em
+CHARACTER_PALETTE
 androidx.view.accessibility.Accessibi...
 Style
 Completing
 addressRegion
 Width
 ALIGN_LEFT
-head$volatile
 Focused
+head$volatile
 android.settings.APPLICATION_DETAILS_...
 com.huawei.systemmanager
 overrideDescendants
 Text
-FIXED64
 Lab
+FIXED64
+androidx.compose.material3.internal.B...
 REDMI
 PRIVATE
 anchor
@@ -1509,15 +1560,15 @@ androidx.compose.ui.platform.ComposeView
 OnPositionedDispatch
 DESTROYED
 missingFields
-ActionPerformed
 ATOMIC
-kotlin.collections.Collection
+ActionPerformed
 UTC
+kotlin.collections.Collection
 _decision$volatile
 paneTitle
-androidx.compose.material3.DatePicker...
-onRelease
+NavigationDrawer.android.kt
 receivers$volatile
+onRelease
 scaleX
 scaleY
 onDragStopped
@@ -1528,8 +1579,8 @@ paths_
 buffer
 border
 MM
-systemGestures
 read
+systemGestures
 inputText
 newInstance
 MagnifierPositionInRoot
@@ -1541,8 +1592,8 @@ unit
 java.util.List
 kClass
 lastScheduledTask$volatile
-imeAnimationTarget
 scrollAxisRange
+imeAnimationTarget
 kotlin.Int
 VOID
 okio.Okio
@@ -1559,11 +1610,10 @@ java.lang.Iterable
 androidx.datastore.core.DataStoreImpl...
 androidx.datastore.core.DataStoreImpl...
 readException
-kotlinx.coroutines.DefaultExecutor.ke...
 Monitor
+kotlinx.coroutines.DefaultExecutor.ke...
 enterExitTransition
 Phone
-androidx.compose.material3.AnchoredDr...
 OK
 Modifier
 TitleSmall
@@ -1572,7 +1622,6 @@ androidx.activity.result.contract.ext...
 coordinatorProducer
 arrayBaseOffset
 com.miui.permcenter.autostart.AutoSta...
-androidx.compose.material3.AnchoredDr...
 Keyboard
 reverseDirection
 entryAnnotations
@@ -1580,14 +1629,10 @@ CompositionErrorContext
 windowConfiguration
 P:
 Lsq2
-androidx.compose.material3.BasicToolt...
-androidx.compose.material3.BasicToolt...
 getContentCaptureSessionCompat
 paddingValues
 PullToRefresh.kt
-androidx.compose.material3.AnchoredDr...
 responseStreaming_
-Sheet
 Main
 com.nukie.ambientvolume.service.Profi...
 On
@@ -1597,8 +1642,8 @@ androidx.datastore.core.DataMigration...
 _prev$volatile
 getAppBounds
 layoutResult
-AccessibilityNodeInfo.roleDescription
 getLocalSavedStateRegistryOwner
+AccessibilityNodeInfo.roleDescription
 androidx.datastore.core.DataStoreImpl...
 CornerMedium
 Filled.Close
@@ -1609,40 +1654,42 @@ android.widget.HorizontalScrollView
 TypefaceCompatApi29Impl
 emojiCompat
 polyBase2DefaultDeserializerProvider
-androidx.datastore.migrations.SharedP...
 overscrollEffect
+androidx.datastore.migrations.SharedP...
 NO_CLOSE_CAUSE
-androidx.compose.material3.AnchoredDr...
 androidx.datastore.migrations.SharedP...
 androidx.datastore.preferences.protob...
 androidx.datastore.migrations.SharedP...
 ERROR
 androidx.compose.ui.platform.AndroidC...
+maxIntrinsicWidth
 kotlin.collections.LinkedHashMap
 Tooltip.kt
 creditCardExpirationMonth
 Cut
 android.permission.BLUETOOTH_SCAN
+$this$FlowRow
 fillMaxSize
+Hour
 wrapContentSize
 BUILD_MESSAGE_INFO
+useLocalOverscrollFactory
 onClickLabel
 verticalScrollAxisRange
 targetVector
 kotlin.collections.HashMap
-_closeCause$volatile
 _COROUTINE.
+_closeCause$volatile
 REMOVE_FROZEN
 .tmp
 peekInt
-animateSnap
 PROTO2
 S:
 PROTO3
 $this$buildSerialDescriptor
+androidx.savedstate.Restarter
 android.view.accessibility.extra.DATA...
 kotlinx.coroutines.semaphore.segmentSize
-androidx.savedstate.Restarter
 DROP_SHADER_CACHE
 HUAWEI
 Open
@@ -1670,13 +1717,16 @@ dimen
 onValueChange
 java.util.ListIterator
 Label
-DefaultDispatcher
 android.view.accessibility.extra.EXTR...
+DefaultDispatcher
 kotlin.Double
 SingleDateInput
 lifecycle
 view
+androidx.compose.material3.TimePickerKt
+$showMicInfo$delegate
 segment
+UP
 Disabled
 testTag
 androidx.compose.material3.SliderKt$r...
@@ -1695,17 +1745,17 @@ name
 Long
 Up
 migrate
-getDescriptor
 boundsUpdatesEventLoop$ui_release
+getDescriptor
+androidx.compose.material3.internal.A...
 kotlinx.serialization.ContextualSeria...
-string
 color
+string
 kotlin.coroutines.jvm.internal.BaseCo...
-requiredHeight
 android
+requiredHeight
 description
 java.lang.module.ModuleDescriptor
-lastInitialValue
 Justify
 SrcIn
 LineThrough
@@ -1716,16 +1766,16 @@ Picker
 thisRef
 navigationBarStyle
 Impulse
+Centered
 VALUE_NOT_SET
 HideFromAccessibility
-SUSPEND_NO_WAITER
 android.hardware.touchscreen
+SUSPEND_NO_WAITER
 Paste
-Dispatchers.Main
 settleAppBarBottom
+Dispatchers.Main
 TraversalIndex
 TREAT_AS_VIEW_TREE_APPEARING
-androidx.compose.material3.TimePicker...
 collectionInfo
 android.settings.APP_NOTIFICATION_SET...
 Cancelled
@@ -1735,8 +1785,8 @@ target
 interactionSource
 HOURS
 android.intent.action.VIEW
-dataStore
 android.view.contentcapture.EventTime...
+dataStore
 window
 personFamilyName
 $this$TextButton
@@ -1750,8 +1800,8 @@ AutoMirrored.Filled.KeyboardArrowLeft
 onDragStarted
 getBounds
 EmptyCoroutineContext
-ACTION_ARGUMENT_SELECTION_END_INT
 CPU_ACQUIRED
+ACTION_ARGUMENT_SELECTION_END_INT
 androidx$core$app$unusedapprestrictio...
 DEFAULT_INSTANCE
 SINT64_LIST
@@ -1782,12 +1832,13 @@ onThemeToggle
 BOOL_LIST_PACKED
 alignBy
 Shape
-tappableElementIgnoringVisibility
 SurfaceVariant
-settle
+tappableElementIgnoringVisibility
 androidx.datastore.core.RunOnce
 captionBarIgnoringVisibility
+Absolute
 Span
+DELETE_FROM_LINE_START
 enabled
 PrimaryFixed
 kotlinx.coroutines.bufferedChannel.ex...
@@ -1795,6 +1846,7 @@ IsPlacedInLookahead
 androidx$core$app$unusedapprestrictio...
 com.mediatek.duraspeed.MainActivity
 androidx.compose.material3.TooltipSta...
+Minute
 androidx.compose.material3.ClockDialN...
 OnPrimary
 LAZY
@@ -1803,12 +1855,15 @@ ENUM_LIST
 9igjgp
 InfiniteAnimationPolicy.kt
 java.util.Map$Entry
+InputField
 androidx.datastore.core.DataStoreImpl...
 $description
 triStateToggleable
 java.io.FileOutputStream
+SELECT_UP
 birthDateDay
 ASCENDING
+debug_engine.log
 width
 Clamp
 StartInput
@@ -1817,27 +1872,26 @@ drawBehind
 SFIXED32
 indicator
 BYTES
-androidx.compose.material3.AnchoredDr...
-objectInstance
 kotlinx.coroutines.fast.service.loader
+objectInstance
+Ignore
 ScrollToIndex
 EmojiCompatInitializer
 insets
-kotlin.Any
 androidx.view.accessibility.Accessibi...
+kotlin.Any
 KEY_COMPONENT_ACTIVITY_REGISTERED_RCS
 active_profile
 pointerInput
 androidx.datastore.core.FileStorageCo...
 readAndInitOrPropagateAndThrowFailure
-androidx.compose.material3.AnchoredDr...
 IGNORED
 elementDesc
 DateRangePicker.kt
 BringIntoViewOnScreen
 notification
-AnimatedVisibility
 2
+AnimatedVisibility
 LocalLayoutDirection
 toggleable
 android.view.View
@@ -1845,20 +1899,20 @@ FabPosition.Start
 java.lang.Byte
 keyboardActions
 $currentDb$delegate
-contentType
 focusedIndicatorLineThickness
+contentType
 android.view.accessibility.action.ARG...
 UnfocusedNotEmpty
 androidx.compose.material3.SnackbarHo...
-package
 visible
+package
 WindowInfo.kt
 putInt
 LIST_VALUE
 kind
 AutoMirrored.Filled.KeyboardArrowRight
-androidx.datastore.core.StorageConnec...
 FontFamily.SansSerif
+androidx.datastore.core.StorageConnec...
 actionIcons
 Applied
 androidx.compose.ui.platform.AndroidP...
@@ -1876,10 +1930,11 @@ PreferenceDataStoreFactory.kt
 enumDescriptor
 androidx.compose.
 preferencesMap
-systemBars
+ExpandIndicator
 unexpected
-NO_RECEIVE_RESULT
+systemBars
 intrinsicSize
+NO_RECEIVE_RESULT
 PageRight
 hoverable
 Ltr
@@ -1903,12 +1958,12 @@ original
 invalidateNodes
 filePath
 Ellipsis
+androidx.compose.material3.SearchBarD...
 $showRationaleDialog$delegate
-androidx.compose.material3.BasicToolt...
-androidx.lifecycle.savedstate.vm.tag
 actualClass
-WindowInsetsCompat
+androidx.lifecycle.savedstate.vm.tag
 datastore_shared_counter
+WindowInsetsCompat
 onKeyEvent
 vibrator
 PlatformTextInputModifierNode.kt
@@ -1919,41 +1974,45 @@ IsPopup
 getModule
 owner$volatile
 parent
+Stop
 android.widget.ProgressBar
 restartable
-Stop
 OnSecondaryFixedVariant
 clickable
-androidx.compose.material3.DragGestur...
-compose:lazy:prefetch:measure
+androidx.compose.material3.ThumbNode$...
+androidx.compose.material3.ThumbNode$...
 SCHEDULED
-$selectedTab$delegate
+compose:lazy:prefetch:measure
+androidx.compose.material3.internal.B...
 messageType
-PerformImeAction
 androidx.lifecycle.LifecycleDispatche...
+PerformImeAction
 getSuppressed
 DOUBLE_LIST_PACKED
 ACTION_UNKNOWN
 defaultLifecycleObserver
 androidx.datastore.core.DataMigration...
 SHOULD_BUFFER
-LineHeightStyle.Alignment.Center
+androidx.compose.ui.input.pointer.Sty...
 shadowElevation
+LineHeightStyle.Alignment.Center
 STRING_SET
 traceCounter
-kotlinx.coroutines.scheduler.resoluti...
 kotlin.Unit
 onClose
 bringIntoViewSpec
+kotlinx.coroutines.scheduler.resoluti...
 FloatRange.Unspecified
 kotlin.jvm.internal.StringCompanionOb...
-FontProvider.query
-ContentDescription
 DpOffset.Unspecified
+ContentDescription
+FontProvider.query
 ACTION_CLICK
+androidx.compose.material3.SearchBar_...
 androidx.datastore.core.DataStoreImpl...
 fieldType
 InternalMutatorMutex.kt
+.log
 schema
 androidx.compose.material3.SurfaceKt$...
 establishTextInputSession
@@ -1965,19 +2024,21 @@ _availablePermits$volatile
 androidx.compose.material3.SliderKt$r...
 java.
 androidx.compose.material3.DatePicker...
+RIGHT_CHAR
 Selected
-dB
 goldenMaskArray
 androidx.compose.text.SpanStyle
+dB
 OnErrorContainer
 completion
-java.io.tmpdir
 androidx.view.accessibility.Accessibi...
+LINE_END
+java.io.tmpdir
 set
 ACTION_IME_ENTER
 Scrim
-Strictness.Strict
 Blocking
+Strictness.Strict
 TYPE_UINT64
 Dp.Unspecified
 com.nukie.ambientvolume.service.Profi...
@@ -1987,8 +2048,9 @@ ACTION_NEXT_AT_MOVEMENT_GRANULARITY
 android.settings.IGNORE_BATTERY_OPTIM...
 dd
 ReferentialEqualityPolicy
+DOWN
+SELECT_PREV_PARAGRAPH
 oneofs_
-androidx.compose.material3.InternalMu...
 Ȉ
 CornerLargeTop
 INT64_LIST
@@ -2002,53 +2064,64 @@ Failed
 preferences_
 Color
 NonDisposableHandle
+PAGE_UP
 androidx.compose.material3.CardElevat...
+SELECT_END
 androidx.datastore.preferences.protob...
 RectangleShape
 ShowTextSubstitution
 Dismiss
 $title
+END
 ACTION_ACCESSIBILITY_FOCUS
 android.provider.extra.APP_PACKAGE
-isDirectory
 android.widget.NumberPicker
+isDirectory
 frame
 scrollerPosition
 ACTION_LONG_CLICK
 measureAndLayout
+onFocusChange
 origin
 getFloat
 extendedAddress
 putLong
+oldContent
 collector
 content
-oldContent
+androidx.compose.material3.ModalBotto...
 Number
-androidx.compose.material3.SearchBar_...
 androidx.datastore.core.DataStoreImpl...
 Hue
+Rich
 $tab
 .lock
+androidx.compose.material3.internal.A...
 parkedWorkersStack$volatile
 androidx.datastore.core.SingleProcess...
+LINE_START
 valueSerializer
 false
 getDeclaredMethod
 F16
-PendingWork
 Middle
+PendingWork
 BottomRight
 oneof
 dispatchOnScrollChanged
+com.nukie.ambientvolume.service.Volum...
 Ascii
 ScrollByOffset
 TREAT_AS_VIEW_TREE_APPEARED
+com.nukie.ambientvolume.service.Volum...
+androidx.compose.material3.internal.B...
+com.nukie.ambientvolume.service.Volum...
 ACTION_MOVE_WINDOW
+HOME
 android.support.text.emoji.emojiCompa...
 packed_
-modes
 LocalAutofillManager
-screen_transition
+androidx.compose.material3.internal.B...
 invoke
 Image
 clipboard
@@ -2056,8 +2129,8 @@ _queue$volatile
 output
 Filled.Info
 BottomBar
-androidx.compose.ui.input.nestedscrol...
 yMMMMEEEEd
+androidx.compose.ui.input.nestedscrol...
 MIUI
 java.lang.Character
 context
@@ -2077,14 +2150,15 @@ UNDECIDED
 IndexForKey
 getInt
 TYPE_BYTES
+Plain
 NioSystemFileSystem
 kotlin.jvm.internal.
 Cmyk
 Map
 nanos_
 sizeToIntrinsics
-androidx.compose.material3.AnchoredDr...
 charset
+androidx.compose.material3.internal.D...
 DatePicker.kt
 Max
 Cancel
@@ -2093,7 +2167,6 @@ clippingEnabled
 extras
 ProfileManager.kt
 Uri
-onTap$material3_release
 Url
 renderEffect
 delegate
@@ -2120,14 +2193,15 @@ THUMB
 key1
 Locale
 key2
-OnTertiaryFixedVariant
 android:text
+OnTertiaryFixedVariant
 newUsername
 annotations
 OnError
 suffix
 second
 cleanedAndPointers$volatile
+androidx.compose.material3.internal.A...
 readData$suspendImpl
 personMiddleInitial
 Indefinite
@@ -2135,8 +2209,8 @@ TextFieldInputState
 Engine
 Polite
 androidx.datastore.core.okio.OkioStor...
-kotlin.Number
 pokeInt
+kotlin.Number
 TOO_LATE_TO_CANCEL
 NULL
 Dst
@@ -2148,8 +2222,11 @@ entry
 focused
 SET_MEMOIZED_IS_INITIALIZED
 androidx.compose.material3.AppBarKt$T...
+LINE_LEFT
 androidx.datastore.preferences.protob...
+com.nukie.ambientvolume.service.Volum...
 ns
+SELECT_LINE_LEFT
 keys
 root_
 peekByteArray
@@ -2159,13 +2236,18 @@ addFontFromBuffer
 storage
 audioManager
 InverseSurface
+androidx.compose.material3.internal.B...
+$this$HorizontalPager
+androidx.compose.material3.SearchBar_...
 kotlin.UShort
 ACTION_SCROLL_LEFT
 inParcel
 kotlin.Comparable
 Height
-Body
+androidx.compose.material3.ModalBotto...
+androidx.compose.material3.ModalBotto...
 baseKey
+androidx.compose.material3.ModalBotto...
 pokeByteArray
 DOUBLE_LIST
 COROUTINE_SUSPENDED
@@ -2175,22 +2257,26 @@ VolumeControlService.kt
 java.lang.ClassValue
 kotlin.UByte
 _LifecycleAdapter
+SELECT_ALL
 LineHeightStyle.Alignment.Top
 androidx.compose.material3.ClockDialN...
 textStyle
 seconds_
 Divider
 sourceUnit
-handler
 EditableText
+handler
+Reverse
 TYPE_BOOL
 WindowRecomposer.android.kt
 srcFile
 paint
+safety_last_reset_day
 createAsync
 .Companion
 iterator
 freeze
+androidx.compose.material3.internal.A...
 java.util.Map
 /data/misc/profiles/cur/0
 Overlay
@@ -2202,14 +2288,12 @@ androidx.compose.material3.AppBarKt$B...
 insertReorderBarrier
 androidx.view.accessibility.Accessibi...
 KIND_NOT_SET
-androidx.compose.material3.BasicToolt...
 kotlin.Array
 ACTION_COLLAPSE
 badge
 node
 Min
 STRUCT_VALUE
-posArray
 HideKeyboard
 androidx.activity.result.contract.ext...
 RESULT_CANCELED
@@ -2219,7 +2303,6 @@ MICROSECONDS
 rw
 updateData
 INT32
-androidx.compose.material3.pulltorefr...
 typeParameters
 ENUM_LIST_PACKED
 current
@@ -2231,17 +2314,17 @@ key
 scrollable
 LONG
 RESOURCE
-kotlin.Enum.Companion
 animator_duration_scale
+kotlin.Enum.Companion
 runMigrations
 creditCardExpirationDate
-IsNotPlaced
 profileinstaller_profileWrittenFor_la...
-androidx.compose.material3.AnchoredDr...
+IsNotPlaced
 ACTION_EXPAND
 WRITE_SKIP_FILE
 kotlin.Float
 _next$volatile
+SELECT_RIGHT_CHAR
 Autofill
 pointerHoverIcon
 initTasksList
@@ -2256,10 +2339,8 @@ horizontalScrollAxisRange
 personGivenName
 dest
 mixins_
-androidx.compose.material3.SearchBar_...
 pairs
 POCO
-androidx.compose.material3.MappedInte...
 horizontal
 FileStorage.kt
 ReusedSlotId
@@ -2267,60 +2348,66 @@ up
 ExposedDropdownMenu.android.kt
 putBoolean
 BROKEN
-Hyphens.Unspecified
 us
+Hyphens.Unspecified
 Dispatchers.Default
 kotlinx.coroutines.flow.defaultConcur...
 frameRateCategoryView
 sink
 java.util.Collection
 readDataAndUpdateCache
-CLOSE_HANDLER_CLOSED
 HIDDEN
+CLOSE_HANDLER_CLOSED
 readScope
 subclassSerializers
 PreventUserInput
-SnapFlingBehavior.kt
 bufferEndSegment$volatile
 argSerializers
 InversePrimary
 NOT_IN_STACK
 toFile
-closeHandler$volatile
 viewModel
+closeHandler$volatile
+androidx.compose.material3.DatePicker...
+android.intent.extra.TITLE
 TypefaceCompatApi31Impl
+androidx.compose.material3.internal.A...
 removeObserver
-ON_DESTROY
+PREV_PARAGRAPH
 destination
+ON_DESTROY
 NANOSECONDS
 consumerIndex$volatile
-vertical
 VIEW_APPEAR
+vertical
 FLOAT_LIST
 abortCreation
 ViewParentCompat
 LocalContext
 serialName
 RESULT_ALREADY_INSTALLED
-backing
 androidx.compose.ui.semantics.shapeType
+backing
+$this$DisposableEffect
 FontsProvider
 indicatorLine
 textInputSession
+text/plain
 types
 INT64
 MiddleEllipsis
 TextLayout:initLayout
-prefs.all
 Saturation
+prefs.all
 DropDownMenu
 androidx.datastore.core.DataStoreImpl
 isRegularFile
 PARTIAL
+DELETE_PREV_WORD
 Dispatchers.Main.immediate
 androidx.datastore.core.MulticastFile...
-android.software.picture_in_picture
 Compose:onRemembered
+android.software.picture_in_picture
 statusBarsIgnoringVisibility
 REMOVED_TASK
 androidx.compose.ui.platform.AndroidU...
@@ -2334,28 +2421,28 @@ baseClass
 type
 LocalView
 statusBars
-isScrollable
 fileOutputStream
 Argb8888
 connection
 androidx.compose.material3.FloatingAc...
 addChangeCallback
 cont
-Finished
 IsShowingTextSubstitution
+Finished
 androidx.compose.material3.SnackbarHo...
 ACTION_ARGUMENT_MOVEMENT_GRANULARITY_INT
 CONSUMED
 scroll
+androidx.compose.material3.internal.B...
 deserializer
 elementClassifierIfArray
 focusable
-ShowKeyboard
 ACTION_ARGUMENT_SELECTION_START_INT
-android.support.text.emoji.emojiCompa...
+ShowKeyboard
 SYNTAX_PROTO3
+android.support.text.emoji.emojiCompa...
 SYNTAX_PROTO2
-1.3.0
+minIntrinsicHeight
 Next
 NOT_CROSSED
 ACTION_FOCUS
@@ -2384,29 +2471,31 @@ LocalTextToolbar
 phoneNumberDevice
 rootClass
 com.nukie.ambientvolume.service.Profi...
-android.settings.REQUEST_IGNORE_BATTE...
 elements
+android.settings.REQUEST_IGNORE_BATTE...
 getExclusiveFileLockWithRetryIfDeadlock
 methods_
 ENDTHUMB
 URI_MASKABLE
-SelectionEnd
 ON_CREATE
+SelectionEnd
 androidx.compose.material3.AppBarKt$S...
 FabPosition.EndOverlay
 androidx.graphics.path
 data
 OPPO
 ON_RESUME
+NEXT_PARAGRAPH
 fileName_
 MulticastFileObserver.android.kt
+androidx.compose.material3.ModalBotto...
 androidx.compose.ui.platform.AndroidC...
 LocalConfiguration
 Filled.ArrowDropDown
 asyncTraceBegin
 IsDialog
-tab
 Linearity.None
+com.nukie.ambientvolume.service.Profi...
 LocalUriHandler
 androidx.compose.material3.TimePicker...
 childName
@@ -2428,18 +2517,18 @@ RESULT_UNSUPPORTED_ART_VERSION
 ACTION_COPY
 LineHeightStyle.Trim.Both
 androidx.compose.material3.TabIndicat...
-Active
 navigationEvent
+Active
 androidx.compose.material3.SnackbarHo...
-androidx.compose.material3.TabIndicat...
 postalAddress
+androidx.compose.material3.TabIndicat...
 android.widget.TextView
 ambient_volume_settings
 kotlin.collections.Iterable
 Spacer
-androidx.compose.material3.SwitchKt$S...
 endVelocityVector
 send
+Both
 newState
 androidx.compose.material3.ClockDialN...
 kotlin.collections.Map.Entry
@@ -2454,18 +2543,17 @@ kotlin.collections.Set
 windowInsetsPadding
 androidx.activity.result.contract.ext...
 factory
-tappableElement
 orientation
+tappableElement
 LineHeightStyle.Trim.LastLineBottom
 java.util.Iterator
-androidx.compose.material3.BasicToolt...
 focusProperties
 org.robolectric.Robolectric
 jar:file:
 Supporting
+Parcelizer
 magnifierCenter
 ON_STOP
-Parcelizer
 kotlin.CharSequence
 RESULT_IO_EXCEPTION
 intent
@@ -2479,7 +2567,6 @@ MultiProcessCoordinator.android.kt
 emit
 LocalWindowInfo
 clazz
-androidx.compose.material3.BasicToolt...
 Marking id:blocking:2131034152 used because it matches string pool constant block
 Marking id:accessibility_action_clickable_span:2131034112 used because it matches string pool constant accessibility
 Marking id:accessibility_custom_action_0:2131034113 used because it matches string pool constant accessibility
@@ -2514,9 +2601,9 @@ Marking id:accessibility_custom_action_6:2131034141 used because it matches stri
 Marking id:accessibility_custom_action_7:2131034142 used because it matches string pool constant accessibility
 Marking id:accessibility_custom_action_8:2131034143 used because it matches string pool constant accessibility
 Marking id:accessibility_custom_action_9:2131034144 used because it matches string pool constant accessibility
-Marking string:state_empty:2131296345 used because it matches string pool constant state
-Marking string:state_off:2131296346 used because it matches string pool constant state
-Marking string:state_on:2131296347 used because it matches string pool constant state
+Marking string:state_empty:2131296346 used because it matches string pool constant state
+Marking string:state_off:2131296347 used because it matches string pool constant state
+Marking string:state_on:2131296348 used because it matches string pool constant state
 Marking attr:shortcutMatchRequired:2130771984 used because it matches string pool constant short
 Marking id:title:2131034196 used because it matches string pool constant title
 Marking attr:alpha:2130771968 used because it matches string pool constant alpha
@@ -2527,7 +2614,7 @@ Marking id:action_text:2131034148 used because it matches string pool constant a
 Marking id:actions:2131034149 used because it matches string pool constant action
 Marking id:text:2131034193 used because it matches string pool constant text
 Marking id:text2:2131034194 used because it matches string pool constant text
-Marking string:selected:2131296340 used because it matches string pool constant selected
+Marking string:selected:2131296341 used because it matches string pool constant selected
 Marking layout:ime_base_split_test_activity:2131165185 used because it matches string pool constant ime
 Marking layout:ime_secondary_split_test_activity:2131165186 used because it matches string pool constant ime
 Marking string:interaction_title:2131296276 used because it matches string pool constant int
@@ -2564,11 +2651,11 @@ Marking id:accessibility_custom_action_6:2131034141 used because it matches stri
 Marking id:accessibility_custom_action_7:2131034142 used because it matches string pool constant acc
 Marking id:accessibility_custom_action_8:2131034143 used because it matches string pool constant acc
 Marking id:accessibility_custom_action_9:2131034144 used because it matches string pool constant acc
-Marking style:TextAppearance_Compat_Notification:2131361794 used because it matches string pool constant Text
-Marking style:TextAppearance_Compat_Notification_Info:2131361795 used because it matches string pool constant Text
-Marking style:TextAppearance_Compat_Notification_Line2:2131361796 used because it matches string pool constant Text
-Marking style:TextAppearance_Compat_Notification_Time:2131361797 used because it matches string pool constant Text
-Marking style:TextAppearance_Compat_Notification_Title:2131361798 used because it matches string pool constant Text
+Marking style:TextAppearance_Compat_Notification:2131361796 used because it matches string pool constant Text
+Marking style:TextAppearance_Compat_Notification_Info:2131361797 used because it matches string pool constant Text
+Marking style:TextAppearance_Compat_Notification_Line2:2131361798 used because it matches string pool constant Text
+Marking style:TextAppearance_Compat_Notification_Time:2131361799 used because it matches string pool constant Text
+Marking style:TextAppearance_Compat_Notification_Title:2131361800 used because it matches string pool constant Text
 Marking id:view_tree_disjoint_parent:2131034197 used because it matches string pool constant view
 Marking id:view_tree_lifecycle_owner:2131034198 used because it matches string pool constant view
 Marking id:view_tree_navigation_event_dispatcher_owner:2131034199 used because it matches string pool constant view
@@ -2579,8 +2666,8 @@ Marking color:androidx_core_ripple_material_light:2130837504 used because it mat
 Marking color:androidx_core_secondary_text_default_material_light:2130837505 used because it matches string pool constant android
 Marking id:androidx_compose_ui_view_composition_context:2131034150 used because it matches string pool constant android
 Marking string:androidx_startup:2131296256 used because it matches string pool constant android
-Marking color:notification_action_color_filter:2130837508 used because it matches string pool constant notification
-Marking color:notification_icon_bg_color:2130837509 used because it matches string pool constant notification
+Marking color:notification_action_color_filter:2130837509 used because it matches string pool constant notification
+Marking color:notification_icon_bg_color:2130837510 used because it matches string pool constant notification
 Marking dimen:notification_action_icon_size:2130903047 used because it matches string pool constant notification
 Marking dimen:notification_action_text_size:2130903048 used because it matches string pool constant notification
 Marking dimen:notification_big_circle_margin:2130903049 used because it matches string pool constant notification
@@ -2596,18 +2683,18 @@ Marking dimen:notification_small_icon_size_as_large:2130903058 used because it m
 Marking dimen:notification_subtext_size:2130903059 used because it matches string pool constant notification
 Marking dimen:notification_top_pad:2130903060 used because it matches string pool constant notification
 Marking dimen:notification_top_pad_large_text:2130903061 used because it matches string pool constant notification
-Marking drawable:notification_action_background:2130968586 used because it matches string pool constant notification
-Marking drawable:notification_bg:2130968587 used because it matches string pool constant notification
-Marking drawable:notification_bg_low:2130968588 used because it matches string pool constant notification
-Marking drawable:notification_bg_low_normal:2130968589 used because it matches string pool constant notification
-Marking drawable:notification_bg_low_pressed:2130968590 used because it matches string pool constant notification
-Marking drawable:notification_bg_normal:2130968591 used because it matches string pool constant notification
-Marking drawable:notification_bg_normal_pressed:2130968592 used because it matches string pool constant notification
-Marking drawable:notification_icon_background:2130968593 used because it matches string pool constant notification
-Marking drawable:notification_oversize_large_icon_bg:2130968594 used because it matches string pool constant notification
-Marking drawable:notification_template_icon_bg:2130968595 used because it matches string pool constant notification
-Marking drawable:notification_template_icon_low_bg:2130968596 used because it matches string pool constant notification
-Marking drawable:notification_tile_bg:2130968597 used because it matches string pool constant notification
+Marking drawable:notification_action_background:2130968593 used because it matches string pool constant notification
+Marking drawable:notification_bg:2130968594 used because it matches string pool constant notification
+Marking drawable:notification_bg_low:2130968595 used because it matches string pool constant notification
+Marking drawable:notification_bg_low_normal:2130968596 used because it matches string pool constant notification
+Marking drawable:notification_bg_low_pressed:2130968597 used because it matches string pool constant notification
+Marking drawable:notification_bg_normal:2130968598 used because it matches string pool constant notification
+Marking drawable:notification_bg_normal_pressed:2130968599 used because it matches string pool constant notification
+Marking drawable:notification_icon_background:2130968600 used because it matches string pool constant notification
+Marking drawable:notification_oversize_large_icon_bg:2130968601 used because it matches string pool constant notification
+Marking drawable:notification_template_icon_bg:2130968602 used because it matches string pool constant notification
+Marking drawable:notification_template_icon_low_bg:2130968603 used because it matches string pool constant notification
+Marking drawable:notification_tile_bg:2130968604 used because it matches string pool constant notification
 Marking id:notification_background:2131034171 used because it matches string pool constant notification
 Marking id:notification_main_column:2131034172 used because it matches string pool constant notification
 Marking id:notification_main_column_container:2131034173 used because it matches string pool constant notification
@@ -2618,12 +2705,13 @@ Marking layout:notification_template_icon_group:2131165190 used because it match
 Marking layout:notification_template_part_chronometer:2131165191 used because it matches string pool constant notification
 Marking layout:notification_template_part_time:2131165192 used because it matches string pool constant notification
 Marking id:androidx_compose_ui_view_composition_context:2131034150 used because it matches string pool constant androidx.compose.
+Marking color:icon_background:2130837508 used because it matches string pool constant icon
 Marking id:icon:2131034162 used because it matches string pool constant icon
 Marking id:icon_group:2131034163 used because it matches string pool constant icon
+Marking color:secondary_container:2130837512 used because it matches string pool constant second
 Marking attr:nestedScrollViewStyle:2130771982 used because it matches string pool constant nestedScroll
-Marking string:range_end:2131296338 used because it matches string pool constant range
-Marking string:range_start:2131296339 used because it matches string pool constant range
-Marking string:tab:2131296351 used because it matches string pool constant tab
+Marking string:range_end:2131296339 used because it matches string pool constant range
+Marking string:range_start:2131296340 used because it matches string pool constant range
 Marking id:tag_accessibility_actions:2131034178 used because it matches string pool constant tag
 Marking id:tag_accessibility_clickable_spans:2131034179 used because it matches string pool constant tag
 Marking id:tag_accessibility_heading:2131034180 used because it matches string pool constant tag
@@ -2661,9 +2749,12 @@ Marking id:tag_window_insets_animation_callback:2131034192 used because it match
 @com.nukie.ambientvolume:color/androidx_core_secondary_text_default_material_light : reachable=true
 @com.nukie.ambientvolume:color/call_notification_answer_color : reachable=false
 @com.nukie.ambientvolume:color/call_notification_decline_color : reachable=false
+@com.nukie.ambientvolume:color/icon_background : reachable=true
 @com.nukie.ambientvolume:color/notification_action_color_filter : reachable=true
     @com.nukie.ambientvolume:color/androidx_core_secondary_text_default_material_light
 @com.nukie.ambientvolume:color/notification_icon_bg_color : reachable=true
+@com.nukie.ambientvolume:color/primary : reachable=false
+@com.nukie.ambientvolume:color/secondary_container : reachable=true
 @com.nukie.ambientvolume:color/vector_tint_color : reachable=false
 @com.nukie.ambientvolume:color/vector_tint_theme_color : reachable=false
 @com.nukie.ambientvolume:dimen/compat_button_inset_horizontal_material : reachable=false
@@ -2688,7 +2779,25 @@ Marking id:tag_window_insets_animation_callback:2131034192 used because it match
 @com.nukie.ambientvolume:dimen/notification_subtext_size : reachable=true
 @com.nukie.ambientvolume:dimen/notification_top_pad : reachable=true
 @com.nukie.ambientvolume:dimen/notification_top_pad_large_text : reachable=true
-@com.nukie.ambientvolume:drawable/ic_adaptive_volume : reachable=true
+@com.nukie.ambientvolume:drawable/$ic_launcher_foreground__0 : reachable=false
+    @com.nukie.ambientvolume:color/primary
+    @com.nukie.ambientvolume:color/secondary_container
+@com.nukie.ambientvolume:drawable/$ic_launcher_foreground__1 : reachable=false
+    @com.nukie.ambientvolume:color/primary
+    @com.nukie.ambientvolume:color/secondary_container
+@com.nukie.ambientvolume:drawable/$ic_launcher_foreground__2 : reachable=false
+    @com.nukie.ambientvolume:color/primary
+    @com.nukie.ambientvolume:color/secondary_container
+@com.nukie.ambientvolume:drawable/$ic_launcher_foreground__3 : reachable=false
+    @com.nukie.ambientvolume:color/primary
+    @com.nukie.ambientvolume:color/secondary_container
+@com.nukie.ambientvolume:drawable/$ic_launcher_foreground__4 : reachable=false
+    @com.nukie.ambientvolume:color/primary
+    @com.nukie.ambientvolume:color/secondary_container
+@com.nukie.ambientvolume:drawable/$ic_launcher_foreground__5 : reachable=false
+    @com.nukie.ambientvolume:color/primary
+    @com.nukie.ambientvolume:color/secondary_container
+@com.nukie.ambientvolume:drawable/ic_adaptive_volume : reachable=false
 @com.nukie.ambientvolume:drawable/ic_call_answer : reachable=false
 @com.nukie.ambientvolume:drawable/ic_call_answer_low : reachable=false
 @com.nukie.ambientvolume:drawable/ic_call_answer_video : reachable=false
@@ -2697,7 +2806,14 @@ Marking id:tag_window_insets_animation_callback:2131034192 used because it match
 @com.nukie.ambientvolume:drawable/ic_call_decline_low : reachable=false
 @com.nukie.ambientvolume:drawable/ic_launcher_background : reachable=false
 @com.nukie.ambientvolume:drawable/ic_launcher_foreground : reachable=false
+    @com.nukie.ambientvolume:drawable/$ic_launcher_foreground__0
+    @com.nukie.ambientvolume:drawable/$ic_launcher_foreground__1
+    @com.nukie.ambientvolume:drawable/$ic_launcher_foreground__2
+    @com.nukie.ambientvolume:drawable/$ic_launcher_foreground__3
+    @com.nukie.ambientvolume:drawable/$ic_launcher_foreground__4
+    @com.nukie.ambientvolume:drawable/$ic_launcher_foreground__5
 @com.nukie.ambientvolume:drawable/ic_launcher_monochrome : reachable=false
+@com.nukie.ambientvolume:drawable/ic_stat_wave : reachable=true
 @com.nukie.ambientvolume:drawable/notification_action_background : reachable=true
     @com.nukie.ambientvolume:color/androidx_core_ripple_material_light
     @com.nukie.ambientvolume:dimen/compat_button_inset_horizontal_material
@@ -2815,6 +2931,7 @@ Marking id:tag_window_insets_animation_callback:2131034192 used because it match
 @com.nukie.ambientvolume:id/view_tree_saved_state_registry_owner : reachable=true
 @com.nukie.ambientvolume:id/view_tree_view_model_store_owner : reachable=true
 @com.nukie.ambientvolume:id/wrapped_composition_tag : reachable=true
+@com.nukie.ambientvolume:integer/m3c_window_layout_in_display_cutout_mode : reachable=false
 @com.nukie.ambientvolume:integer/status_bar_notification_info_maxnum : reachable=false
 @com.nukie.ambientvolume:layout/custom_dialog : reachable=false
 @com.nukie.ambientvolume:layout/ime_base_split_test_activity : reachable=true
@@ -2844,7 +2961,11 @@ Marking id:tag_window_insets_animation_callback:2131034192 used because it match
     @com.nukie.ambientvolume:style/TextAppearance_Compat_Notification_Time
 @com.nukie.ambientvolume:layout/notification_template_part_time : reachable=true
     @com.nukie.ambientvolume:style/TextAppearance_Compat_Notification_Time
-@com.nukie.ambientvolume:mipmap/ic_launcher : reachable=true
+@com.nukie.ambientvolume:mipmap/ic_launcher : reachable=false
+    @com.nukie.ambientvolume:drawable/ic_launcher_background
+    @com.nukie.ambientvolume:drawable/ic_launcher_foreground
+    @com.nukie.ambientvolume:drawable/ic_launcher_monochrome
+@com.nukie.ambientvolume:mipmap/ic_launcher_new : reachable=true
     @com.nukie.ambientvolume:drawable/ic_launcher_background
     @com.nukie.ambientvolume:drawable/ic_launcher_foreground
     @com.nukie.ambientvolume:drawable/ic_launcher_monochrome
@@ -2867,9 +2988,9 @@ Marking id:tag_window_insets_animation_callback:2131034192 used because it match
 @com.nukie.ambientvolume:string/dropdown_menu : reachable=true
 @com.nukie.ambientvolume:string/in_progress : reachable=true
 @com.nukie.ambientvolume:string/indeterminate : reachable=true
-@com.nukie.ambientvolume:string/instant_label : reachable=true
+@com.nukie.ambientvolume:string/instant_label : reachable=false
 @com.nukie.ambientvolume:string/interaction_title : reachable=true
-@com.nukie.ambientvolume:string/live_engine_title : reachable=true
+@com.nukie.ambientvolume:string/live_engine_title : reachable=false
 @com.nukie.ambientvolume:string/m3c_bottom_sheet_collapse_description : reachable=true
 @com.nukie.ambientvolume:string/m3c_bottom_sheet_dismiss_description : reachable=true
 @com.nukie.ambientvolume:string/m3c_bottom_sheet_drag_handle_description : reachable=true
@@ -2909,6 +3030,7 @@ Marking id:tag_window_insets_animation_callback:2131034192 used because it match
 @com.nukie.ambientvolume:string/m3c_dialog : reachable=true
 @com.nukie.ambientvolume:string/m3c_dropdown_menu_collapsed : reachable=true
 @com.nukie.ambientvolume:string/m3c_dropdown_menu_expanded : reachable=true
+@com.nukie.ambientvolume:string/m3c_dropdown_menu_toggle : reachable=true
 @com.nukie.ambientvolume:string/m3c_search_bar_search : reachable=true
 @com.nukie.ambientvolume:string/m3c_snackbar_dismiss : reachable=true
 @com.nukie.ambientvolume:string/m3c_suggestions_available : reachable=true
@@ -2926,7 +3048,7 @@ Marking id:tag_window_insets_animation_callback:2131034192 used because it match
 @com.nukie.ambientvolume:string/m3c_time_picker_pm : reachable=true
 @com.nukie.ambientvolume:string/m3c_tooltip_long_press_label : reachable=true
 @com.nukie.ambientvolume:string/m3c_tooltip_pane_description : reachable=true
-@com.nukie.ambientvolume:string/mean_label : reachable=true
+@com.nukie.ambientvolume:string/mean_label : reachable=false
 @com.nukie.ambientvolume:string/navigation_menu : reachable=true
 @com.nukie.ambientvolume:string/not_selected : reachable=true
 @com.nukie.ambientvolume:string/privacy_note : reachable=false
@@ -2951,6 +3073,10 @@ Marking id:tag_window_insets_animation_callback:2131034192 used because it match
 @com.nukie.ambientvolume:string/vibrate_subtitle_on : reachable=false
 @com.nukie.ambientvolume:string/vibrate_title : reachable=true
 @com.nukie.ambientvolume:style/DialogWindowTheme : reachable=true
+@com.nukie.ambientvolume:style/EdgeToEdgeFloatingDialogTheme : reachable=false
+    @com.nukie.ambientvolume:integer/m3c_window_layout_in_display_cutout_mode
+@com.nukie.ambientvolume:style/EdgeToEdgeFloatingDialogWindowTheme : reachable=true
+    @com.nukie.ambientvolume:style/EdgeToEdgeFloatingDialogTheme
 @com.nukie.ambientvolume:style/FloatingDialogWindowTheme : reachable=true
 @com.nukie.ambientvolume:style/TextAppearance_Compat_Notification : reachable=true
 @com.nukie.ambientvolume:style/TextAppearance_Compat_Notification_Info : reachable=true
@@ -2970,8 +3096,10 @@ The root reachable resources are:
  attr:shortcutMatchRequired:2130771984
  color:androidx_core_ripple_material_light:2130837504
  color:androidx_core_secondary_text_default_material_light:2130837505
- color:notification_action_color_filter:2130837508
- color:notification_icon_bg_color:2130837509
+ color:icon_background:2130837508
+ color:notification_action_color_filter:2130837509
+ color:notification_icon_bg_color:2130837510
+ color:secondary_container:2130837512
  dimen:notification_action_icon_size:2130903047
  dimen:notification_action_text_size:2130903048
  dimen:notification_big_circle_margin:2130903049
@@ -2987,19 +3115,19 @@ The root reachable resources are:
  dimen:notification_subtext_size:2130903059
  dimen:notification_top_pad:2130903060
  dimen:notification_top_pad_large_text:2130903061
- drawable:ic_adaptive_volume:2130968576
- drawable:notification_action_background:2130968586
- drawable:notification_bg:2130968587
- drawable:notification_bg_low:2130968588
- drawable:notification_bg_low_normal:2130968589
- drawable:notification_bg_low_pressed:2130968590
- drawable:notification_bg_normal:2130968591
- drawable:notification_bg_normal_pressed:2130968592
- drawable:notification_icon_background:2130968593
- drawable:notification_oversize_large_icon_bg:2130968594
- drawable:notification_template_icon_bg:2130968595
- drawable:notification_template_icon_low_bg:2130968596
- drawable:notification_tile_bg:2130968597
+ drawable:ic_stat_wave:2130968592
+ drawable:notification_action_background:2130968593
+ drawable:notification_bg:2130968594
+ drawable:notification_bg_low:2130968595
+ drawable:notification_bg_low_normal:2130968596
+ drawable:notification_bg_low_pressed:2130968597
+ drawable:notification_bg_normal:2130968598
+ drawable:notification_bg_normal_pressed:2130968599
+ drawable:notification_icon_background:2130968600
+ drawable:notification_oversize_large_icon_bg:2130968601
+ drawable:notification_template_icon_bg:2130968602
+ drawable:notification_template_icon_low_bg:2130968603
+ drawable:notification_tile_bg:2130968604
  id:accessibility_action_clickable_span:2131034112
  id:accessibility_custom_action_0:2131034113
  id:accessibility_custom_action_1:2131034114
@@ -3086,7 +3214,7 @@ The root reachable resources are:
  layout:notification_template_icon_group:2131165190
  layout:notification_template_part_chronometer:2131165191
  layout:notification_template_part_time:2131165192
- mipmap:ic_launcher:2131230720
+ mipmap:ic_launcher_new:2131230721
  string:androidx_startup:2131296256
  string:app_name:2131296258
  string:close_drawer:2131296267
@@ -3096,9 +3224,7 @@ The root reachable resources are:
  string:dropdown_menu:2131296272
  string:in_progress:2131296273
  string:indeterminate:2131296274
- string:instant_label:2131296275
  string:interaction_title:2131296276
- string:live_engine_title:2131296277
  string:m3c_bottom_sheet_collapse_description:2131296278
  string:m3c_bottom_sheet_dismiss_description:2131296279
  string:m3c_bottom_sheet_drag_handle_description:2131296280
@@ -3138,61 +3264,63 @@ The root reachable resources are:
  string:m3c_dialog:2131296314
  string:m3c_dropdown_menu_collapsed:2131296315
  string:m3c_dropdown_menu_expanded:2131296316
- string:m3c_search_bar_search:2131296317
- string:m3c_snackbar_dismiss:2131296318
- string:m3c_suggestions_available:2131296319
- string:m3c_time_picker_am:2131296320
- string:m3c_time_picker_hour:2131296321
- string:m3c_time_picker_hour_24h_suffix:2131296322
- string:m3c_time_picker_hour_selection:2131296323
- string:m3c_time_picker_hour_suffix:2131296324
- string:m3c_time_picker_hour_text_field:2131296325
- string:m3c_time_picker_minute:2131296326
- string:m3c_time_picker_minute_selection:2131296327
- string:m3c_time_picker_minute_suffix:2131296328
- string:m3c_time_picker_minute_text_field:2131296329
- string:m3c_time_picker_period_toggle_description:2131296330
- string:m3c_time_picker_pm:2131296331
- string:m3c_tooltip_long_press_label:2131296332
- string:m3c_tooltip_pane_description:2131296333
- string:mean_label:2131296334
- string:navigation_menu:2131296335
- string:not_selected:2131296336
- string:range_end:2131296338
- string:range_start:2131296339
- string:selected:2131296340
- string:sensitivity_title:2131296341
- string:smoothing_title:2131296343
- string:state_empty:2131296345
- string:state_off:2131296346
- string:state_on:2131296347
- string:step_size_title:2131296349
- string:switch_role:2131296350
- string:tab:2131296351
- string:template_percent:2131296352
- string:tooltip_description:2131296353
- string:tooltip_label:2131296354
- string:vibrate_title:2131296357
+ string:m3c_dropdown_menu_toggle:2131296317
+ string:m3c_search_bar_search:2131296318
+ string:m3c_snackbar_dismiss:2131296319
+ string:m3c_suggestions_available:2131296320
+ string:m3c_time_picker_am:2131296321
+ string:m3c_time_picker_hour:2131296322
+ string:m3c_time_picker_hour_24h_suffix:2131296323
+ string:m3c_time_picker_hour_selection:2131296324
+ string:m3c_time_picker_hour_suffix:2131296325
+ string:m3c_time_picker_hour_text_field:2131296326
+ string:m3c_time_picker_minute:2131296327
+ string:m3c_time_picker_minute_selection:2131296328
+ string:m3c_time_picker_minute_suffix:2131296329
+ string:m3c_time_picker_minute_text_field:2131296330
+ string:m3c_time_picker_period_toggle_description:2131296331
+ string:m3c_time_picker_pm:2131296332
+ string:m3c_tooltip_long_press_label:2131296333
+ string:m3c_tooltip_pane_description:2131296334
+ string:navigation_menu:2131296336
+ string:not_selected:2131296337
+ string:range_end:2131296339
+ string:range_start:2131296340
+ string:selected:2131296341
+ string:sensitivity_title:2131296342
+ string:smoothing_title:2131296344
+ string:state_empty:2131296346
+ string:state_off:2131296347
+ string:state_on:2131296348
+ string:step_size_title:2131296350
+ string:switch_role:2131296351
+ string:tab:2131296352
+ string:template_percent:2131296353
+ string:tooltip_description:2131296354
+ string:tooltip_label:2131296355
+ string:vibrate_title:2131296358
  style:DialogWindowTheme:2131361792
- style:FloatingDialogWindowTheme:2131361793
- style:TextAppearance_Compat_Notification:2131361794
- style:TextAppearance_Compat_Notification_Info:2131361795
- style:TextAppearance_Compat_Notification_Line2:2131361796
- style:TextAppearance_Compat_Notification_Time:2131361797
- style:TextAppearance_Compat_Notification_Title:2131361798
+ style:EdgeToEdgeFloatingDialogWindowTheme:2131361794
+ style:FloatingDialogWindowTheme:2131361795
+ style:TextAppearance_Compat_Notification:2131361796
+ style:TextAppearance_Compat_Notification_Info:2131361797
+ style:TextAppearance_Compat_Notification_Line2:2131361798
+ style:TextAppearance_Compat_Notification_Time:2131361799
+ style:TextAppearance_Compat_Notification_Title:2131361800
 Unused resources are: 
  color:call_notification_answer_color:2130837506
  color:call_notification_decline_color:2130837507
- color:vector_tint_color:2130837510
- color:vector_tint_theme_color:2130837511
+ color:vector_tint_color:2130837513
+ color:vector_tint_theme_color:2130837514
  dimen:compat_notification_large_icon_max_height:2130903045
  dimen:compat_notification_large_icon_max_width:2130903046
- drawable:ic_call_answer:2130968577
- drawable:ic_call_answer_low:2130968578
- drawable:ic_call_answer_video:2130968579
- drawable:ic_call_answer_video_low:2130968580
- drawable:ic_call_decline:2130968581
- drawable:ic_call_decline_low:2130968582
+ drawable:ic_adaptive_volume:2130968582
+ drawable:ic_call_answer:2130968583
+ drawable:ic_call_answer_low:2130968584
+ drawable:ic_call_answer_video:2130968585
+ drawable:ic_call_answer_video_low:2130968586
+ drawable:ic_call_decline:2130968587
+ drawable:ic_call_decline_low:2130968588
  id:async:2131034151
  id:chronometer:2131034153
  id:dialog_button:2131034156
@@ -3207,8 +3335,9 @@ Unused resources are:
  id:right_icon:2131034176
  id:right_side:2131034177
  id:time:2131034195
- integer:status_bar_notification_info_maxnum:2131099648
+ integer:status_bar_notification_info_maxnum:2131099649
  layout:custom_dialog:2131165184
+ mipmap:ic_launcher:2131230720
  string:app_description:2131296257
  string:autofill:2131296259
  string:call_notification_answer_action:2131296260
@@ -3219,9 +3348,12 @@ Unused resources are:
  string:call_notification_ongoing_text:2131296265
  string:call_notification_screening_text:2131296266
  string:core_permissions_required:2131296269
- string:privacy_note:2131296337
- string:service_title:2131296342
- string:snackbar_pane_title:2131296344
- string:status_bar_notification_info_overflow:2131296348
- string:vibrate_subtitle_off:2131296355
- string:vibrate_subtitle_on:2131296356
+ string:instant_label:2131296275
+ string:live_engine_title:2131296277
+ string:mean_label:2131296335
+ string:privacy_note:2131296338
+ string:service_title:2131296343
+ string:snackbar_pane_title:2131296345
+ string:status_bar_notification_info_overflow:2131296349
+ string:vibrate_subtitle_off:2131296356
+ string:vibrate_subtitle_on:2131296357

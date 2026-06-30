@@ -55,6 +55,12 @@ object AudioStateRepository {
     private val _pendingVolumeDecision = MutableStateFlow<VolumeDecisionRequest?>(null)
     val pendingVolumeDecision: StateFlow<VolumeDecisionRequest?> = _pendingVolumeDecision.asStateFlow()
 
+    private val _safetyThresholdReached = MutableStateFlow(false)
+    val safetyThresholdReached: StateFlow<Boolean> = _safetyThresholdReached.asStateFlow()
+
+    private val _hearingSafetyEnabled = MutableStateFlow(true)
+    val hearingSafetyEnabled: StateFlow<Boolean> = _hearingSafetyEnabled.asStateFlow()
+
     fun updateDb(db: Float) {
         _currentDb.value = db
     }
@@ -63,12 +69,12 @@ object AudioStateRepository {
         _rollingMeanDb.value = db
     }
 
-    fun updateVolume(volumePercent: Float) {
-        _currentVolume.value = volumePercent
+    fun updateVolume(percent: Float) {
+        _currentVolume.value = percent
     }
-    
-    fun setServiceRunning(isRunning: Boolean) {
-        _isServiceRunning.value = isRunning
+
+    fun setServiceRunning(running: Boolean) {
+        _isServiceRunning.value = running
     }
 
     fun updateActiveProfile(profile: VolumeProfile) {
@@ -89,5 +95,13 @@ object AudioStateRepository {
 
     fun requestVolumeDecision(request: VolumeDecisionRequest?) {
         _pendingVolumeDecision.value = request
+    }
+
+    fun updateSafetyThresholdReached(reached: Boolean) {
+        _safetyThresholdReached.value = reached
+    }
+
+    fun updateHearingSafetyEnabled(enabled: Boolean) {
+        _hearingSafetyEnabled.value = enabled
     }
 }

@@ -7,7 +7,7 @@
     mergedManifest="build\intermediates\merged_manifest\release\processReleaseMainManifest\AndroidManifest.xml"
     proguardFiles="build\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1;proguard-rules.pro"
     partialResultsDir="build\intermediates\lint_vital_partial_results\release\lintVitalAnalyzeRelease\out"
-    desugaredMethodsFiles="C:\Users\nukie\.gradle\caches\8.12\transforms\ee599e06a6d0b1cb68bddf3d42f4d826\transformed\desugar_jdk_libs_configuration-2.0.4-desugar-lint.txt;C:\Users\nukie\.gradle\caches\8.12\transforms\ffa49ff442b855dcec05c6a583abcbc0\transformed\D8BackportedDesugaredMethods.txt">
+    desugaredMethodsFiles="C:\Users\nukie\.gradle\caches\9.4.1\transforms\f6e69b314466c4307d3be062bbab886c\transformed\desugar_jdk_libs_configuration-2.0.4-desugar-lint.txt;C:\Users\nukie\.gradle\caches\9.4.1\transforms\77d78ac48e6d5ece4a566c78ccc297bb\transformed\D8BackportedDesugaredMethods.txt">
   <buildFeatures
       coreLibraryDesugaring="true"
       namespacing="REQUIRED"/>
@@ -28,6 +28,6 @@
       applicationId="com.nukie.ambientvolume"
       generatedSourceFolders="build\generated\ap_generated_sources\release\out;build\generated\source\buildConfig\release"
       generatedResourceFolders="build\generated\res\resValues\release"
-      desugaredMethodsFiles="C:\Users\nukie\.gradle\caches\8.12\transforms\ee599e06a6d0b1cb68bddf3d42f4d826\transformed\desugar_jdk_libs_configuration-2.0.4-desugar-lint.txt;C:\Users\nukie\.gradle\caches\8.12\transforms\ffa49ff442b855dcec05c6a583abcbc0\transformed\D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="C:\Users\nukie\.gradle\caches\9.4.1\transforms\f6e69b314466c4307d3be062bbab886c\transformed\desugar_jdk_libs_configuration-2.0.4-desugar-lint.txt;C:\Users\nukie\.gradle\caches\9.4.1\transforms\77d78ac48e6d5ece4a566c78ccc297bb\transformed\D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>

@@ -46,6 +46,10 @@ object ProfileManager {
     private val KEY_VIBRATE_ON_CHANGE = booleanPreferencesKey("vibrate_on_change")
     private val KEY_STEP_SIZE = intPreferencesKey("step_size_db")
     private val KEY_MEAN_INTERVAL = intPreferencesKey("mean_interval_seconds")
+    private val KEY_SERVICE_WAS_ACTIVE = booleanPreferencesKey("service_was_active")
+    private val KEY_SAFETY_CUMULATIVE_MILLIS = longPreferencesKey("safety_cumulative_millis")
+    private val KEY_SAFETY_LAST_RESET_DAY = intPreferencesKey("safety_last_reset_day")
+    private val KEY_HEARING_SAFETY_ENABLED = booleanPreferencesKey("hearing_safety_enabled")
 
     private lateinit var appContext: Context
 
@@ -58,12 +62,14 @@ object ProfileManager {
                 AudioStateRepository.updateVibrateEnabled(getVibrateEnabled())
                 AudioStateRepository.updateStepSize(getStepSize())
                 AudioStateRepository.updateMeanInterval(getMeanInterval())
+                AudioStateRepository.updateHearingSafetyEnabled(getHearingSafetyEnabled())
             }
         } catch (e: Exception) {
             AudioStateRepository.updateActiveProfile(VolumeProfile.STANDARD)
             AudioStateRepository.updateVibrateEnabled(false)
             AudioStateRepository.updateStepSize(3)
             AudioStateRepository.updateMeanInterval(7)
+            AudioStateRepository.updateHearingSafetyEnabled(true)
         }
     }
 
@@ -152,5 +158,66 @@ object ProfileManager {
             preferences[KEY_MEAN_INTERVAL] = seconds
         }
         AudioStateRepository.updateMeanInterval(seconds)
+    }
+
+    // --- Service Active State (for BootReceiver) ---
+
+    fun getServiceWasActive(): Boolean {
+        return try {
+            kotlinx.coroutines.runBlocking {
+                appContext.dataStore.data.map { preferences ->
+                    preferences[KEY_SERVICE_WAS_ACTIVE] ?: false
+                }.first()
+            }
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    suspend fun setServiceWasActive(active: Boolean) {
+        appContext.dataStore.edit { preferences ->
+            preferences[KEY_SERVICE_WAS_ACTIVE] = active
+        }
+    }
+
+    // --- 60/60 Hearing Safety Persistence ---
+
+    suspend fun getSafetyCumulativeMillis(): Long {
+        return appContext.dataStore.data.map { preferences ->
+            preferences[KEY_SAFETY_CUMULATIVE_MILLIS] ?: 0L
+        }.first()
+    }
+
+    suspend fun updateSafetyCumulativeMillis(millis: Long) {
+        appContext.dataStore.edit { preferences ->
+            preferences[KEY_SAFETY_CUMULATIVE_MILLIS] = millis
+        }
+    }
+
+    suspend fun getSafetyLastResetDay(): Int {
+        return appContext.dataStore.data.map { preferences ->
+            preferences[KEY_SAFETY_LAST_RESET_DAY] ?: -1
+        }.first()
+    }
+
+    suspend fun setSafetyLastResetDay(day: Int) {
+        appContext.dataStore.edit { preferences ->
+            preferences[KEY_SAFETY_LAST_RESET_DAY] = day
+        }
+    }
+
+    // --- Hearing Safety Toggle ---
+
+    suspend fun getHearingSafetyEnabled(): Boolean {
+        return appContext.dataStore.data.map { preferences ->
+            preferences[KEY_HEARING_SAFETY_ENABLED] ?: true
+        }.first()
+    }
+
+    suspend fun setHearingSafetyEnabled(enabled: Boolean) {
+        appContext.dataStore.edit { preferences ->
+            preferences[KEY_HEARING_SAFETY_ENABLED] = enabled
+        }
+        AudioStateRepository.updateHearingSafetyEnabled(enabled)
     }
 }

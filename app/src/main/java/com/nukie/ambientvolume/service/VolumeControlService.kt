@@ -35,6 +35,12 @@ import android.media.MediaRecorder
 import android.media.AudioAttributes
 import android.media.AudioFocusRequest
 import android.media.AudioDeviceInfo
+import android.media.audiofx.AcousticEchoCanceler
+import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.Drawable
+import androidx.core.content.ContextCompat
 import android.os.Build
 import android.os.PowerManager
 import android.os.SystemClock
@@ -60,20 +66,21 @@ import kotlin.math.log10
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 import kotlin.math.abs
+import com.nukie.ambientvolume.util.DebugLogger
 
 class VolumeControlService : Service() {
 
-    private val CHANNEL_ID = "adaptive_volume_v131_channel"
-    private val NOTIFICATION_ID = 1
+    private val CHANNEL_ID = "adaptive_volume_v182_channel"
+    private val NOTIFICATION_ID = 1030
 
-    private var audioRecord: AudioRecord? = null
+    private var serviceStartTime = 0L
+    private val INITIALIZATION_DEAD_ZONE_MS = 5000L
+
     private var isRecording = false
-    private val sampleRate = 44100
-    private val bufferSize = AudioRecord.getMinBufferSize(
-        sampleRate,
-        AudioFormat.CHANNEL_IN_MONO,
-        AudioFormat.ENCODING_PCM_16BIT
-    )
+    private val preferredSampleRate = 16000
+    private val fallbackSampleRate = 8000
+    private var activeSampleRate = preferredSampleRate
+    private var bufferSize = 0
 
     private lateinit var audioManager: AudioManager
     
@@ -87,14 +94,34 @@ class VolumeControlService : Service() {
     private var manualOverrideDbLock: Double? = null
     private val OVERRIDE_RELEASE_THRESHOLD_DB = 5.0
 
-    // 5-Second Rolling Mean (replaces EMA)
-    // At ~100ms delay between readings, 50 samples ≈ 5 seconds
-    private val DB_BUFFER_SIZE = 50
+    // 20-Second Rolling Mean
+    // At ~100ms delay between readings, 200 samples ≈ 20 seconds
+    private val DB_BUFFER_SIZE = 200
     private val movingAverage = MovingAverage(DB_BUFFER_SIZE)
 
     private var lastAdjustedDb: Double? = null
     private val HYSTERESIS_THRESHOLD = 3.0
     private var isFrozen = false
+
+    // Feedback Loop Prevention & Echo Suppression
+    private var echoCanceler: AcousticEchoCanceler? = null
+    private var lastSystemVolumeTime = 0L
+    private var lastSystemVolumeLevel = -1
+    private val FEEDBACK_CORRELATION_WINDOW_MS = 50L
+    private val SOFTWARE_AEC_MAX_RMS_REDUCTION = 1200.0 // Calibrated for speaker-to-mic coupling
+    
+    // 1.5s Peak Filter
+    private var peakStartTime: Long? = null
+    private var lastPeakDb: Double? = null
+    private val PEAK_DURATION_THRESHOLD_MS = 1500L
+    private val PEAK_DB_THRESHOLD = 10.0
+
+    // 60/60 Safety Rule (Cumulative)
+    private var cumulativeHighVolumeMillis = 0L
+    private var highVolumeStartTime: Long? = null
+    private var lastSafetyCheckTime = 0L
+    private val SAFETY_THRESHOLD_PERCENT = 0.60f
+    private val SAFETY_DURATION_REQUIRED_MS = 60 * 60 * 1000L // 60 minutes
 
     private var wakeLock: PowerManager.WakeLock? = null
     private var vibrator: Vibrator? = null
@@ -103,31 +130,59 @@ class VolumeControlService : Service() {
         super.onCreate()
         ProfileManager.init(applicationContext)
         
-        audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        maxVolumeLevel = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
         
-        val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+        audioManager = applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        maxVolumeLevel = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+        serviceStartTime = SystemClock.elapsedRealtime()
+        
+        val powerManager = applicationContext.getSystemService(Context.POWER_SERVICE) as PowerManager
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "AmbientVolume::WakeLock")
         
         // Initialize vibrator for haptic feedback
         vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val vibratorManager = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            val vibratorManager = applicationContext.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
             vibratorManager.defaultVibrator
         } else {
             @Suppress("DEPRECATION")
-            getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            applicationContext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         }
 
         createNotificationChannel()
+        
+        // Initial load of safety timer from DataStore
+        serviceScope.launch {
+            val currentDay = java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_YEAR)
+            val lastResetDay = ProfileManager.getSafetyLastResetDay()
+            
+            if (currentDay != lastResetDay) {
+                ProfileManager.updateSafetyCumulativeMillis(0L)
+                ProfileManager.setSafetyLastResetDay(currentDay)
+                cumulativeHighVolumeMillis = 0L
+            } else {
+                cumulativeHighVolumeMillis = ProfileManager.getSafetyCumulativeMillis()
+            }
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         // MIUI 14 Stability: PendingIntent action to Stop service
         if (intent?.action == "ACTION_STOP_SERVICE") {
+            // User explicitly stopped — mark as intentionally inactive
+            serviceScope.launch { ProfileManager.setServiceWasActive(false) }
             stopSelf()
             return START_NOT_STICKY
         }
+        
+        if (intent?.action == "ACTION_RESET_SAFETY") {
+            cumulativeHighVolumeMillis = 0L
+            highVolumeStartTime = null
+            serviceScope.launch { ProfileManager.updateSafetyCumulativeMillis(0L) }
+            AudioStateRepository.updateSafetyThresholdReached(false)
+            return START_STICKY
+        }
 
+        // Mark service as active for BootReceiver self-healing
+        serviceScope.launch { ProfileManager.setServiceWasActive(true) }
         AudioStateRepository.setServiceRunning(true)
         val notification = createNotification()
         
@@ -172,7 +227,7 @@ class VolumeControlService : Service() {
         // Restart service if swiped away (critical for aggressive OEMs)
         val intent = Intent(applicationContext, VolumeControlService::class.java)
         val pendingIntent = PendingIntent.getService(this, 1, intent, PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE)
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as android.app.AlarmManager
+        val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as android.app.AlarmManager
         alarmManager.set(android.app.AlarmManager.RTC, System.currentTimeMillis() + 1000, pendingIntent)
     }
 
@@ -186,7 +241,7 @@ class VolumeControlService : Service() {
             ).apply {
                 description = "Runs the background noise monitoring to adapt system volume"
             }
-            val manager = getSystemService(NotificationManager::class.java)
+            val manager = applicationContext.getSystemService(NotificationManager::class.java)
             manager?.createNotificationChannel(serviceChannel)
         }
     }
@@ -211,12 +266,26 @@ class VolumeControlService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Volume Engine is Active")
             .setContentText("Listening to ambient noise to adapt volume...")
-            .setSmallIcon(R.drawable.ic_adaptive_volume)
+            .setSmallIcon(R.drawable.ic_stat_wave)
+            .setLargeIcon(getBitmapFromDrawable(this, R.mipmap.ic_launcher_new))
             .setContentIntent(contentPendingIntent)
             .setOngoing(true)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setPriority(NotificationCompat.PRIORITY_LOW) // Changed to LOW to avoid persistent status bar clutter on some ROMs while keeping it visible
             .addAction(android.R.drawable.ic_media_pause, "Stop", stopPendingIntent)
             .build()
+    }
+
+    private fun getBitmapFromDrawable(context: Context, drawableId: Int): Bitmap? {
+        val drawable = ContextCompat.getDrawable(context, drawableId) ?: return null
+        val bitmap = Bitmap.createBitmap(
+            drawable.intrinsicWidth.coerceAtLeast(108),
+            drawable.intrinsicHeight.coerceAtLeast(108),
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.width, canvas.height)
+        drawable.draw(canvas)
+        return bitmap
     }
 
     private fun startListening() {
@@ -228,112 +297,149 @@ class VolumeControlService : Service() {
             return
         }
 
-        try {
-            audioRecord = AudioRecord(
-                MediaRecorder.AudioSource.MIC,
-                sampleRate,
-                AudioFormat.CHANNEL_IN_MONO,
-                AudioFormat.ENCODING_PCM_16BIT,
-                bufferSize
-            )
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val focusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
-                    .setAudioAttributes(AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_MEDIA)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                        .build())
-                    .setOnAudioFocusChangeListener(audioFocusChangeListener)
-                    .build()
-                audioManager.requestAudioFocus(focusRequest)
-            } else {
-                @Suppress("DEPRECATION")
-                audioManager.requestAudioFocus(
-                    audioFocusChangeListener,
-                    AudioManager.STREAM_MUSIC,
-                    AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
-                )
-            }
-
-            audioRecord?.startRecording()
-            isRecording = true
-            serviceScope.launch {
-            // Dynamic Smoothing Interval Observer
+        isRecording = true
+        
+        DebugLogger.log(this@VolumeControlService, "Engine sensing started. Duty-cycled loop active.")
+        
+        lastSystemVolumeLevel = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+        
+        serviceScope.launch {
             launch {
                 AudioStateRepository.meanInterval.collect { seconds ->
-                    val newBufferSize = seconds * 10 // 100ms interval = 10 samples/sec
+                    // Calculate buffer size in terms of loop cycles (~12.5s per cycle)
+                    val newBufferSize = (seconds / 12.5).roundToInt().coerceAtLeast(1)
                     movingAverage.updateWindowSize(newBufferSize)
-                    if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Smoothing interval updated to $seconds s ($newBufferSize samples)")
+                    if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Smoothing interval updated to $seconds s ($newBufferSize cycles)")
                 }
             }
 
-            val buffer = ShortArray(bufferSize)
-                while (isActive && isRecording) {
-                    val readSize = audioRecord?.read(buffer, 0, buffer.size) ?: 0
+            while (isActive && isRecording) {
+                if (!audioManager.isMusicActive) {
+                    if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Music not active. Sleeping for 20s.")
+                    delay(20000)
+                    continue
+                }
+
+                var loopAudioRecord: AudioRecord? = null
+                try {
+                    bufferSize = AudioRecord.getMinBufferSize(preferredSampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT)
+                    activeSampleRate = preferredSampleRate
                     
-                    if (readSize == AudioRecord.ERROR_INVALID_OPERATION || readSize == AudioRecord.ERROR_BAD_VALUE) {
-                        if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Mic seized by another app (Assistant/Gemini). Freezing state.")
-                        isFrozen = true
-                        delay(2000)
-                        continue
+                    if (bufferSize <= 0) {
+                        activeSampleRate = fallbackSampleRate
+                        bufferSize = AudioRecord.getMinBufferSize(fallbackSampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT)
                     }
 
-                    if (readSize > 0) {
-                        // Zero-Value Buffer Handling (Assistant/Phone concurrency)
-                        val isSilence = buffer.take(readSize).all { it == 0.toShort() }
-                        if (isSilence) {
-                            if (!isFrozen) {
-                                if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Mic returning silence. Potential Assistant focus. Freezing.")
-                                isFrozen = true
+                    val requiredBufferSize = activeSampleRate * 2 // 1 second of 16-bit Mono
+                    val actualBufferSize = maxOf(bufferSize, requiredBufferSize)
+
+                    loopAudioRecord = AudioRecord(
+                        MediaRecorder.AudioSource.MIC,
+                        activeSampleRate,
+                        AudioFormat.CHANNEL_IN_MONO,
+                        AudioFormat.ENCODING_PCM_16BIT,
+                        actualBufferSize
+                    )
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        val focusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+                            .setAudioAttributes(AudioAttributes.Builder()
+                                .setUsage(AudioAttributes.USAGE_MEDIA)
+                                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                                .build())
+                            .setOnAudioFocusChangeListener(audioFocusChangeListener)
+                            .build()
+                        audioManager.requestAudioFocus(focusRequest)
+                    } else {
+                        @Suppress("DEPRECATION")
+                        audioManager.requestAudioFocus(
+                            audioFocusChangeListener,
+                            AudioManager.STREAM_MUSIC,
+                            AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
+                        )
+                    }
+
+                    if (AcousticEchoCanceler.isAvailable()) {
+                        echoCanceler = AcousticEchoCanceler.create(loopAudioRecord.audioSessionId)
+                        echoCanceler?.enabled = true
+                    }
+
+                    loopAudioRecord.startRecording()
+                    
+                    val samplesToRead = activeSampleRate // 1 second exactly
+                    val buffer = ShortArray(samplesToRead)
+                    var totalRead = 0
+                    
+                    val startTime = SystemClock.elapsedRealtime()
+                    while (totalRead < samplesToRead && isActive && isRecording) {
+                        if (SystemClock.elapsedRealtime() - startTime > 1500) break // Safety timeout
+                        val readSize = loopAudioRecord.read(buffer, totalRead, samplesToRead - totalRead)
+                        if (readSize < 0) {
+                            if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Mic seized or error: $readSize")
+                            break
+                        }
+                        totalRead += readSize
+                    }
+
+                    if (totalRead > 0) {
+                        val isSilence = buffer.take(totalRead).all { it == 0.toShort() }
+                        if (!isSilence) {
+                            var sumSquares = 0.0
+                            for (i in 0 until totalRead) {
+                                val sample = buffer[i].toDouble()
+                                sumSquares += sample * sample
                             }
-                            delay(1000)
-                            continue
-                        }
+                            val rms = sqrt(sumSquares / totalRead)
 
-                        // Regaining focus from freeze state
-                        if (isFrozen) {
-                            if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Regaining mic access. Ramping volume...")
-                            isFrozen = false
-                            lastAdjustedDb = null
-                            movingAverage.clear()
-                        }
+                            if (rms > 0) {
+                                var processedRms = rms
+                                if (echoCanceler == null || !echoCanceler!!.enabled) {
+                                    val systemVolumePercent = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC).toDouble() / maxVolumeLevel.toDouble()
+                                    val reduction = systemVolumePercent * SOFTWARE_AEC_MAX_RMS_REDUCTION
+                                    processedRms = sqrt((rms * rms - reduction * reduction).coerceAtLeast(0.0))
+                                }
 
-                        // Ambient Noise Sensing: Calculate RMS
-                        var sumSquares = 0.0
-                        for (i in 0 until readSize) {
-                            val sample = buffer[i].toDouble()
-                            sumSquares += sample * sample
-                        }
-                        val rms = sqrt(sumSquares / readSize)
+                                if (processedRms > 0) {
+                                    val db = 20 * log10(processedRms)
+                                    
+                                    val currentSystemVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+                                    if (currentSystemVolume > lastSystemVolumeLevel) {
+                                        lastSystemVolumeTime = SystemClock.elapsedRealtime()
+                                    }
+                                    lastSystemVolumeLevel = currentSystemVolume
 
-                        // Convert to decibels (dB)
-                        if (rms > 0) {
-                            val db = 20 * log10(rms)
-                            
-                            // Push instantaneous dB to UI (for visualizer background layer)
-                            AudioStateRepository.updateDb(db.toFloat())
+                                    val timeSinceVolChange = SystemClock.elapsedRealtime() - lastSystemVolumeTime
+                                    if (timeSinceVolChange >= FEEDBACK_CORRELATION_WINDOW_MS) {
+                                        AudioStateRepository.updateDb(db.toFloat())
+                                        
+                                        val rollingMeanDb = movingAverage.add(db)
+                                        AudioStateRepository.updateRollingMeanDb(rollingMeanDb.toFloat())
 
-                            // 5-Second Rolling Mean
-                            val rollingMeanDb = movingAverage.add(db)
-
-                            // Push rolling mean to UI (for visualizer foreground layer)
-                            AudioStateRepository.updateRollingMeanDb(rollingMeanDb.toFloat())
-
-                            val currentProfile = ProfileManager.getActiveProfile()
-                            
-                            // Hysteresis check (+/- 3dB dead zone) using rolling mean
-                            if (lastAdjustedDb == null || abs(rollingMeanDb - lastAdjustedDb!!) >= HYSTERESIS_THRESHOLD) {
-                                adjustVolumeBasedOnDb(rollingMeanDb, currentProfile)
-                                lastAdjustedDb = rollingMeanDb
+                                        val currentProfile = ProfileManager.getActiveProfile()
+                                        if (lastAdjustedDb == null || abs(rollingMeanDb - lastAdjustedDb!!) >= HYSTERESIS_THRESHOLD) {
+                                            adjustVolumeBasedOnDb(rollingMeanDb, currentProfile)
+                                            lastAdjustedDb = rollingMeanDb
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
-                    delay(100)
+                } catch (e: Exception) {
+                    if (BuildConfig.DEBUG) Log.e("VolumeControlService", "Error in duty-cycle loop", e)
+                } finally {
+                    echoCanceler?.enabled = false
+                    echoCanceler?.release()
+                    echoCanceler = null
+
+                    try {
+                        loopAudioRecord?.stop()
+                        loopAudioRecord?.release()
+                    } catch (e: Exception) {}
+                    
+                    delay(12500) // Sleep 12.5 seconds before next hardware cycle
                 }
             }
-        } catch (e: Exception) {
-            if (BuildConfig.DEBUG) Log.e("VolumeControlService", "Error starting AudioRecord", e)
-            stopSelf()
         }
     }
 
@@ -345,6 +451,40 @@ class VolumeControlService : Service() {
         
         // Push actual volume back to Compose UI StateFlow
         AudioStateRepository.updateVolume(currentVolumePercent)
+
+        // 3. 60/60 Hearing Safety Rule (Epoch-based tracking)
+        if (AudioStateRepository.hearingSafetyEnabled.value) {
+            val isAboveThreshold = currentVolumePercent > SAFETY_THRESHOLD_PERCENT
+            val now = SystemClock.elapsedRealtime()
+
+            // Initialization Gate: Suppress for first 5 seconds
+            if (now - serviceStartTime > INITIALIZATION_DEAD_ZONE_MS) {
+                if (isAboveThreshold) {
+                    if (highVolumeStartTime == null) {
+                        highVolumeStartTime = now
+                    } else {
+                        val sessionElapsed = now - highVolumeStartTime!!
+                        cumulativeHighVolumeMillis += sessionElapsed
+                        highVolumeStartTime = now // Reset anchor to current epoch
+                    }
+                } else {
+                    highVolumeStartTime = null
+                }
+
+                if (cumulativeHighVolumeMillis >= SAFETY_DURATION_REQUIRED_MS) {
+                    AudioStateRepository.updateSafetyThresholdReached(true)
+                }
+                
+                // Persist every 10 seconds
+                if (now % 10000 < 200) {
+                    ProfileManager.updateSafetyCumulativeMillis(cumulativeHighVolumeMillis)
+                }
+            }
+        } else {
+            // Safety disabled - ensure values are reset and logic bypassed
+            cumulativeHighVolumeMillis = 0L
+            highVolumeStartTime = null
+        }
 
         // SpotMute / Mutify Protection (Zero-Volume Suspension)
         if (currentVolume == 0) {
@@ -428,7 +568,17 @@ class VolumeControlService : Service() {
         }
 
         // Calculate the target volume units
-        val targetVolumeUnits = (maxVolumeLevel * targetVolPercent).roundToInt()
+        val targetVolumeExact = maxVolumeLevel * targetVolPercent
+        
+        // Job 4: Ignore fractional micro-steps (must be >= 1 full step)
+        if (abs(targetVolumeExact - currentVolume) < 1.0) {
+            // Lock active state in sync
+            AudioStateRepository.updateVolume(currentVolumePercent)
+            lastAutoSetVolume = currentVolume
+            return
+        }
+
+        val targetVolumeUnits = targetVolumeExact.roundToInt()
 
         var newlySetVolume = currentVolume
 
@@ -449,6 +599,10 @@ class VolumeControlService : Service() {
                 delay(500)
             }
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, newlySetVolume, 0)
+            
+            if (BuildConfig.DEBUG) {
+                DebugLogger.log(this@VolumeControlService, "Volume Adjusted: ${currentVolume} -> ${newlySetVolume} (Units) based on ${smoothedDb.roundToInt()} dB")
+            }
 
             // Haptic feedback on volume step change
             if (AudioStateRepository.vibrateEnabled.value) {
@@ -497,14 +651,11 @@ class VolumeControlService : Service() {
         movingAverage.clear()
         serviceJob.cancel()
         
+        echoCanceler?.enabled = false
+        echoCanceler?.release()
+        echoCanceler = null
+        
         if (isRecording) {
-            try {
-                audioRecord?.stop()
-            } catch (e: Exception) {
-                if (BuildConfig.DEBUG) Log.e("VolumeControlService", "Error stopping AudioRecord", e)
-            }
-            audioRecord?.release()
-            audioRecord = null
             isRecording = false
         }
         

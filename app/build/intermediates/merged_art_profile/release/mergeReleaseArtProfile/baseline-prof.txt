@@ -47,41 +47,6 @@ HSPLandroidx/compose/material/ripple/StateLayer;->**(**)**
 
 Landroidx/compose/material/ripple/*;
 
-# Baseline profile rules for androidx.compose.animation.core
-# =============================================
-# In practice it seems like almost every class in animation/core ends up getting loaded in even a
-# relatively small sample, and most end up getting marked as "HSP". Since Animation is a high value
-# target for performance - fade in, scroll, etc we are going to be liberal in the animation profile
-# rules and just mark the entire module.
-
-HSPLandroidx/compose/animation/core/**->**(**)**
-
-Landroidx/compose/animation/core/**;
-
-# Baseline profile rules for androidx.compose.animation
-# =============================================
-HSPLandroidx/compose/animation/AndroidFlingSpline**;->**(**)**
-HSPLandroidx/compose/animation/AnimatedVisibilityKt**->**(**)**
-HSPLandroidx/compose/animation/AnimatedVisibilityScope;-><init>(**)V
-HSPLandroidx/compose/animation/ChangeSize;->**(**)**
-HSPLandroidx/compose/animation/ColorVectorConverterKt**->**(**)**
-HSPLandroidx/compose/animation/CrossfadeAnimationItem;->**(**)**
-HSPLandroidx/compose/animation/CrossfadeKt**->**(**)**
-HSPLandroidx/compose/animation/EnterExitTransitionKt;->**(**)**
-HSPLandroidx/compose/animation/FlingCalculator**;->**(**)**
-HSPLandroidx/compose/animation/SingleValueAnimationKt;->**(**)**
-HSPLandroidx/compose/animation/SplineBasedFloatDecayAnimationSpec**->**(**)**
-HSPLandroidx/compose/animation/SplineBasedDecayKt;->**(**)**
-HSPLandroidx/compose/animation/TransitionData;->**(**)**
-
-# Include all of androidx.compose.animation
-Landroidx/compose/animation/*;
-# Baseline profile rules for androidx.compose.foundation.layout
-# =============================================
-# Layout is incredibly important for performance, and represents many hot code paths. For now, we
-# will include all of the layout namespace
-HSPLandroidx/compose/foundation/layout/**->**(**)**
-Landroidx/compose/foundation/layout/**;
 # Baseline profile rules for androidx.compose.foundation
 # =============================================
 #
@@ -144,6 +109,46 @@ HSPLandroidx/compose/foundation/text/selection/TextFieldSelectionManager;->**(**
 # Include all of foundation
 Landroidx/compose/foundation/**;
 
+# Baseline profile rules for androidx.compose.animation
+# =============================================
+HSPLandroidx/compose/animation/AndroidFlingSpline**;->**(**)**
+HSPLandroidx/compose/animation/AnimatedVisibilityKt**->**(**)**
+HSPLandroidx/compose/animation/AnimatedVisibilityScope;-><init>(**)V
+HSPLandroidx/compose/animation/ChangeSize;->**(**)**
+HSPLandroidx/compose/animation/ColorVectorConverterKt**->**(**)**
+HSPLandroidx/compose/animation/CrossfadeAnimationItem;->**(**)**
+HSPLandroidx/compose/animation/CrossfadeKt**->**(**)**
+HSPLandroidx/compose/animation/EnterExitTransitionKt;->**(**)**
+HSPLandroidx/compose/animation/FlingCalculator**;->**(**)**
+HSPLandroidx/compose/animation/SingleValueAnimationKt;->**(**)**
+HSPLandroidx/compose/animation/SplineBasedFloatDecayAnimationSpec**->**(**)**
+HSPLandroidx/compose/animation/SplineBasedDecayKt;->**(**)**
+HSPLandroidx/compose/animation/TransitionData;->**(**)**
+
+# Include all of androidx.compose.animation
+Landroidx/compose/animation/*;
+# Baseline profile rules for androidx.compose.foundation.layout
+# =============================================
+# Layout is incredibly important for performance, and represents many hot code paths. For now, we
+# will include all of the layout namespace
+HSPLandroidx/compose/foundation/layout/**->**(**)**
+Landroidx/compose/foundation/layout/**;
+# Baseline profile rules for androidx.compose.animation.core
+# =============================================
+# In practice it seems like almost every class in animation/core ends up getting loaded in even a
+# relatively small sample, and most end up getting marked as "HSP". Since Animation is a high value
+# target for performance - fade in, scroll, etc we are going to be liberal in the animation profile
+# rules and just mark the entire module.
+
+HSPLandroidx/compose/animation/core/**->**(**)**
+
+Landroidx/compose/animation/core/**;
+
+# Baseline profile rules for androidx.compose.ui.geometry
+# =============================================
+# All of geometry is highly used, small, and mathy, so we include everything
+HSPLandroidx/compose/ui/geometry/*;->**(**)**
+Landroidx/compose/ui/geometry/*;
 # Baseline profile rules for androidx.compose.ui.util
 # =============================================
 HSPLandroidx/compose/ui/util/MathHelpersKt;->lerp(FFF)F
@@ -1072,11 +1077,6 @@ Landroidx/compose/ui/viewinterop/AndroidViewHolder;
 HSPLandroidx/compose/ui/window/DialogProperties;->**(**)**
 SPLandroidx/compose/ui/window/SecureFlagPolicy;->**(**)**
 
-# Baseline profile rules for androidx.compose.ui.geometry
-# =============================================
-# All of geometry is highly used, small, and mathy, so we include everything
-HSPLandroidx/compose/ui/geometry/*;->**(**)**
-Landroidx/compose/ui/geometry/*;
 # Baseline profile rules for androidx.compose.ui
 # =============================================
 #

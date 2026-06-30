@@ -12,11 +12,16 @@ class MovingAverage(initialWindowSize: Int) {
     private var sum = 0.0
 
     /**
-     * Updates the window size and clears the current buffer.
+     * Updates the window size dynamically. Trims excess samples from the front
+     * instead of clearing, so transitions between intervals are smooth.
      */
     fun updateWindowSize(newSize: Int) {
+        if (newSize == currentWindowSize) return
         currentWindowSize = newSize
-        clear()
+        // Trim excess samples from the front (oldest data) rather than clearing
+        while (window.size > currentWindowSize) {
+            sum -= window.removeFirst()
+        }
     }
 
     /**

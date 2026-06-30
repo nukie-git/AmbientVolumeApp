@@ -2,6 +2,7 @@
 -keep class androidx.core.app.CoreComponentFactory { <init>(); }
 -keep class androidx.profileinstaller.ProfileInstallReceiver { <init>(); }
 -keep class androidx.startup.InitializationProvider { <init>(); }
+-keep class com.nukie.ambientvolume.BootReceiver { <init>(); }
 -keep class com.nukie.ambientvolume.MainActivity { <init>(); }
 -keep class com.nukie.ambientvolume.service.VolumeControlService { <init>(); }
 
@@ -141,19 +142,49 @@
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 
 # End of content from C:\Users\nukie\apps\AmbientVolumeApp\app\proguard-rules.pro
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\eddd40da513a4fd41789266f6e25c31c\transformed\navigationevent\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\2fd2ddfe829bb0c657fabe9949b9ab60\transformed\navigationevent\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\eddd40da513a4fd41789266f6e25c31c\transformed\navigationevent\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\4e952b8527bdda2515f1e8bdcd00c377\transformed\navigationevent-compose\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\2fd2ddfe829bb0c657fabe9949b9ab60\transformed\navigationevent\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\c48a9460a034222bf939c4f989d4d6bf\transformed\navigationevent-compose\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\4e952b8527bdda2515f1e8bdcd00c377\transformed\navigationevent-compose\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\a43ac3bd4299115e8de264130cab53fd\transformed\ui-tooling-preview\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\c48a9460a034222bf939c4f989d4d6bf\transformed\navigationevent-compose\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\4280d992ac6f19b289f7520b8d22b5d5\transformed\material-ripple-release\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\a43ac3bd4299115e8de264130cab53fd\transformed\ui-tooling-preview\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\da57d8929c2b26cf21437b682a2d7038\transformed\ui-util\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\4280d992ac6f19b289f7520b8d22b5d5\transformed\material-ripple-release\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\f3c5980333272b3f7254c9000e8bb600\transformed\foundation-release\proguard.txt
+# Copyright (C) 2020 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Keep all the functions created to throw an exception. We don't want these functions to be
+# inlined in any way, which R8 will do by default. The whole point of these functions is to
+# reduce the amount of code generated at the call site.
+-keepclassmembers,allowshrinking,allowobfuscation class androidx.compose.**.* {
+    static void throw*Exception(...);
+    # For methods returning Nothing
+    static java.lang.Void throw*Exception(...);
+}
+
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\f3c5980333272b3f7254c9000e8bb600\transformed\foundation-release\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\37ee4abb144c8d95b87b7874a336990d\transformed\animation-release\proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\37ee4abb144c8d95b87b7874a336990d\transformed\animation-release\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\afa71a8e922250c40c6792d3b79e4dfe\transformed\foundation-layout-release\proguard.txt
 # Copyright (C) 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -179,8 +210,8 @@
     static java.lang.Void throw*ExceptionForNullCheck(...);
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\da57d8929c2b26cf21437b682a2d7038\transformed\ui-util\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\71025b9162320569022753a7fa4075fe\transformed\ui-unit\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\afa71a8e922250c40c6792d3b79e4dfe\transformed\foundation-layout-release\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\b31c52290b473b75f3bbb43193a491e7\transformed\animation-core-release\proguard.txt
 # Copyright (C) 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -206,8 +237,16 @@
     static java.lang.Void throw*ExceptionForNullCheck(...);
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\71025b9162320569022753a7fa4075fe\transformed\ui-unit\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\a863dda3f1b52e3e5e14796e1f688549\transformed\ui-text\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\b31c52290b473b75f3bbb43193a491e7\transformed\animation-core-release\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\35891e7271779aa3840d3f3e4d39a9d4\transformed\ui-geometry\proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\35891e7271779aa3840d3f3e4d39a9d4\transformed\ui-geometry\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb82237633f04e1e69f145af6719c477\transformed\ui-tooling-preview\proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb82237633f04e1e69f145af6719c477\transformed\ui-tooling-preview\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\9e7ab360f2bad0178a411edc21fbf2ee\transformed\ui-util\proguard.txt
 # Copyright (C) 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -233,8 +272,62 @@
     static java.lang.Void throw*ExceptionForNullCheck(...);
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\a863dda3f1b52e3e5e14796e1f688549\transformed\ui-text\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\5b516eabd198144d2239875a5c414dc3\transformed\ui-graphics-release\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\9e7ab360f2bad0178a411edc21fbf2ee\transformed\ui-util\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\44c8b06ab047bec07736133162747873\transformed\ui-unit\proguard.txt
+# Copyright (C) 2020 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Keep all the functions created to throw an exception. We don't want these functions to be
+# inlined in any way, which R8 will do by default. The whole point of these functions is to
+# reduce the amount of code generated at the call site.
+-keepclassmembers,allowshrinking,allowobfuscation class androidx.compose.**.* {
+    static void throw*Exception(...);
+    static void throw*ExceptionForNullCheck(...);
+    # For methods returning Nothing
+    static java.lang.Void throw*Exception(...);
+    static java.lang.Void throw*ExceptionForNullCheck(...);
+}
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\44c8b06ab047bec07736133162747873\transformed\ui-unit\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\e077cabcb6655104ab7d5d063b334e8b\transformed\ui-text\proguard.txt
+# Copyright (C) 2020 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Keep all the functions created to throw an exception. We don't want these functions to be
+# inlined in any way, which R8 will do by default. The whole point of these functions is to
+# reduce the amount of code generated at the call site.
+-keepclassmembers,allowshrinking,allowobfuscation class androidx.compose.**.* {
+    static void throw*Exception(...);
+    static void throw*ExceptionForNullCheck(...);
+    # For methods returning Nothing
+    static java.lang.Void throw*Exception(...);
+    static java.lang.Void throw*ExceptionForNullCheck(...);
+}
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\e077cabcb6655104ab7d5d063b334e8b\transformed\ui-text\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\50c4e52ae9ca2a3891bd9e646672ca2f\transformed\ui-graphics-release\proguard.txt
 # Copyright (C) 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -267,12 +360,8 @@
     public boolean isHardwareAccelerated();
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\5b516eabd198144d2239875a5c414dc3\transformed\ui-graphics-release\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\f600d937b1728696549dfa901bfe1837\transformed\ui-geometry\proguard.txt
-# Intentionally empty proguard rules to indicate this library is safe to shrink
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\f600d937b1728696549dfa901bfe1837\transformed\ui-geometry\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\c8100e0b196594712e0dfb383c00b6ea\transformed\ui-release\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\50c4e52ae9ca2a3891bd9e646672ca2f\transformed\ui-graphics-release\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\deed3ed349fa1b314751c2a78b53d6a6\transformed\ui-release\proguard.txt
 # Copyright (C) 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -329,57 +418,36 @@
 }
 
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\c8100e0b196594712e0dfb383c00b6ea\transformed\ui-release\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\a668e321cfcfe1e3693bd3c8736b83a2\transformed\activity-ktx-1.13.0\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\deed3ed349fa1b314751c2a78b53d6a6\transformed\ui-release\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\866aac29cb83dcfc7371a52d5f581199\transformed\activity-ktx-1.13.0\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\a668e321cfcfe1e3693bd3c8736b83a2\transformed\activity-ktx-1.13.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\b584b8810eff7daffa8e8dca3f81925a\transformed\activity-1.13.0\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\866aac29cb83dcfc7371a52d5f581199\transformed\activity-ktx-1.13.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\a37a8537f929737b426f89a4c16d1901\transformed\activity-1.13.0\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\b584b8810eff7daffa8e8dca3f81925a\transformed\activity-1.13.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\4e5c7cc23a2a4cc2b739ed9d74370a5b\transformed\activity-compose-1.13.0\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\a37a8537f929737b426f89a4c16d1901\transformed\activity-1.13.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\acfe36d77e3d80d5457016da6a1b315f\transformed\activity-compose-1.13.0\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\4e5c7cc23a2a4cc2b739ed9d74370a5b\transformed\activity-compose-1.13.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\1a508f882f6c020555d588d8f0152124\transformed\graphics-path-1.0.1\proguard.txt
--keepclasseswithmembers class androidx.graphics.path.** {
-    native <methods>;
-}
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\1a508f882f6c020555d588d8f0152124\transformed\graphics-path-1.0.1\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\f157c09feabecd21c91604474aacb0d1\transformed\core-1.18.0\proguard.txt
-# Never inline methods, but allow shrinking and obfuscation.
--keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.ViewCompat$Api* {
-  <methods>;
-}
--keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.WindowInsetsCompat$*Impl* {
-  <methods>;
-}
--keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.app.NotificationCompat$*$Api*Impl {
-  <methods>;
-}
--keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.os.UserHandleCompat$Api*Impl {
-  <methods>;
-}
--keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.widget.EdgeEffectCompat$Api*Impl {
-  <methods>;
-}
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\f157c09feabecd21c91604474aacb0d1\transformed\core-1.18.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\cd3bd01133a5647a7b1d0c2b9c1b2a50\transformed\lifecycle-process-2.10.0\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\acfe36d77e3d80d5457016da6a1b315f\transformed\activity-compose-1.13.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\proguard.txt
 # this rule is need to work properly when app is compiled with api 28, see b/142778206
 -keepclassmembers class * extends androidx.lifecycle.EmptyActivityLifecycleCallbacks { *; }
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\cd3bd01133a5647a7b1d0c2b9c1b2a50\transformed\lifecycle-process-2.10.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\38fac15262cfb4d56adab3838885efcd\transformed\lifecycle-viewmodel-ktx-2.10.0\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\8ad8467f1462ea662266faa3e6c92ba4\transformed\lifecycle-process-2.10.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\6833360bc27fb671c785222871f1258e\transformed\lifecycle-viewmodel-ktx-2.10.0\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\38fac15262cfb4d56adab3838885efcd\transformed\lifecycle-viewmodel-ktx-2.10.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\e4279f1bf08eea3fe9dbe69f29eeea24\transformed\lifecycle-livedata-core-2.10.0\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\6833360bc27fb671c785222871f1258e\transformed\lifecycle-viewmodel-ktx-2.10.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\3a91cf830880f80921e827504894ff61\transformed\lifecycle-livedata-core-2.10.0\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\e4279f1bf08eea3fe9dbe69f29eeea24\transformed\lifecycle-livedata-core-2.10.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\6dd748b50e5dc622259c44382327509f\transformed\lifecycle-viewmodel\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\3a91cf830880f80921e827504894ff61\transformed\lifecycle-livedata-core-2.10.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\887f5fee3ac6b04b6a970deaeec18fdf\transformed\rules\lib\META-INF\proguard\androidx-lifecycle-lifecycle-common-java8.pro
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\887f5fee3ac6b04b6a970deaeec18fdf\transformed\rules\lib\META-INF\proguard\androidx-lifecycle-lifecycle-common-java8.pro
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\43e8f85c408f8e2f65504a9ead3362fd\transformed\lifecycle-viewmodel\proguard.txt
 -keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
     <init>();
 }
@@ -388,57 +456,12 @@
     <init>(android.app.Application);
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\6dd748b50e5dc622259c44382327509f\transformed\lifecycle-viewmodel\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\5a5125e54e79de851a4da79187ee188f\transformed\runtime-annotation\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\43e8f85c408f8e2f65504a9ead3362fd\transformed\lifecycle-viewmodel\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\87e6d02e4c6978b2102a960f562e512d\transformed\runtime-annotation\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\5a5125e54e79de851a4da79187ee188f\transformed\runtime-annotation\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\e7ec53c9e1845701f7984382db4ac87d\transformed\savedstate-ktx-1.4.0\proguard.txt
-# Intentionally empty proguard rules to indicate this library is safe to shrink
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\e7ec53c9e1845701f7984382db4ac87d\transformed\savedstate-ktx-1.4.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\20b4c5c5f3f2e38d9e1f09039cbadfd6\transformed\savedstate\proguard.txt
-# Copyright (C) 2019 The Android Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
--keepclassmembers,allowobfuscation class * implements androidx.savedstate.SavedStateRegistry$AutoRecreated {
-    <init>();
-}
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\20b4c5c5f3f2e38d9e1f09039cbadfd6\transformed\savedstate\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\fd57f8a712e19ad75badd3821a35baa2\transformed\savedstate-compose\proguard.txt
-# Workaround for https://issuetracker.google.com/issues/346808608
-#
-# `androidx.savedstate.compose.LocalSavedStateRegistryOwner` will reflectively lookup for
-# `androidx.compose.ui.platform.LocalSavedStateRegistryOwner` to ensure backward compatibility
-# when using SavedState >= 1.3 with Compose <= 1.7.
-#
-# We need to keep the getter if the code using this is included.
-#
-# We need to suppress `ShrinkerUnresolvedReference` because the `LocalComposition` is in a
-# different module.
-#
-#noinspection ShrinkerUnresolvedReference
--if public class androidx.compose.ui.platform.AndroidCompositionLocals_androidKt {
-    public static *** getLocalSavedStateRegistryOwner();
-}
--keep public class androidx.compose.ui.platform.AndroidCompositionLocals_androidKt {
-    public static *** getLocalSavedStateRegistryOwner();
-}
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\fd57f8a712e19ad75badd3821a35baa2\transformed\savedstate-compose\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\54d64a3e450fb12c8dd7d4c1efe72d13\transformed\runtime\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\87e6d02e4c6978b2102a960f562e512d\transformed\runtime-annotation\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\3cb4d70d7c4c81ab8c4e88f52ab0e0fc\transformed\runtime\proguard.txt
 -assumenosideeffects public class androidx.compose.runtime.ComposerKt {
     void sourceInformation(androidx.compose.runtime.Composer,java.lang.String);
     void sourceInformationMarkerStart(androidx.compose.runtime.Composer,int,java.lang.String);
@@ -474,17 +497,17 @@
 }
 
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\54d64a3e450fb12c8dd7d4c1efe72d13\transformed\runtime\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\60a3e563623a5c56bfb617c57da8f5a1\transformed\runtime-saveable\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\3cb4d70d7c4c81ab8c4e88f52ab0e0fc\transformed\runtime\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\c698c72e1ae998d3bf62b624b64d8dae\transformed\runtime-saveable\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\60a3e563623a5c56bfb617c57da8f5a1\transformed\runtime-saveable\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\a2f0162c8df79a5f394b5b0cad98ce59\transformed\lifecycle-runtime-compose\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\c698c72e1ae998d3bf62b624b64d8dae\transformed\runtime-saveable\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\29e6fa7c516b44d2bc296d79c64889cb\transformed\savedstate-compose\proguard.txt
 # Workaround for https://issuetracker.google.com/issues/346808608
 #
-# `androidx.lifecycle.compose.LocalLifecycleOwner` will reflectively lookup for
-# `androidx.compose.ui.platform.LocalLifecycleOwner` to ensure backward compatibility
-# when using Lifecycle 2.8+ with Compose 1.6.
+# `androidx.savedstate.compose.LocalSavedStateRegistryOwner` will reflectively lookup for
+# `androidx.compose.ui.platform.LocalSavedStateRegistryOwner` to ensure backward compatibility
+# when using SavedState >= 1.3 with Compose <= 1.7.
 #
 # We need to keep the getter if the code using this is included.
 #
@@ -493,14 +516,77 @@
 #
 #noinspection ShrinkerUnresolvedReference
 -if public class androidx.compose.ui.platform.AndroidCompositionLocals_androidKt {
-    public static *** getLocalLifecycleOwner();
+    public static *** getLocalSavedStateRegistryOwner();
 }
 -keep public class androidx.compose.ui.platform.AndroidCompositionLocals_androidKt {
-    public static *** getLocalLifecycleOwner();
+    public static *** getLocalSavedStateRegistryOwner();
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\a2f0162c8df79a5f394b5b0cad98ce59\transformed\lifecycle-runtime-compose\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\2078672bd66636da68845bef7a064543\transformed\lifecycle-runtime\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\29e6fa7c516b44d2bc296d79c64889cb\transformed\savedstate-compose\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb4deb54224881d7c99e82a5440ca9df\transformed\savedstate-ktx-1.4.0\proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\bb4deb54224881d7c99e82a5440ca9df\transformed\savedstate-ktx-1.4.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\fcc8a6c8e506e7d7c1a1f59cdcce4ce3\transformed\savedstate\proguard.txt
+# Copyright (C) 2019 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+-keepclassmembers,allowobfuscation class * implements androidx.savedstate.SavedStateRegistry$AutoRecreated {
+    <init>();
+}
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\fcc8a6c8e506e7d7c1a1f59cdcce4ce3\transformed\savedstate\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\d0cfc1591c7d48fb10c796d8e0333631\transformed\lifecycle-viewmodel-savedstate\proguard.txt
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
+    <init>(androidx.lifecycle.SavedStateHandle);
+}
+
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.AndroidViewModel {
+    <init>(android.app.Application,androidx.lifecycle.SavedStateHandle);
+}
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\d0cfc1591c7d48fb10c796d8e0333631\transformed\lifecycle-viewmodel-savedstate\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\59bb312a030b73eebc82787223535a77\transformed\core-ktx-1.18.0\proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\59bb312a030b73eebc82787223535a77\transformed\core-ktx-1.18.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\3bbabdaeea3dd7d20a65fc8b7d9c8403\transformed\graphics-path-1.0.1\proguard.txt
+-keepclasseswithmembers class androidx.graphics.path.** {
+    native <methods>;
+}
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\3bbabdaeea3dd7d20a65fc8b7d9c8403\transformed\graphics-path-1.0.1\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\proguard.txt
+# Never inline methods, but allow shrinking and obfuscation.
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.ViewCompat$Api* {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.WindowInsetsCompat$*Impl* {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.app.NotificationCompat$*$Api*Impl {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.os.UserHandleCompat$Api*Impl {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.widget.EdgeEffectCompat$Api*Impl {
+  <methods>;
+}
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\6b20d00baeda679faefb3adec638f060\transformed\core-1.18.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\4716bbed4fa2b91b08a8ea91f927bf2b\transformed\lifecycle-runtime\proguard.txt
 -keepattributes AnnotationDefault,
                 RuntimeVisibleAnnotations,
                 RuntimeVisibleParameterAnnotations,
@@ -528,40 +614,39 @@
 # Also this rule prevents registerIn from being inlined.
 -keepclassmembers class androidx.lifecycle.ReportFragment$LifecycleCallbacks { *; }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\2078672bd66636da68845bef7a064543\transformed\lifecycle-runtime\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\cc7c9b229301d5fac57fb78f9b0ef39c\transformed\rules\lib\META-INF\proguard\androidx-lifecycle-lifecycle-common-java8.pro
-# Intentionally empty proguard rules to indicate this library is safe to shrink
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\cc7c9b229301d5fac57fb78f9b0ef39c\transformed\rules\lib\META-INF\proguard\androidx-lifecycle-lifecycle-common-java8.pro
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\1cebfa4e3c1afa738d72c4d0d3c3501d\transformed\lifecycle-runtime-ktx\proguard.txt
-# Intentionally empty proguard rules to indicate this library is safe to shrink
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\1cebfa4e3c1afa738d72c4d0d3c3501d\transformed\lifecycle-runtime-ktx\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\b4d091a6877e940677f4ca3e133c4c7d\transformed\lifecycle-viewmodel-savedstate\proguard.txt
--keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
-    <init>(androidx.lifecycle.SavedStateHandle);
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\4716bbed4fa2b91b08a8ea91f927bf2b\transformed\lifecycle-runtime\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\dc4cb0df8e7872c8588ed4701f368409\transformed\lifecycle-runtime-compose\proguard.txt
+# Workaround for https://issuetracker.google.com/issues/346808608
+#
+# `androidx.lifecycle.compose.LocalLifecycleOwner` will reflectively lookup for
+# `androidx.compose.ui.platform.LocalLifecycleOwner` to ensure backward compatibility
+# when using Lifecycle 2.8+ with Compose 1.6.
+#
+# We need to keep the getter if the code using this is included.
+#
+# We need to suppress `ShrinkerUnresolvedReference` because the `LocalComposition` is in a
+# different module.
+#
+#noinspection ShrinkerUnresolvedReference
+-if public class androidx.compose.ui.platform.AndroidCompositionLocals_androidKt {
+    public static *** getLocalLifecycleOwner();
+}
+-keep public class androidx.compose.ui.platform.AndroidCompositionLocals_androidKt {
+    public static *** getLocalLifecycleOwner();
 }
 
--keepclassmembers,allowobfuscation class * extends androidx.lifecycle.AndroidViewModel {
-    <init>(android.app.Application,androidx.lifecycle.SavedStateHandle);
-}
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\b4d091a6877e940677f4ca3e133c4c7d\transformed\lifecycle-viewmodel-savedstate\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\143895494d894388c385dd3a00fd67b0\transformed\core-ktx-1.18.0\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\dc4cb0df8e7872c8588ed4701f368409\transformed\lifecycle-runtime-compose\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\bcd5a6b3239bf395578d0988634902dd\transformed\lifecycle-runtime-ktx\proguard.txt
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\143895494d894388c385dd3a00fd67b0\transformed\core-ktx-1.18.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\8b58e4ae33aa6d8fd9e0198266bc80b1\transformed\rules\lib\META-INF\proguard\androidx.datastore_datastore-preferences-core.pro
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\bcd5a6b3239bf395578d0988634902dd\transformed\lifecycle-runtime-ktx\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\27e9edea87cc18c35387bd2d2b654dcb\transformed\rules\lib\META-INF\proguard\androidx.datastore_datastore-preferences-core.pro
 -keepclassmembers class * extends androidx.datastore.preferences.protobuf.GeneratedMessageLite {
     <fields>;
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\8b58e4ae33aa6d8fd9e0198266bc80b1\transformed\rules\lib\META-INF\proguard\androidx.datastore_datastore-preferences-core.pro
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\e98799bb172c69037c52c8e87171a009\transformed\core-viewtree-1.0.0\proguard.txt
-# Intentionally empty proguard rules to indicate this library is safe to shrink
-
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\e98799bb172c69037c52c8e87171a009\transformed\core-viewtree-1.0.0\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\1d1c26deb5090f4c58faa2a47b6b19bf\transformed\rules\lib\META-INF\com.android.tools\r8\coroutines.pro
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\27e9edea87cc18c35387bd2d2b654dcb\transformed\rules\lib\META-INF\proguard\androidx.datastore_datastore-preferences-core.pro
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\aca9a020dc02c127590c3f0a8e06f720\transformed\rules\lib\META-INF\com.android.tools\r8\coroutines.pro
 # When editing this file, update the following files as well:
 # - META-INF/proguard/coroutines.pro
 # - META-INF/com.android.tools/proguard/coroutines.pro
@@ -589,8 +674,8 @@
 
 # An annotation used for build tooling, won't be directly accessed.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\1d1c26deb5090f4c58faa2a47b6b19bf\transformed\rules\lib\META-INF\com.android.tools\r8\coroutines.pro
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\5f86aaab79e1421bc0fa2476c37b8a7a\transformed\rules\lib\META-INF\com.android.tools\r8-from-1.6.0\coroutines.pro
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\aca9a020dc02c127590c3f0a8e06f720\transformed\rules\lib\META-INF\com.android.tools\r8\coroutines.pro
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\ac555d4bb5b059cc74f817fa80fba646\transformed\rules\lib\META-INF\com.android.tools\r8-from-1.6.0\coroutines.pro
 # Allow R8 to optimize away the FastServiceLoader.
 # Together with ServiceLoader optimization in R8
 # this results in direct instantiation when loading Dispatchers.Main
@@ -614,8 +699,12 @@
     boolean getRECOVER_STACK_TRACES() return false;
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\5f86aaab79e1421bc0fa2476c37b8a7a\transformed\rules\lib\META-INF\com.android.tools\r8-from-1.6.0\coroutines.pro
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\a0c223bd3ab1e28d546be594fb707426\transformed\startup-runtime-1.1.1\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\ac555d4bb5b059cc74f817fa80fba646\transformed\rules\lib\META-INF\com.android.tools\r8-from-1.6.0\coroutines.pro
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\4868206569eb6aca11c932aef09b2bef\transformed\core-viewtree-1.0.0\proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\4868206569eb6aca11c932aef09b2bef\transformed\core-viewtree-1.0.0\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\e226618f115baacbc6ea6c267a4e1ade\transformed\startup-runtime-1.1.1\proguard.txt
 # It's important that we preserve initializer names, given they are used in the AndroidManifest.xml.
 -keepnames class * extends androidx.startup.Initializer
 
@@ -629,19 +718,19 @@
 
 -assumenosideeffects class androidx.startup.StartupLogger { public static <methods>; }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\a0c223bd3ab1e28d546be594fb707426\transformed\startup-runtime-1.1.1\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\88d178e9dab8c36ccd30bc296eba6354\transformed\versionedparcelable-1.1.1\proguard.txt
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\e226618f115baacbc6ea6c267a4e1ade\transformed\startup-runtime-1.1.1\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\83aa4466e14c9d0b2ca1cda685a0dbcd\transformed\versionedparcelable-1.1.1\proguard.txt
 -keep class * implements androidx.versionedparcelable.VersionedParcelable
 -keep public class android.support.**Parcelizer { *; }
 -keep public class androidx.**Parcelizer { *; }
 -keep public class androidx.versionedparcelable.ParcelImpl
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\88d178e9dab8c36ccd30bc296eba6354\transformed\versionedparcelable-1.1.1\proguard.txt
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\5a65623a36f9252e0cded4009033140c\transformed\rules\lib\META-INF\proguard\androidx-collection-collection-ktx.pro
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\83aa4466e14c9d0b2ca1cda685a0dbcd\transformed\versionedparcelable-1.1.1\proguard.txt
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\209010afa717ba7dd04292ed42051fc1\transformed\rules\lib\META-INF\proguard\androidx-collection-collection-ktx.pro
 # Intentionally empty proguard rules to indicate this library is safe to shrink
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\5a65623a36f9252e0cded4009033140c\transformed\rules\lib\META-INF\proguard\androidx-collection-collection-ktx.pro
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\7a62206636ae01fe328a4bbe0ec05839\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\209010afa717ba7dd04292ed42051fc1\transformed\rules\lib\META-INF\proguard\androidx-collection-collection-ktx.pro
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\deaea6382cdf0684229079b39f9e8c1f\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro
 -keep,allowobfuscation @interface androidx.annotation.Keep
 -keep @androidx.annotation.Keep class * {*;}
 
@@ -661,8 +750,8 @@
   @androidx.annotation.DoNotInline <methods>;
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\7a62206636ae01fe328a4bbe0ec05839\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\9c5f64f10a741e4d9e5bc3b225e83538\transformed\rules\lib\META-INF\com.android.tools\r8\kotlinx-serialization-common.pro
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\deaea6382cdf0684229079b39f9e8c1f\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\d092c8f2261c04c20721053239d9a5f5\transformed\rules\lib\META-INF\com.android.tools\r8\kotlinx-serialization-common.pro
 # Keep `Companion` object fields of serializable classes.
 # This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
 -if @kotlinx.serialization.Serializable class **
@@ -705,8 +794,8 @@
     private ** descriptor;
 }
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\9c5f64f10a741e4d9e5bc3b225e83538\transformed\rules\lib\META-INF\com.android.tools\r8\kotlinx-serialization-common.pro
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\9c5f64f10a741e4d9e5bc3b225e83538\transformed\rules\lib\META-INF\com.android.tools\r8\kotlinx-serialization-r8.pro
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\d092c8f2261c04c20721053239d9a5f5\transformed\rules\lib\META-INF\com.android.tools\r8\kotlinx-serialization-common.pro
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\d092c8f2261c04c20721053239d9a5f5\transformed\rules\lib\META-INF\com.android.tools\r8\kotlinx-serialization-r8.pro
 # Rule to save runtime annotations on serializable class.
 # If the R8 full mode is used, annotations are removed from classes-files.
 #
@@ -720,12 +809,12 @@
  -if @kotlinx.serialization.Serializable class **
  -keep, allowshrinking, allowoptimization, allowobfuscation, allowaccessmodification class <1>
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\9c5f64f10a741e4d9e5bc3b225e83538\transformed\rules\lib\META-INF\com.android.tools\r8\kotlinx-serialization-r8.pro
-# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\8.12\transforms\c070613c43dd569b2db7405dae4a3644\transformed\rules\lib\META-INF\proguard\okio.pro
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\d092c8f2261c04c20721053239d9a5f5\transformed\rules\lib\META-INF\com.android.tools\r8\kotlinx-serialization-r8.pro
+# The proguard configuration file for the following section is C:\Users\nukie\.gradle\caches\9.4.1\transforms\3f2991443057db82fd7af7a577d0231b\transformed\rules\lib\META-INF\proguard\okio.pro
 # Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
 -dontwarn org.codehaus.mojo.animal_sniffer.*
 
-# End of content from C:\Users\nukie\.gradle\caches\8.12\transforms\c070613c43dd569b2db7405dae4a3644\transformed\rules\lib\META-INF\proguard\okio.pro
+# End of content from C:\Users\nukie\.gradle\caches\9.4.1\transforms\3f2991443057db82fd7af7a577d0231b\transformed\rules\lib\META-INF\proguard\okio.pro
 # The proguard configuration file for the following section is <unknown>
 
 # End of content from <unknown>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <string msgid="9020470552698189270" name="autofill">"தன்னிரப்பி"</string>
+    <string msgid="389117264260014992" name="autofill">"தன்னிரப்பி"</string>
     <string msgid="881409763997275156" name="call_notification_answer_action">"பதிலளி"</string>
     <string msgid="8793775615905189152" name="call_notification_answer_video_action">"வீடியோ"</string>
     <string msgid="3229508546291798546" name="call_notification_decline_action">"நிராகரி"</string>
@@ -54,6 +54,7 @@
     <string msgid="7617233117134790350" name="m3c_dialog">"உரையாடல்"</string>
     <string msgid="3177828188723359358" name="m3c_dropdown_menu_collapsed">"சுருக்கப்பட்டது"</string>
     <string msgid="2360841780724299882" name="m3c_dropdown_menu_expanded">"விரிவாக்கப்பட்டது"</string>
+    <string msgid="8687821690726149911" name="m3c_dropdown_menu_toggle">"கீழ்த்தோன்றல் மெனுவை நிலைமாற்றும்"</string>
     <string msgid="6152806324422087846" name="m3c_search_bar_search">"தேடல்"</string>
     <string msgid="6152755701819882931" name="m3c_snackbar_dismiss">"நிராகரிக்கும்"</string>
     <string msgid="7655536806087401899" name="m3c_suggestions_available">"பரிந்துரைகள் கீழே கிடைக்கும்"</string>

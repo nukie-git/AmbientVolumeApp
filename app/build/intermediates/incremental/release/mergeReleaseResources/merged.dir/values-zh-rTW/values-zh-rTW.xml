@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <string msgid="9020470552698189270" name="autofill">"自動填入"</string>
+    <string msgid="389117264260014992" name="autofill">"自動填入"</string>
     <string msgid="881409763997275156" name="call_notification_answer_action">"接聽"</string>
     <string msgid="8793775615905189152" name="call_notification_answer_video_action">"視訊"</string>
     <string msgid="3229508546291798546" name="call_notification_decline_action">"拒接"</string>
@@ -54,6 +54,7 @@
     <string msgid="7617233117134790350" name="m3c_dialog">"對話方塊"</string>
     <string msgid="3177828188723359358" name="m3c_dropdown_menu_collapsed">"已收合"</string>
     <string msgid="2360841780724299882" name="m3c_dropdown_menu_expanded">"已展開"</string>
+    <string msgid="8687821690726149911" name="m3c_dropdown_menu_toggle">"切換鈕下拉式選單"</string>
     <string msgid="6152806324422087846" name="m3c_search_bar_search">"搜尋"</string>
     <string msgid="6152755701819882931" name="m3c_snackbar_dismiss">"關閉"</string>
     <string msgid="7655536806087401899" name="m3c_suggestions_available">"建議如下"</string>
