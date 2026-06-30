@@ -14,8 +14,8 @@ android {
         // Targeted for your device: Xiaomi Redmi Note 9 Pro running Android 12, compatible down to Doogee (Android 9)
         minSdk = 28 
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.3.1"
+        versionCode = 30
+        versionName = "1.8.1"
     }
 
     buildTypes {
@@ -38,21 +38,21 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
         isCoreLibraryDesugaringEnabled = true
     }
+    
     kotlinOptions {
         jvmTarget = "11"
     }
-    
+
     buildFeatures {
         compose = true
         buildConfig = true
     }
-
-
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.18.0")
+    implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.0")
     implementation("androidx.activity:activity-compose:1.13.0")
     
     // Jetpack Compose BOM
@@ -72,4 +72,3 @@ dependencies {
     // Core Library Desugaring
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
-

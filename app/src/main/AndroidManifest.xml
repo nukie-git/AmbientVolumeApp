@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.nukie.ambientvolume">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Permission to record audio for ambient noise detection -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -29,8 +28,16 @@
     <!-- Permission for haptic feedback on volume changes -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <!-- Permission to restart service on boot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+    <!-- Storage permission for log export (Deferred JIT request) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" />
+
     <application
-        android:icon="@drawable/ic_adaptive_volume"
+        android:icon="@mipmap/ic_launcher_new"
+        android:roundIcon="@mipmap/ic_launcher_new"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
@@ -49,6 +56,16 @@
             android:exported="false"
             android:foregroundServiceType="microphone"
             tools:targetApi="31" />
+
+        <!-- Auto-Start Receiver for Reboots and Updates -->
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

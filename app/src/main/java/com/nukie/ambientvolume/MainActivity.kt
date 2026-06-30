@@ -27,6 +27,7 @@ import android.provider.Settings
 import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
 import android.content.ComponentName
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -41,6 +42,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+import androidx.compose.foundation.pager.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,13 +60,38 @@ import com.nukie.ambientvolume.ui.theme.AmbientVolumeTheme
 import kotlin.math.roundToInt
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import com.nukie.ambientvolume.util.DebugLogger
+import androidx.activity.result.contract.ActivityResultContracts
+import java.io.FileInputStream
+import java.io.OutputStream
 import android.app.ActivityManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import android.app.AlertDialog as AndroidAlertDialog
 
 class MainActivity : ComponentActivity() {
+    private val exportLogsLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("text/plain")) { uri ->
+        uri?.let { saveLogsToUri(it) }
+    }
+
+    private fun saveLogsToUri(uri: android.net.Uri) {
+        try {
+            contentResolver.openOutputStream(uri)?.use { outputStream ->
+                val logFile = DebugLogger.getLogFile(this)
+                if (logFile.exists()) {
+                    FileInputStream(logFile).use { inputStream ->
+                        inputStream.copyTo(outputStream)
+                    }
+                } else {
+                    outputStream.write("No logs found.".toByteArray())
+                }
+            }
+        } catch (e: Exception) {
+            // Error handled by system SAF dialog usually
+        }
+    }
+
     private fun isServiceRunning(serviceClass: Class<*>): Boolean {
         val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         @Suppress("DEPRECATION")
@@ -97,6 +124,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         
         ProfileManager.init(applicationContext)
+        if (BuildConfig.DEBUG) {
+            DebugLogger.checkAndPurgeOnUpdate(applicationContext, BuildConfig.VERSION_CODE)
+        }
 
         setContent {
             var useSystemTheme by remember { mutableStateOf(true) }
@@ -106,9 +136,16 @@ class MainActivity : ComponentActivity() {
                 val observer = LifecycleEventObserver { _, event ->
                     if (event == Lifecycle.Event.ON_RESUME) {
                         if (!isServiceRunning(VolumeControlService::class.java)) {
-                            // Only show if it was actually supposed to be running
-                            // But wait, AudioStateRepository.isServiceRunning might be true if killed
-                            if (AudioStateRepository.isServiceRunning.value) {
+                            // Self-healing: auto-restart if DataStore confirms it was active
+                            if (ProfileManager.getServiceWasActive()) {
+                                val intent = Intent(this@MainActivity, VolumeControlService::class.java)
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    startForegroundService(intent)
+                                } else {
+                                    startService(intent)
+                                }
+                            } else if (AudioStateRepository.isServiceRunning.value) {
+                                // Fallback: in-memory flag says running but DataStore says not — show dialog
                                 showRestartDialog()
                             }
                         }
@@ -128,7 +165,8 @@ class MainActivity : ComponentActivity() {
                     PermissionsWrapper {
                         MainNavigation(
                             useSystemTheme = useSystemTheme,
-                            onThemeToggle = { useSystemTheme = it }
+                            onThemeToggle = { useSystemTheme = it },
+                            onExportLogs = { exportLogsLauncher.launch("ambient_volume_debug_${System.currentTimeMillis()}.log") }
                         )
                     }
                 }
@@ -146,11 +184,20 @@ enum class ScreenTab(val route: String, val icon: androidx.compose.ui.graphics.v
 @Composable
 fun MainNavigation(
     useSystemTheme: Boolean,
-    onThemeToggle: (Boolean) -> Unit
+    onThemeToggle: (Boolean) -> Unit,
+    onExportLogs: () -> Unit
 ) {
     var selectedTab by remember { mutableStateOf(ScreenTab.MONITOR) }
     val pendingVolumeDecision by AudioStateRepository.pendingVolumeDecision.collectAsState()
+    val hearingSafetyEnabled by AudioStateRepository.hearingSafetyEnabled.collectAsState()
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+    val pagerState = rememberPagerState(pageCount = { ScreenTab.entries.size })
+
+    // Sync selectedTab with pager state
+    LaunchedEffect(pagerState.currentPage) {
+        selectedTab = ScreenTab.entries[pagerState.currentPage]
+    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -163,7 +210,11 @@ fun MainNavigation(
                 ScreenTab.entries.forEach { tab ->
                     NavigationBarItem(
                         selected = selectedTab == tab,
-                        onClick = { selectedTab = tab },
+                        onClick = { 
+                            scope.launch { 
+                                pagerState.animateScrollToPage(tab.ordinal)
+                            }
+                        },
                         icon = { Icon(tab.icon, contentDescription = tab.label) },
                         label = { Text(tab.label) },
                         colors = NavigationBarItemDefaults.colors(
@@ -183,17 +234,16 @@ fun MainNavigation(
             .padding(innerPadding)
             .fillMaxSize()
         ) {
-            AnimatedContent(
-                targetState = selectedTab,
-                transitionSpec = {
-                    fadeIn(animationSpec = tween(300)) togetherWith fadeOut(animationSpec = tween(300))
-                },
-                label = "screen_transition"
-            ) { tab ->
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier.fillMaxSize(),
+                beyondViewportPageCount = 1
+            ) { page ->
+                val tab = ScreenTab.entries[page]
                 when (tab) {
                     ScreenTab.MONITOR -> MonitorScreen()
                     ScreenTab.ENGINE -> EngineScreen()
-                    ScreenTab.SETTINGS -> SettingsScreen(useSystemTheme, onThemeToggle)
+                    ScreenTab.SETTINGS -> SettingsScreen(useSystemTheme, onThemeToggle, onExportLogs)
                 }
             }
 
@@ -231,6 +281,27 @@ fun MainNavigation(
                     }
                 )
             }
+            
+            // 60/60 Hearing Safety Modal
+            val safetyThresholdReached by AudioStateRepository.safetyThresholdReached.collectAsState()
+            if (safetyThresholdReached && hearingSafetyEnabled) {
+                AlertDialog(
+                    onDismissRequest = { /* Persistent until acknowledged */ },
+                    title = { Text("Hearing Safety Alert") },
+                    text = { Text("You have been listening at a high volume (>60%) for over 60 minutes today. To protect your hearing, please consider lowering the volume.") },
+                    confirmButton = {
+                        Button(onClick = { 
+                            // Reset safety timer in service and hide modal
+                            val intent = Intent(context, VolumeControlService::class.java).apply {
+                                action = "ACTION_RESET_SAFETY"
+                            }
+                            context.startForegroundService(intent)
+                        }) {
+                            Text("I understand")
+                        }
+                    }
+                )
+            }
         }
     }
 }
@@ -248,30 +319,73 @@ fun MonitorScreen() {
     val maxVolume = remember { audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC).toFloat() }
     var showAppInfoDialog by remember { mutableStateOf(false) }
 
+    var showMicInfo by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Title Row
-        Row(
+        // Privacy info dialog
+        if (showMicInfo) {
+            AlertDialog(
+                onDismissRequest = { showMicInfo = false },
+                title = { Text("Acoustic Intelligence") },
+                text = { Text("The engine samples ambient noise levels; no audio is recorded or transmitted. Feedback and echo suppression are active.") },
+                confirmButton = { TextButton(onClick = { showMicInfo = false }) { Text("Got it") } }
+            )
+        }
+
+        // Header Geometry Structure
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { showAppInfoDialog = true },
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+                .padding(vertical = 8.dp)
         ) {
-            Text(
-                text = stringResource(R.string.app_name),
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.primary,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Icon(Icons.Default.Info, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+            // 1. The Upper Privacy Info Anchor (Upper Far-Left solo icon)
+            IconButton(
+                onClick = { showMicInfo = true },
+                modifier = Modifier
+                    .align(Alignment.CenterStart)
+                    .size(32.dp)
+            ) {
+                Icon(
+                    Icons.Default.Info,
+                    contentDescription = "Privacy Info",
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(18.dp)
+                )
+            }
+
+            // 2. Centered Main Title Row & "About" Trigger
+            Row(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .clickable { showAppInfoDialog = true }
+                    .padding(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = stringResource(R.string.app_name),
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Icon(
+                    Icons.Default.Info, 
+                    contentDescription = "About Engine", 
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(20.dp)
+                )
+            }
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Noise Level Circle
         Box(
@@ -281,7 +395,7 @@ fun MonitorScreen() {
                 .padding(8.dp)
         ) {
             CircularProgressIndicator(
-                progress = { currentDb / 120f },
+                progress = { (currentDb / 120f).coerceIn(0f, 1f) },
                 modifier = Modifier.fillMaxSize(),
                 strokeWidth = 14.dp,
                 color = MaterialTheme.colorScheme.primary,
@@ -354,7 +468,6 @@ fun MonitorScreen() {
                 }
             }
         }
-
         // Volume Status
         DashboardCard {
             Column(modifier = Modifier.padding(16.dp)) {
@@ -373,15 +486,18 @@ fun MonitorScreen() {
             }
         }
 
-        // Debug Card (Conditional)
+        // Debug Metric: Ambient Noise dB (Monitor Tab - Conditional Debug Build)
         if (BuildConfig.DEBUG) {
-            DashboardCard {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Debug Diagnostics", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.error)
-                    Text("Raw: ${String.format("%.1f", currentDb)} dB", style = MaterialTheme.typography.labelSmall)
-                    Text("Mean: ${String.format("%.1f", rollingMeanDb)} dB", style = MaterialTheme.typography.labelSmall)
-                }
-            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Debug Metric: Ambient Noise ${currentDb.roundToInt()} dB",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 32.dp), // Safeguard against bottom navigation bar bleed
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            )
         }
     }
 
@@ -389,12 +505,27 @@ fun MonitorScreen() {
         AlertDialog(
             onDismissRequest = { showAppInfoDialog = false },
             title = { Text("About Ambient Volume") },
-            text = { Text("Adaptive Volume Engine v1.3.0\n\nAutomates media volume based on room noise.\n\n© 2026 @nukie-git") },
+            text = { 
+                Column {
+                    Text("Adaptive Volume Engine v${BuildConfig.VERSION_NAME}", fontWeight = FontWeight.Bold)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text("Changelog: Centralized Versioning Schema into build.gradle.kts exploiting dynamic BuildConfig variable bindings globally; decoupled hardcoded version components; implemented file auditing protocols.")
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text("© 2026 @nukie-git", style = MaterialTheme.typography.labelMedium)
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        "Developed with the assistance of Google Gemini & Google Antigravity. Built using Android Studio Meerkat.",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            },
             confirmButton = { TextButton(onClick = { showAppInfoDialog = false }) { Text("OK") } }
         )
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun EngineScreen() {
     val scope = rememberCoroutineScope()
@@ -404,7 +535,7 @@ fun EngineScreen() {
 
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text("Engine Optimization", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
 
@@ -413,12 +544,27 @@ fun EngineScreen() {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text("Environmental Profile", style = MaterialTheme.typography.titleMedium)
                 Spacer(modifier = Modifier.height(12.dp))
-                Row(modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     VolumeProfile.entries.forEach { profile ->
                         FilterChip(
                             selected = activeProfile == profile,
-                            onClick = { scope.launch { ProfileManager.setActiveProfile(profile) } },
-                            label = { Text(profile.displayName) }
+                            onClick = { 
+                                scope.launch { 
+                                    ProfileManager.setActiveProfile(profile)
+                                    // Instant snap: clear moving average
+                                    AudioStateRepository.updateRollingMeanDb(0f)
+                                } 
+                            },
+                            label = { 
+                                Text(
+                                    profile.displayName,
+                                    modifier = Modifier.padding(horizontal = 4.dp)
+                                ) 
+                            }
                         )
                     }
                 }
@@ -432,10 +578,23 @@ fun EngineScreen() {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(stringResource(R.string.step_size_title), style = MaterialTheme.typography.bodyMedium)
                 Spacer(modifier = Modifier.height(12.dp))
-                val options = listOf(1, 2, 3, 5, 7, 10)
-                Row(modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                val options = listOf(1, 3, 5, 7, 10, 15)
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     options.forEach { opt ->
-                        FilterChip(selected = stepSize == opt, onClick = { scope.launch { ProfileManager.setStepSize(opt) } }, label = { Text("${opt} dB") })
+                        FilterChip(
+                            selected = stepSize == opt,
+                            onClick = { scope.launch { ProfileManager.setStepSize(opt) } },
+                            label = {
+                                Text(
+                                    "${opt} dB",
+                                    modifier = Modifier.padding(horizontal = 4.dp)
+                                )
+                            }
+                        )
                     }
                 }
             }
@@ -448,10 +607,23 @@ fun EngineScreen() {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text("Averaging Period", style = MaterialTheme.typography.bodyMedium)
                 Spacer(modifier = Modifier.height(12.dp))
-                val options = listOf(3, 5, 7, 10, 15)
-                Row(modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                val options = listOf(3, 5, 7, 10, 15, 20, 30)
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     options.forEach { opt ->
-                        FilterChip(selected = meanInterval == opt, onClick = { scope.launch { ProfileManager.setMeanInterval(opt) } }, label = { Text("${opt}s") })
+                        FilterChip(
+                            selected = meanInterval == opt,
+                            onClick = { scope.launch { ProfileManager.setMeanInterval(opt) } },
+                            label = { 
+                                Text(
+                                    "${opt}s",
+                                    modifier = Modifier.padding(horizontal = 4.dp)
+                                ) 
+                            }
+                        )
                     }
                 }
             }
@@ -460,16 +632,18 @@ fun EngineScreen() {
 }
 
 @Composable
-fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit) {
+fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, onExportLogs: () -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val vibrateEnabled by AudioStateRepository.vibrateEnabled.collectAsState()
+    val hearingSafetyEnabled by AudioStateRepository.hearingSafetyEnabled.collectAsState()
+    val currentDb by AudioStateRepository.currentDb.collectAsState()
     val oemType = remember { OEMManager.getDetectedOEM(context) }
     var showPersistenceAssistant by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text("Application Settings", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
 
@@ -492,6 +666,17 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit) {
                     }
                     Switch(checked = vibrateEnabled, onCheckedChange = { scope.launch { ProfileManager.setVibrateEnabled(it) } })
                 }
+                Spacer(modifier = Modifier.height(16.dp))
+                HorizontalDivider()
+                Spacer(modifier = Modifier.height(16.dp))
+                // Hearing Safety
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("Hearing Safety Warning", style = MaterialTheme.typography.bodyLarge)
+                        Text(if (hearingSafetyEnabled) "Active Tracking" else "Disabled", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    Switch(checked = hearingSafetyEnabled, onCheckedChange = { scope.launch { ProfileManager.setHearingSafetyEnabled(it) } })
+                }
             }
         }
 
@@ -511,6 +696,36 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit) {
         if (showPersistenceAssistant) {
             PersistenceAssistantDialog(oem = oemType, isDuraSpeed = OEMManager.isDuraSpeedPresent(context), onDismiss = { showPersistenceAssistant = false })
         }
+
+        // Debug Logs Panel (Settings Tab - Conditional Debug Build)
+        if (BuildConfig.DEBUG) {
+            DashboardCard {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("Debug Logs", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.error)
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Button(
+                            onClick = onExportLogs,
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
+                        ) {
+                            Icon(Icons.Default.Share, null)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Export Logs")
+                        }
+                        Button(
+                            onClick = { DebugLogger.clearLogs(context) },
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.errorContainer, contentColor = MaterialTheme.colorScheme.onErrorContainer)
+                        ) {
+                            Icon(Icons.Default.Delete, null)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Clear")
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -519,6 +734,7 @@ fun DashboardCard(content: @Composable ColumnScope.() -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(vertical = 8.dp) // Adjusted padding for density
             .shadow(
                 elevation = 4.dp,
                 shape = RoundedCornerShape(16.dp),
@@ -708,16 +924,19 @@ fun ChecklistItem(title: String, description: String, isDone: Boolean, onClick: 
                 imageVector = if (isDone) Icons.Default.CheckCircle else Icons.Default.Warning,
                 contentDescription = null,
                 tint = if (isDone) Color(0xFF4CAF50) else MaterialTheme.colorScheme.error,
-                modifier = Modifier.size(28.dp)
+                modifier = Modifier.size(24.dp)
             )
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(text = title, style = MaterialTheme.typography.titleSmall)
-                Text(text = description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(text = description, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
-            Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null, modifier = Modifier.size(20.dp), tint = MaterialTheme.colorScheme.onSurfaceVariant)
+            Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f))
         }
     }
 }
 
-
+private fun isIgnoringBatteryOptimizations(context: Context): Boolean {
+    val pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+    return pm.isIgnoringBatteryOptimizations(context.packageName)
+}

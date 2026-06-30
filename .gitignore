@@ -1,13 +1,13 @@
 # --- YOUR CURRENT SETTINGS (Merged & Refined) ---
+*.hprof
 *.iml
-.gradle
-/local.properties
 .DS_Store
+.cxx
+.externalNativeBuild
+.gradle
 /build
 /captures
-.externalNativeBuild
-.cxx
-*.hprof
+/local.properties
 
 # --- PROFESSIONAL IDE & TOOLING (The " Meerkat" Update) ---
 # We ignore the entire .idea folder to prevent deployment targets, 
