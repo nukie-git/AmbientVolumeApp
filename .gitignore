@@ -83,3 +83,4 @@ lint-results*
 # Backup and temporary files created by editors
 *.bak
 *.tmp
+/app/build
