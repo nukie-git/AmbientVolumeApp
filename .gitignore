@@ -1,10 +1,12 @@
 # --- CURRENT SETTINGS ---
 *.hprof
 *.iml
+*.iml
 .DS_Store
 .cxx
 .externalNativeBuild
 .gradle/
+.idea/
 .kotlin/
 .kotlin/errors
 .vscode
@@ -12,7 +14,7 @@
 /build
 /captures
 /docs/conversations
-/local.properties
+local.properties
 
 # --- PROFESSIONAL IDE & TOOLING ---
 # We ignore the entire .idea folder to prevent deployment targets,
