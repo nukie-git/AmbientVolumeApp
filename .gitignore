@@ -1,11 +1,11 @@
-# --- YOUR CURRENT SETTINGS (Merged & Refined) ---
+# --- CURRENT SETTINGS ---
 *.hprof
 *.iml
 .DS_Store
 .cxx
 .externalNativeBuild
-.gradle
-.kotlin
+.gradle/
+.kotlin/
 .vscode
 /Ambient_Volume_prompt.md
 /build
@@ -13,8 +13,8 @@
 /docs/conversations
 /local.properties
 
-# --- PROFESSIONAL IDE & TOOLING (The " Meerkat" Update) ---
-# We ignore the entire .idea folder to prevent deployment targets, 
+# --- PROFESSIONAL IDE & TOOLING ---
+# We ignore the entire .idea folder to prevent deployment targets,
 # device caches, and AI (Studio Bot) history from being committed.
 .idea/
 # EXCEPTION: We allow the VCS file so contributors know it's a Git repo
@@ -37,8 +37,19 @@ google-services.json
 *.jks
 *.keystore
 *.p12
+*.pfx
 *.key
 signing.properties
+secrets.properties
+keystore.properties
+debug.keystore
+release.keystore
+
+# Environment variable files (API keys, secrets)
+.env
+.env.*
+*.env
+!.env.example
 
 # --- SYSTEM & TEMP FILES ---
 # Ignore OS-generated files that clutter the repo
@@ -46,9 +57,26 @@ Thumbs.db
 *.swp
 *~
 .stackdump
+*.log
+lint-results*
+
+# --- PERSONAL WORKFLOW ---
+# AI agent config and skills (machine-specific)
+.agents/
 
 # --- GRADLE WRAPPER ---
-# We explicitly DO NOT ignore these. FOSS projects need the wrapper 
+# We explicitly DO NOT ignore these. FOSS projects need the wrapper
 # to ensure anyone can build your app without installing Gradle.
 # !gradle/wrapper/gradle-wrapper.jar
 # !gradle/wrapper/gradle-wrapper.properties
+
+# --- BUILD OUTPUT ---
+# Ignore release-specific build output directory
+/app/release/
+
+# --- EDITOR & TOOLING OVERRIDES ---
+# VS Code workspace settings (for contributors using VS Code)
+.vscode/
+# Backup and temporary files created by editors
+*.bak
+*.tmp
