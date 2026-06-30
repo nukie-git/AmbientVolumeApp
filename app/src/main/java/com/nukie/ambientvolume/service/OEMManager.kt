@@ -10,20 +10,23 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 
-enum class OEMType(val title: String, val description: String, val intent: Intent) {
-    SAMSUNG("Device Care", "Enable background activity in Samsung Settings", Intent().apply {
+import androidx.annotation.StringRes
+import com.nukie.ambientvolume.R
+
+enum class OEMType(@StringRes val titleRes: Int, @StringRes val descRes: Int, val intent: Intent) {
+    SAMSUNG(R.string.oem_samsung_title, R.string.oem_samsung_desc, Intent().apply {
         component = ComponentName("com.samsung.android.lool", "com.samsung.android.sm.ui.battery.BatteryActivity")
     }),
-    XIAOMI("Autostart", "Allow app to start in background", Intent().apply {
+    XIAOMI(R.string.oem_xiaomi_title, R.string.oem_xiaomi_desc, Intent().apply {
         component = ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity")
     }),
-    HUAWEI("App Launch", "Set to 'Manage Manually' in Huawei settings", Intent().apply {
+    HUAWEI(R.string.oem_huawei_title, R.string.oem_huawei_desc, Intent().apply {
         component = ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity")
     }),
-    OPPO("Startup Manager", "Allow app to run at startup", Intent().apply {
+    OPPO(R.string.oem_oppo_title, R.string.oem_oppo_desc, Intent().apply {
         component = ComponentName("com.coloros.safecenter", "com.coloros.safecenter.permission.startup.StartupAppListActivity")
     }),
-    VIVO("Speed Up", "Add to background whitelist", Intent().apply {
+    VIVO(R.string.oem_vivo_title, R.string.oem_vivo_desc, Intent().apply {
         component = ComponentName("com.iqoo.secure", "com.iqoo.secure.ui.phoneoptimize.AddWhiteListActivity")
     })
 }

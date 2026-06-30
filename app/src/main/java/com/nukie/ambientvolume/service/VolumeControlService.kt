@@ -236,10 +236,10 @@ class VolumeControlService : Service() {
             // MIUI 14 Stability: NotificationChannel with 'High' importance
             val serviceChannel = NotificationChannel(
                 CHANNEL_ID,
-                "Adaptive Volume Control",
+                getString(R.string.notification_channel_name),
                 NotificationManager.IMPORTANCE_HIGH 
             ).apply {
-                description = "Runs the background noise monitoring to adapt system volume"
+                description = getString(R.string.notification_channel_description)
             }
             val manager = applicationContext.getSystemService(NotificationManager::class.java)
             manager?.createNotificationChannel(serviceChannel)
@@ -264,14 +264,14 @@ class VolumeControlService : Service() {
         )
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Volume Engine is Active")
-            .setContentText("Listening to ambient noise to adapt volume...")
+            .setContentTitle(getString(R.string.service_title))
+            .setContentText(getString(R.string.app_description))
             .setSmallIcon(R.drawable.ic_stat_wave)
             .setLargeIcon(getBitmapFromDrawable(this, R.mipmap.ic_launcher_new))
             .setContentIntent(contentPendingIntent)
             .setOngoing(true)
             .setPriority(NotificationCompat.PRIORITY_LOW) // Changed to LOW to avoid persistent status bar clutter on some ROMs while keeping it visible
-            .addAction(android.R.drawable.ic_media_pause, "Stop", stopPendingIntent)
+            .addAction(android.R.drawable.ic_media_pause, getString(R.string.button_stop), stopPendingIntent)
             .build()
     }
 
@@ -306,8 +306,8 @@ class VolumeControlService : Service() {
         serviceScope.launch {
             launch {
                 AudioStateRepository.meanInterval.collect { seconds ->
-                    // Calculate buffer size in terms of loop cycles (~12.5s per cycle)
-                    val newBufferSize = (seconds / 12.5).roundToInt().coerceAtLeast(1)
+                    // Calculate buffer size in terms of loop cycles (~5s per cycle)
+                    val newBufferSize = (seconds / 5.0).roundToInt().coerceAtLeast(1)
                     movingAverage.updateWindowSize(newBufferSize)
                     if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Smoothing interval updated to $seconds s ($newBufferSize cycles)")
                 }
@@ -421,6 +421,7 @@ class VolumeControlService : Service() {
                                             lastAdjustedDb = rollingMeanDb
                                         }
                                     }
+                                }
                             }
                         }
                     }
@@ -436,7 +437,7 @@ class VolumeControlService : Service() {
                         loopAudioRecord?.release()
                     } catch (e: Exception) {}
                     
-                    delay(12500) // Sleep 12.5 seconds before next hardware cycle
+                    delay(5000) // Sleep 5 seconds before next hardware cycle
                 }
             }
         }
@@ -474,8 +475,8 @@ class VolumeControlService : Service() {
                     AudioStateRepository.updateSafetyThresholdReached(true)
                 }
                 
-                // Persist every 10 seconds
-                if (now % 10000 < 200) {
+                // Persist current cumulative time to DataStore
+                serviceScope.launch {
                     ProfileManager.updateSafetyCumulativeMillis(cumulativeHighVolumeMillis)
                 }
             }

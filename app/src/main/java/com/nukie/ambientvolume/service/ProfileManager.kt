@@ -19,25 +19,33 @@
 package com.nukie.ambientvolume.service
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+
+import androidx.annotation.StringRes
+import com.nukie.ambientvolume.R
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "ambient_volume_settings")
 
 enum class VolumeProfile(
-    val displayName: String,
+    @StringRes val displayNameRes: Int,
     val baseOffsetDb: Double,
     val smoothing: Double, // Kept for future use (currently unused by rolling mean engine)
     val maxVolumeCap: Float
 ) {
-    LIBRARY("Library", 5.0, 0.05, 0.4f),
-    STANDARD("Standard", 10.0, 0.15, 0.8f),
-    COMMUTE("Commute", 20.0, 0.3, 1.0f),
-    CUSTOM("Custom (Auto-Learned)", 10.0, 0.15, 1.0f)
+    LIBRARY(R.string.profile_library, 5.0, 0.05, 0.4f),
+    STANDARD(R.string.profile_standard, 10.0, 0.15, 0.8f),
+    COMMUTE(R.string.profile_commute, 20.0, 0.3, 1.0f),
+    CUSTOM(R.string.profile_custom, 10.0, 0.15, 1.0f)
 }
 
 object ProfileManager {
@@ -52,24 +60,26 @@ object ProfileManager {
     private val KEY_HEARING_SAFETY_ENABLED = booleanPreferencesKey("hearing_safety_enabled")
 
     private lateinit var appContext: Context
+    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     fun init(context: Context) {
         appContext = context.applicationContext
-        // One-time sync for repository state
-        try {
-            runBlocking {
+        // Sync repository state asynchronously to avoid blocking main thread
+        scope.launch {
+            try {
                 AudioStateRepository.updateActiveProfile(getActiveProfile())
                 AudioStateRepository.updateVibrateEnabled(getVibrateEnabled())
                 AudioStateRepository.updateStepSize(getStepSize())
                 AudioStateRepository.updateMeanInterval(getMeanInterval())
                 AudioStateRepository.updateHearingSafetyEnabled(getHearingSafetyEnabled())
+            } catch (e: Exception) {
+                Log.e("ProfileManager", "Failed to initialize profiles from DataStore", e)
+                AudioStateRepository.updateActiveProfile(VolumeProfile.STANDARD)
+                AudioStateRepository.updateVibrateEnabled(false)
+                AudioStateRepository.updateStepSize(3)
+                AudioStateRepository.updateMeanInterval(7)
+                AudioStateRepository.updateHearingSafetyEnabled(true)
             }
-        } catch (e: Exception) {
-            AudioStateRepository.updateActiveProfile(VolumeProfile.STANDARD)
-            AudioStateRepository.updateVibrateEnabled(false)
-            AudioStateRepository.updateStepSize(3)
-            AudioStateRepository.updateMeanInterval(7)
-            AudioStateRepository.updateHearingSafetyEnabled(true)
         }
     }
 
@@ -162,14 +172,13 @@ object ProfileManager {
 
     // --- Service Active State (for BootReceiver) ---
 
-    fun getServiceWasActive(): Boolean {
+    suspend fun getServiceWasActive(): Boolean {
         return try {
-            kotlinx.coroutines.runBlocking {
-                appContext.dataStore.data.map { preferences ->
-                    preferences[KEY_SERVICE_WAS_ACTIVE] ?: false
-                }.first()
-            }
+            appContext.dataStore.data.map { preferences ->
+                preferences[KEY_SERVICE_WAS_ACTIVE] ?: false
+            }.first()
         } catch (e: Exception) {
+            Log.e("ProfileManager", "Error reading service active state", e)
             false
         }
     }

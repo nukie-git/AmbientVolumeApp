@@ -4,7 +4,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![Platform](https://img.shields.io/badge/Platform-Android%209%2B-brightgreen.svg)
-![Version](https://img.shields.io/badge/Version-1.9.0-orange.svg)
+![Version](https://img.shields.io/badge/Version-1.10.0-orange.svg)
 ![Build](https://img.shields.io/badge/Build-Kotlin%20DSL-purple.svg)
 
 ---
@@ -31,7 +31,7 @@
 
 **Ambient Volume** is a privacy-conscious Android app that listens to your environment and intelligently scales your media volume to match. Whether you are in a quiet library, commuting on a noisy bus, or walking down a busy street, Ambient Volume keeps your audio at the right level automatically.
 
-The engine runs as a battery-optimised foreground service using a **duty-cycled microphone sampling** loop — it records for exactly 1 second, processes the RMS level, then sleeps for ~12.5 seconds before the next cycle. This design avoids the continuous CPU drain of traditional ambient-monitoring apps.
+The engine runs as a battery-optimised foreground service using a **duty-cycled microphone sampling** loop — it records for exactly 1 second, processes the RMS level, then sleeps for 5 seconds before the next cycle. This design avoids the continuous CPU drain of traditional ambient-monitoring apps.
 
 ---
 
@@ -72,7 +72,7 @@ The engine runs as a battery-optimised foreground service using a **duty-cycled 
 - Resets automatically each calendar day. Can be toggled off in Settings.
 
 ### Battery-Optimised Design
-- **Duty-cycled sampling:** mic open for 1,000 ms then immediate hardware release then 12,500 ms sleep.
+- **Duty-cycled sampling:** mic open for 1,000 ms then immediate hardware release then 5,000 ms sleep.
 - **Playback gating:** microphone never opens when music is inactive.
 - **Low-overhead audio pipeline:** 16 kHz mono PCM-16 (auto-fallback to 8 kHz).
 - **Step-size throttle:** volume only changes when the target differs by 1 or more full system volume steps.
@@ -164,7 +164,7 @@ Step-size throttle (>= 1 full system step required)
     v
 AudioManager.setStreamVolume()
     |
-    +---> 12.5 s sleep -> next duty cycle
+    +---> 5 s sleep -> next duty cycle
 ```
 
 ---
@@ -292,10 +292,19 @@ app/build/outputs/apk/release/app-release.apk
 
 ## Version History
 
-### v1.9.0 — Battery Optimisation Overhaul *(Current)*
+### v1.10.0 — Stability and Engine Performance Update *(Current)*
+`versionCode 32`
+
+- **[FIXED]** Critical threading issues in `ProfileManager` preventing ANRs on startup.
+- **[FIXED]** Syntax and build errors in `VolumeControlService` and `PermissionsWrapper`.
+- **[IMPROVED]** Duty-cycle loop frequency increased to 5 seconds for more responsive volume tracking.
+- **[IMPROVED]** Hearing safety persistence strategy to prevent data loss.
+- **[UPDATED]** Compile SDK to 36 and dependencies for better platform compatibility.
+
+### v1.9.0 — Battery Optimisation Overhaul
 `versionCode 31`
 
-- **[NEW]** Duty-cycled microphone sampling: 1 s record then 12.5 s sleep (replaces continuous audio stream).
+- **[NEW]** Duty-cycled microphone sampling: 1 s record then 5 s sleep (replaces continuous audio stream).
 - **[NEW]** Playback-state gating via `AudioManager.isMusicActive()`: microphone skipped entirely when no music is playing; 20 s extended sleep between checks.
 - **[NEW]** Downsampled audio pipeline: 16 kHz mono PCM-16 with automatic fallback to 8 kHz.
 - **[NEW]** Volume step throttle: automated adjustments only fire when the delta is 1 or more full system volume steps (eliminates micro-step spam).

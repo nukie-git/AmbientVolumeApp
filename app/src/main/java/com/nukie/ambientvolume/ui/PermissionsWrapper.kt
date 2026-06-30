@@ -24,9 +24,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+
+import com.nukie.ambientvolume.R
 
 @Composable
 fun PermissionsWrapper(content: @Composable () -> Unit) {
@@ -106,7 +109,7 @@ fun PermissionsWrapper(content: @Composable () -> Unit) {
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "Core permissions are required for the Adaptive Volume Engine.",
+                    text = stringResource(R.string.core_permissions_required),
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Center
                 )
@@ -116,16 +119,16 @@ fun PermissionsWrapper(content: @Composable () -> Unit) {
         if (showRationaleDialog) {
             AlertDialog(
                 onDismissRequest = { showRationaleDialog = false },
-                title = { Text("Permissions Required") },
-                text = { Text("This app needs Microphone access to sense ambient noise, and Bluetooth permissions to dynamically adjust your headset's volume. Please grant them to continue.") },
+                title = { Text(stringResource(R.string.dialog_permissions_required_title)) },
+                text = { Text(stringResource(R.string.dialog_permissions_required_message)) },
                 confirmButton = {
                     TextButton(onClick = {
                         showRationaleDialog = false
                         permissionLauncher.launch(permissionsToRequest)
-                    }) { Text("Grant") }
+                    }) { Text(stringResource(R.string.button_grant)) }
                 },
                 dismissButton = {
-                    TextButton(onClick = { showRationaleDialog = false }) { Text("Deny") }
+                    TextButton(onClick = { showRationaleDialog = false }) { Text(stringResource(R.string.button_deny)) }
                 }
             )
         }
@@ -133,16 +136,16 @@ fun PermissionsWrapper(content: @Composable () -> Unit) {
         if (showSettingsDialog) {
             AlertDialog(
                 onDismissRequest = { showSettingsDialog = false },
-                title = { Text("Permissions Denied") },
-                text = { Text("Essential permissions have been permanently denied by MIUI. Please open System Settings, go to App Permissions, and grant Microphone and Bluetooth access.") },
+                title = { Text(stringResource(R.string.dialog_permissions_denied_title)) },
+                text = { Text(stringResource(R.string.dialog_permissions_denied_message)) },
                 confirmButton = {
                     TextButton(onClick = {
                         showSettingsDialog = false
                         openAppSettings(context)
-                    }) { Text("Open Settings") }
+                    }) { Text(stringResource(R.string.button_open_settings)) }
                 },
                 dismissButton = {
-                    TextButton(onClick = { showSettingsDialog = false }) { Text("Cancel") }
+                    TextButton(onClick = { showSettingsDialog = false }) { Text(stringResource(R.string.button_cancel)) }
                 }
             )
         }

@@ -53,6 +53,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.annotation.StringRes
 import com.nukie.ambientvolume.R
 import com.nukie.ambientvolume.service.*
 import com.nukie.ambientvolume.ui.*
@@ -69,6 +70,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import android.app.AlertDialog as AndroidAlertDialog
 
 class MainActivity : ComponentActivity() {
@@ -85,7 +87,7 @@ class MainActivity : ComponentActivity() {
                         inputStream.copyTo(outputStream)
                     }
                 } else {
-                    outputStream.write("No logs found.".toByteArray())
+                    outputStream.write(getString(R.string.error_no_logs_found).toByteArray())
                 }
             }
         } catch (e: Exception) {
@@ -106,9 +108,9 @@ class MainActivity : ComponentActivity() {
 
     private fun showRestartDialog() {
         AndroidAlertDialog.Builder(this)
-            .setTitle("Engine Stopped")
-            .setMessage("The Volume Engine was killed by the system. Would you like to restart it?")
-            .setPositiveButton("Restart") { _, _ ->
+            .setTitle(getString(R.string.dialog_engine_stopped_title))
+            .setMessage(getString(R.string.dialog_engine_stopped_message))
+            .setPositiveButton(getString(R.string.button_restart)) { _, _ ->
                 val intent = Intent(this, VolumeControlService::class.java)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(intent)
@@ -116,7 +118,7 @@ class MainActivity : ComponentActivity() {
                     startService(intent)
                 }
             }
-            .setNegativeButton("Ignore", null)
+            .setNegativeButton(getString(R.string.button_ignore), null)
             .show()
     }
 
@@ -137,17 +139,19 @@ class MainActivity : ComponentActivity() {
                 val observer = LifecycleEventObserver { _, event ->
                     if (event == Lifecycle.Event.ON_RESUME) {
                         if (!isServiceRunning(VolumeControlService::class.java)) {
-                            // Self-healing: auto-restart if DataStore confirms it was active
-                            if (ProfileManager.getServiceWasActive()) {
-                                val intent = Intent(this@MainActivity, VolumeControlService::class.java)
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    startForegroundService(intent)
-                                } else {
-                                    startService(intent)
+                            lifecycleOwner.lifecycleScope.launch {
+                                // Self-healing: auto-restart if DataStore confirms it was active
+                                if (ProfileManager.getServiceWasActive()) {
+                                    val intent = Intent(this@MainActivity, VolumeControlService::class.java)
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        startForegroundService(intent)
+                                    } else {
+                                        startService(intent)
+                                    }
+                                } else if (AudioStateRepository.isServiceRunning.value) {
+                                    // Fallback: in-memory flag says running but DataStore says not — show dialog
+                                    showRestartDialog()
                                 }
-                            } else if (AudioStateRepository.isServiceRunning.value) {
-                                // Fallback: in-memory flag says running but DataStore says not — show dialog
-                                showRestartDialog()
                             }
                         }
                     }
@@ -176,10 +180,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-enum class ScreenTab(val route: String, val icon: androidx.compose.ui.graphics.vector.ImageVector, val label: String) {
-    MONITOR("monitor", Icons.Default.Monitor, "Monitor"),
-    ENGINE("engine", Icons.Default.Tune, "Engine"),
-    SETTINGS("settings", Icons.Default.Settings, "Settings")
+enum class ScreenTab(val route: String, val icon: androidx.compose.ui.graphics.vector.ImageVector, @StringRes val labelRes: Int) {
+    MONITOR("monitor", Icons.Default.Monitor, R.string.tab_monitor),
+    ENGINE("engine", Icons.Default.Tune, R.string.tab_engine),
+    SETTINGS("settings", Icons.Default.Settings, R.string.tab_settings)
 }
 
 @Composable
@@ -216,8 +220,8 @@ fun MainNavigation(
                                 pagerState.animateScrollToPage(tab.ordinal)
                             }
                         },
-                        icon = { Icon(tab.icon, contentDescription = tab.label) },
-                        label = { Text(tab.label) },
+                        icon = { Icon(tab.icon, contentDescription = stringResource(tab.labelRes)) },
+                        label = { Text(stringResource(tab.labelRes)) },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = MaterialTheme.colorScheme.primary,
                             selectedTextColor = MaterialTheme.colorScheme.primary,
@@ -252,10 +256,10 @@ fun MainNavigation(
             pendingVolumeDecision?.let { decision ->
                 AlertDialog(
                     onDismissRequest = { AudioStateRepository.requestVolumeDecision(null) },
-                    title = { Text("Loud Volume Detected") },
-                    text = { Text("Your volume is currently at ${(decision.currentVolumePercent * 100).toInt()}%, but your environment is quiet. Lower it automatically?") },
+                    title = { Text(stringResource(R.string.dialog_loud_volume_title)) },
+                    text = { Text(stringResource(R.string.dialog_loud_volume_message, (decision.currentVolumePercent * 100).toInt())) },
                     confirmButton = {
-                        TextButton(onClick = { AudioStateRepository.requestVolumeDecision(null) }) { Text("Yes, Lower It") }
+                        TextButton(onClick = { AudioStateRepository.requestVolumeDecision(null) }) { Text(stringResource(R.string.button_yes_lower)) }
                     },
                     dismissButton = {
                         TextButton(onClick = {
@@ -278,7 +282,7 @@ fun MainNavigation(
                             
                             scope.launch { ProfileManager.setCustomOffset(newOffset) }
                             AudioStateRepository.requestVolumeDecision(null)
-                        }) { Text("Keep it loud") }
+                        }) { Text(stringResource(R.string.button_keep_loud)) }
                     }
                 )
             }
@@ -288,8 +292,8 @@ fun MainNavigation(
             if (safetyThresholdReached && hearingSafetyEnabled) {
                 AlertDialog(
                     onDismissRequest = { /* Persistent until acknowledged */ },
-                    title = { Text("Hearing Safety Alert") },
-                    text = { Text("You have been listening at a high volume (>60%) for over 60 minutes today. To protect your hearing, please consider lowering the volume.") },
+                    title = { Text(stringResource(R.string.dialog_hearing_safety_title)) },
+                    text = { Text(stringResource(R.string.dialog_hearing_safety_message)) },
                     confirmButton = {
                         Button(onClick = { 
                             // Reset safety timer in service and hide modal
@@ -298,7 +302,7 @@ fun MainNavigation(
                             }
                             context.startForegroundService(intent)
                         }) {
-                            Text("I understand")
+                            Text(stringResource(R.string.button_understand))
                         }
                     }
                 )
@@ -334,9 +338,9 @@ fun MonitorScreen() {
         if (showMicInfo) {
             AlertDialog(
                 onDismissRequest = { showMicInfo = false },
-                title = { Text("Acoustic Intelligence") },
-                text = { Text("The engine samples ambient noise levels; no audio is recorded or transmitted. Feedback and echo suppression are active.") },
-                confirmButton = { TextButton(onClick = { showMicInfo = false }) { Text("Got it") } }
+                title = { Text(stringResource(R.string.dialog_privacy_title)) },
+                text = { Text(stringResource(R.string.dialog_privacy_message)) },
+                confirmButton = { TextButton(onClick = { showMicInfo = false }) { Text(stringResource(R.string.button_got_it)) } }
             )
         }
 
@@ -355,7 +359,7 @@ fun MonitorScreen() {
             ) {
                 Icon(
                     Icons.Default.Info,
-                    contentDescription = "Privacy Info",
+                    contentDescription = stringResource(R.string.desc_privacy_info),
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(18.dp)
                 )
@@ -379,7 +383,7 @@ fun MonitorScreen() {
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
                     Icons.Default.Info, 
-                    contentDescription = "About Engine", 
+                    contentDescription = stringResource(R.string.desc_about_engine), 
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(20.dp)
                 )
@@ -410,7 +414,7 @@ fun MonitorScreen() {
                     fontWeight = FontWeight.Black
                 )
                 Text(
-                    text = "dB",
+                    text = stringResource(R.string.unit_db),
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -434,7 +438,7 @@ fun MonitorScreen() {
         ) {
             Icon(if (isServiceRunning) Icons.Default.Close else Icons.Default.PlayArrow, null)
             Spacer(modifier = Modifier.width(8.dp))
-            Text(if (isServiceRunning) "Stop Service" else "Start Engine")
+            Text(if (isServiceRunning) stringResource(R.string.button_stop_service) else stringResource(R.string.button_start_engine))
         }
 
         // Live Engine Visualizer
@@ -463,8 +467,8 @@ fun MonitorScreen() {
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                        Text("${stringResource(R.string.instant_label)}: ${currentDb.roundToInt()} dB", style = MaterialTheme.typography.labelSmall)
-                        Text("${stringResource(R.string.mean_label)} (${meanInterval}s): ${rollingMeanDb.roundToInt()} dB", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary)
+                        Text("${stringResource(R.string.instant_label)}: ${currentDb.roundToInt()} ${stringResource(R.string.unit_db)}", style = MaterialTheme.typography.labelSmall)
+                        Text("${stringResource(R.string.mean_label)} (${meanInterval}s): ${rollingMeanDb.roundToInt()} ${stringResource(R.string.unit_db)}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary)
                     }
                 }
             }
@@ -472,7 +476,7 @@ fun MonitorScreen() {
         // Volume Status
         DashboardCard {
             Column(modifier = Modifier.padding(16.dp)) {
-                Text("Current Volume", style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.label_current_volume), style = MaterialTheme.typography.titleSmall)
                 Spacer(modifier = Modifier.height(8.dp))
                 Slider(
                     value = currentVolumePercent,
@@ -483,7 +487,7 @@ fun MonitorScreen() {
                     },
                     colors = SliderDefaults.colors(thumbColor = MaterialTheme.colorScheme.secondary, activeTrackColor = MaterialTheme.colorScheme.secondary)
                 )
-                Text("${(currentVolumePercent * 100).roundToInt()}%", style = MaterialTheme.typography.labelLarge, modifier = Modifier.align(Alignment.End))
+                Text(stringResource(R.string.format_percentage, (currentVolumePercent * 100).roundToInt()), style = MaterialTheme.typography.labelLarge, modifier = Modifier.align(Alignment.End))
             }
         }
 
@@ -491,7 +495,7 @@ fun MonitorScreen() {
         if (BuildConfig.DEBUG) {
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Debug Metric: Ambient Noise ${currentDb.roundToInt()} dB",
+                text = "Debug Metric: Ambient Noise ${currentDb.roundToInt()} ${stringResource(R.string.unit_db)}",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
@@ -505,23 +509,23 @@ fun MonitorScreen() {
     if (showAppInfoDialog) {
         AlertDialog(
             onDismissRequest = { showAppInfoDialog = false },
-            title = { Text("About Ambient Volume") },
+            title = { Text(stringResource(R.string.dialog_about_title)) },
             text = { 
                 Column {
-                    Text("Adaptive Volume Engine v${BuildConfig.VERSION_NAME}", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.label_version, BuildConfig.VERSION_NAME), fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text("Changelog: Centralized Versioning Schema into build.gradle.kts exploiting dynamic BuildConfig variable bindings globally; decoupled hardcoded version components; implemented file auditing protocols.")
+                    Text(stringResource(R.string.label_changelog))
                     Spacer(modifier = Modifier.height(16.dp))
-                    Text("© 2026 @nukie-git", style = MaterialTheme.typography.labelMedium)
+                    Text(stringResource(R.string.label_copyright), style = MaterialTheme.typography.labelMedium)
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        "Developed with the assistance of Google Gemini & Google Antigravity. Built using Android Studio Meerkat.",
+                        stringResource(R.string.label_credits),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             },
-            confirmButton = { TextButton(onClick = { showAppInfoDialog = false }) { Text("OK") } }
+            confirmButton = { TextButton(onClick = { showAppInfoDialog = false }) { Text(stringResource(R.string.button_ok)) } }
         )
     }
 }
@@ -538,12 +542,12 @@ fun EngineScreen() {
         modifier = Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text("Engine Optimization", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+        Text(stringResource(R.string.label_engine_optimization), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
 
         // Profiles
         DashboardCard {
             Column(modifier = Modifier.padding(16.dp)) {
-                Text("Environmental Profile", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.label_environmental_profile), style = MaterialTheme.typography.titleMedium)
                 Spacer(modifier = Modifier.height(12.dp))
                 FlowRow(
                     modifier = Modifier.fillMaxWidth(),
@@ -562,7 +566,7 @@ fun EngineScreen() {
                             },
                             label = { 
                                 Text(
-                                    profile.displayName,
+                                    stringResource(profile.displayNameRes),
                                     modifier = Modifier.padding(horizontal = 4.dp)
                                 ) 
                             }
@@ -591,7 +595,7 @@ fun EngineScreen() {
                             onClick = { scope.launch { ProfileManager.setStepSize(opt) } },
                             label = {
                                 Text(
-                                    "${opt} dB",
+                                    stringResource(R.string.format_db, opt),
                                     modifier = Modifier.padding(horizontal = 4.dp)
                                 )
                             }
@@ -606,7 +610,7 @@ fun EngineScreen() {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(stringResource(R.string.smoothing_title), style = MaterialTheme.typography.titleMedium)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("Averaging Period", style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(R.string.label_averaging_period), style = MaterialTheme.typography.bodyMedium)
                 Spacer(modifier = Modifier.height(12.dp))
                 val options = listOf(3, 5, 7, 10, 15, 20, 30)
                 FlowRow(
@@ -620,7 +624,7 @@ fun EngineScreen() {
                             onClick = { scope.launch { ProfileManager.setMeanInterval(opt) } },
                             label = { 
                                 Text(
-                                    "${opt}s",
+                                    stringResource(R.string.format_seconds, opt),
                                     modifier = Modifier.padding(horizontal = 4.dp)
                                 ) 
                             }
@@ -646,14 +650,14 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, on
         modifier = Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text("Application Settings", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+        Text(stringResource(R.string.label_application_settings), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
 
         // General Settings
         DashboardCard {
             Column(modifier = Modifier.padding(16.dp)) {
                 // Theme
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Text("Material You Theme", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.label_material_you_theme), style = MaterialTheme.typography.bodyLarge)
                     Switch(checked = useSystemTheme, onCheckedChange = onThemeToggle)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
@@ -663,7 +667,7 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, on
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(stringResource(R.string.vibrate_title), style = MaterialTheme.typography.bodyLarge)
-                        Text(if (vibrateEnabled) "Active" else "Disabled", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(if (vibrateEnabled) stringResource(R.string.status_active) else stringResource(R.string.status_disabled), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     Switch(checked = vibrateEnabled, onCheckedChange = { scope.launch { ProfileManager.setVibrateEnabled(it) } })
                 }
@@ -673,8 +677,8 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, on
                 // Hearing Safety
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                     Column(modifier = Modifier.weight(1f)) {
-                        Text("Hearing Safety Warning", style = MaterialTheme.typography.bodyLarge)
-                        Text(if (hearingSafetyEnabled) "Active Tracking" else "Disabled", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.label_hearing_safety_warning), style = MaterialTheme.typography.bodyLarge)
+                        Text(if (hearingSafetyEnabled) stringResource(R.string.status_active_tracking) else stringResource(R.string.status_disabled), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     Switch(checked = hearingSafetyEnabled, onCheckedChange = { scope.launch { ProfileManager.setHearingSafetyEnabled(it) } })
                 }
@@ -684,12 +688,12 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, on
         // Battery Optimization Card
         DashboardCard {
             Column(modifier = Modifier.padding(16.dp)) {
-                Text("Battery & Background", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.label_battery_background), style = MaterialTheme.typography.titleMedium)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("Aggressive power saving on Xiaomi devices can stop the volume engine. Use the assistant to fix this.", style = MaterialTheme.typography.bodySmall)
+                Text(stringResource(R.string.desc_battery_optimization), style = MaterialTheme.typography.bodySmall)
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(onClick = { showPersistenceAssistant = true }, modifier = Modifier.fillMaxWidth()) {
-                    Text("Launch Persistence Assistant")
+                    Text(stringResource(R.string.button_launch_assistant))
                 }
             }
         }
@@ -702,7 +706,7 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, on
         if (BuildConfig.DEBUG) {
             DashboardCard {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Debug Logs", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.error)
+                    Text(stringResource(R.string.label_debug_logs), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.error)
                     Spacer(modifier = Modifier.height(16.dp))
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Button(
@@ -712,7 +716,7 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, on
                         ) {
                             Icon(Icons.Default.Share, null)
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Export Logs")
+                            Text(stringResource(R.string.button_export_logs))
                         }
                         Button(
                             onClick = { DebugLogger.clearLogs(context) },
@@ -721,7 +725,7 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, on
                         ) {
                             Icon(Icons.Default.Delete, null)
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Clear")
+                            Text(stringResource(R.string.button_clear))
                         }
                     }
                 }
@@ -780,13 +784,13 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-                text = "Persistence Assistant",
+                text = stringResource(R.string.title_persistence_assistant),
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "Ensure the Volume Engine stays alive",
+                text = stringResource(R.string.subtitle_persistence_assistant),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -802,7 +806,7 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
                     Icon(Icons.Default.Info, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(
-                        text = "Aggressive power saving on some devices can kill background apps. These steps keep the engine running while your screen is off.",
+                        text = stringResource(R.string.desc_persistence_help),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSecondaryContainer
                     )
@@ -813,8 +817,8 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
 
             // 1. Battery Optimization
             ChecklistItem(
-                title = "Battery Optimization",
-                description = if (isBatteryIgnored) "Already set to 'No Restrictions'" else "Set to 'No Restrictions'",
+                title = stringResource(R.string.item_battery_optimization),
+                description = if (isBatteryIgnored) stringResource(R.string.desc_battery_ignored) else stringResource(R.string.desc_battery_not_ignored),
                 isDone = isBatteryIgnored,
                 onClick = {
                     if (!isBatteryIgnored) {
@@ -836,8 +840,8 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
 
             // 2. OEM Autostart / Background Management
             if (oem != null) {
-                val oemTitle = if (oem == OEMType.XIAOMI) "${OEMManager.getXiaomiRomName()} Autostart" else oem.title
-                val oemDesc = if (isAutostartVerified) "Status Verified" else if (oem == OEMType.XIAOMI) "Allow app to start in background on ${OEMManager.getXiaomiRomName()}" else oem.description
+                val oemTitle = if (oem == OEMType.XIAOMI) stringResource(R.string.format_xiaomi_autostart_title, OEMManager.getXiaomiRomName()) else stringResource(oem.titleRes)
+                val oemDesc = if (isAutostartVerified) stringResource(R.string.status_verified) else if (oem == OEMType.XIAOMI) stringResource(R.string.format_autostart_desc, OEMManager.getXiaomiRomName()) else stringResource(oem.descRes)
                 
                 ChecklistItem(
                     title = oemTitle,
@@ -864,8 +868,8 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
             // 3. DuraSpeed (Mediatek/Doogee)
             if (isDuraSpeed) {
                 ChecklistItem(
-                    title = "DuraSpeed Management",
-                    description = "Ensure Ambient Volume is toggled ON in DuraSpeed settings",
+                    title = stringResource(R.string.item_duraspeed),
+                    description = stringResource(R.string.desc_duraspeed),
                     isDone = false,
                     onClick = {
                         try {
@@ -883,8 +887,8 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
 
             // 4. Notification Status
             ChecklistItem(
-                title = "Notification Status",
-                description = if (isNotificationsEnabled) "Service alerts are active" else "Ensure service alerts are visible",
+                title = stringResource(R.string.item_notifications),
+                description = if (isNotificationsEnabled) stringResource(R.string.desc_notifications_enabled) else stringResource(R.string.desc_notifications_disabled),
                 isDone = isNotificationsEnabled,
                 onClick = {
                     val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
@@ -901,7 +905,7 @@ fun PersistenceAssistantDialog(oem: OEMType?, isDuraSpeed: Boolean, onDismiss: (
                 onClick = onDismiss,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("I've completed the setup")
+                Text(stringResource(R.string.button_setup_completed))
             }
         }
     }

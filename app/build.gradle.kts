@@ -14,8 +14,8 @@ android {
         // Targeted for your device: Xiaomi Redmi Note 9 Pro running Android 12, compatible down to Android 9 (API 28)
         minSdk = 28
         targetSdk = 34
-        versionCode = 31
-        versionName = "1.9.0"
+        versionCode = 32
+        versionName = "1.10.0"
     }
 
     buildTypes {

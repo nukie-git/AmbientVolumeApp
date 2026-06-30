@@ -19,4 +19,102 @@
     <string name="live_engine_title">Live Engine View</string>
     <string name="instant_label">Instant</string>
     <string name="mean_label">Mean</string>
+
+    <!-- MainActivity Strings -->
+    <string name="dialog_engine_stopped_title">Engine Stopped</string>
+    <string name="dialog_engine_stopped_message">The Volume Engine was killed by the system. Would you like to restart it?</string>
+    <string name="button_restart">Restart</string>
+    <string name="button_ignore">Ignore</string>
+    <string name="tab_monitor">Monitor</string>
+    <string name="tab_engine">Engine</string>
+    <string name="tab_settings">Settings</string>
+    <string name="dialog_loud_volume_title">Loud Volume Detected</string>
+    <string name="dialog_loud_volume_message">Your volume is currently at %d%%, but your environment is quiet. Lower it automatically?</string>
+    <string name="button_yes_lower">Yes, Lower It</string>
+    <string name="button_keep_loud">Keep it loud</string>
+    <string name="dialog_hearing_safety_title">Hearing Safety Alert</string>
+    <string name="dialog_hearing_safety_message">You have been listening at a high volume (>60%%) for over 60 minutes today. To protect your hearing, please consider lowering the volume.</string>
+    <string name="button_understand">I understand</string>
+    <string name="dialog_privacy_title">Acoustic Intelligence</string>
+    <string name="dialog_privacy_message">The engine samples ambient noise levels; no audio is recorded or transmitted. Feedback and echo suppression are active.</string>
+    <string name="button_got_it">Got it</string>
+    <string name="desc_privacy_info">Privacy Info</string>
+    <string name="desc_about_engine">About Engine</string>
+    <string name="unit_db">dB</string>
+    <string name="button_stop_service">Stop Service</string>
+    <string name="button_start_engine">Start Engine</string>
+    <string name="label_current_volume">Current Volume</string>
+    <string name="dialog_about_title">About Ambient Volume</string>
+    <string name="label_version">Adaptive Volume Engine v%s</string>
+    <string name="label_changelog">Changelog: Centralized Versioning Schema into build.gradle.kts exploiting dynamic BuildConfig variable bindings globally; decoupled hardcoded version components; implemented file auditing protocols.</string>
+    <string name="label_copyright">© 2026 @nukie-git</string>
+    <string name="label_credits">Developed with the assistance of Google Gemini &amp; Google Antigravity. Built using Android Studio Meerkat.</string>
+    <string name="button_ok">OK</string>
+    <string name="label_engine_optimization">Engine Optimization</string>
+    <string name="label_environmental_profile">Environmental Profile</string>
+    <string name="format_db">%d dB</string>
+    <string name="label_averaging_period">Averaging Period</string>
+    <string name="format_seconds">%ds</string>
+    <string name="label_application_settings">Application Settings</string>
+    <string name="label_material_you_theme">Material You Theme</string>
+    <string name="status_active">Active</string>
+    <string name="status_disabled">Disabled</string>
+    <string name="label_hearing_safety_warning">Hearing Safety Warning</string>
+    <string name="status_active_tracking">Active Tracking</string>
+    <string name="label_battery_background">Battery &amp; Background</string>
+    <string name="desc_battery_optimization">Aggressive power saving on Xiaomi devices can stop the volume engine. Use the assistant to fix this.</string>
+    <string name="button_launch_assistant">Launch Persistence Assistant</string>
+    <string name="label_debug_logs">Debug Logs</string>
+    <string name="button_export_logs">Export Logs</string>
+    <string name="button_clear">Clear</string>
+    <string name="title_persistence_assistant">Persistence Assistant</string>
+    <string name="subtitle_persistence_assistant">Ensure the Volume Engine stays alive</string>
+    <string name="desc_persistence_help">Aggressive power saving on some devices can kill background apps. These steps keep the engine running while your screen is off.</string>
+    <string name="item_battery_optimization">Battery Optimization</string>
+    <string name="desc_battery_ignored">Already set to \'No Restrictions\'</string>
+    <string name="desc_battery_not_ignored">Set to \'No Restrictions\'</string>
+    <string name="status_verified">Status Verified</string>
+    <string name="format_autostart_desc">Allow app to start in background on %s</string>
+    <string name="item_duraspeed">DuraSpeed Management</string>
+    <string name="desc_duraspeed">Ensure Ambient Volume is toggled ON in DuraSpeed settings</string>
+    <string name="item_notifications">Notification Status</string>
+    <string name="desc_notifications_enabled">Service alerts are active</string>
+    <string name="desc_notifications_disabled">Ensure service alerts are visible</string>
+    <string name="button_setup_completed">I\'ve completed the setup</string>
+    <string name="error_no_logs_found">No logs found.</string>
+
+    <!-- OEM Strings -->
+    <string name="oem_samsung_title">Device Care</string>
+    <string name="oem_samsung_desc">Enable background activity in Samsung Settings</string>
+    <string name="oem_xiaomi_title">Autostart</string>
+    <string name="oem_xiaomi_desc">Allow app to start in background</string>
+    <string name="oem_huawei_title">App Launch</string>
+    <string name="oem_huawei_desc">Set to \'Manage Manually\' in Huawei settings</string>
+    <string name="oem_oppo_title">Startup Manager</string>
+    <string name="oem_oppo_desc">Allow app to run at startup</string>
+    <string name="oem_vivo_title">Speed Up</string>
+    <string name="oem_vivo_desc">Add to background whitelist</string>
+    <string name="format_xiaomi_autostart_title">%s Autostart</string>
+
+    <!-- Volume Profiles -->
+    <string name="profile_library">Library</string>
+    <string name="profile_standard">Standard</string>
+    <string name="profile_commute">Commute</string>
+    <string name="profile_custom">Custom (Auto-Learned)</string>
+    <string name="format_percentage">%d%%</string>
+
+    <!-- Service & Notifications -->
+    <string name="notification_channel_name">Adaptive Volume Control</string>
+    <string name="notification_channel_description">Runs the background noise monitoring to adapt system volume</string>
+    <string name="button_stop">Stop</string>
+
+    <!-- Permissions -->
+    <string name="dialog_permissions_required_title">Permissions Required</string>
+    <string name="dialog_permissions_required_message">This app needs Microphone access to sense ambient noise, and Bluetooth permissions to dynamically adjust your headset\'s volume. Please grant them to continue.</string>
+    <string name="button_grant">Grant</string>
+    <string name="button_deny">Deny</string>
+    <string name="dialog_permissions_denied_title">Permissions Denied</string>
+    <string name="dialog_permissions_denied_message">Essential permissions have been permanently denied by MIUI. Please open System Settings, go to App Permissions, and grant Microphone and Bluetooth access.</string>
+    <string name="button_open_settings">Open Settings</string>
+    <string name="button_cancel">Cancel</string>
 </resources>
