@@ -10,10 +10,11 @@
 .kotlin/
 .kotlin/errors
 .vscode
-/Ambient_Volume_prompt.md
+/Antigravity_AmbientVolume_Theme_prompt.md
 /build
 /captures
 /docs/conversations
+/Gemini_AmbientVolume_Theme_prompt.md
 local.properties
 
 # --- PROFESSIONAL IDE & TOOLING ---

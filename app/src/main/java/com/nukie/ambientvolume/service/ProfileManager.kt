@@ -58,6 +58,9 @@ object ProfileManager {
     private val KEY_SAFETY_CUMULATIVE_MILLIS = longPreferencesKey("safety_cumulative_millis")
     private val KEY_SAFETY_LAST_RESET_DAY = intPreferencesKey("safety_last_reset_day")
     private val KEY_HEARING_SAFETY_ENABLED = booleanPreferencesKey("hearing_safety_enabled")
+    private val KEY_DYNAMIC_COLOR_ENABLED = booleanPreferencesKey("dynamic_color_enabled")
+    private val KEY_FOLLOW_SYSTEM_DARK = booleanPreferencesKey("follow_system_dark")
+    private val KEY_DARK_MODE_MANUAL = booleanPreferencesKey("dark_mode_manual")
 
     private lateinit var appContext: Context
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
@@ -72,6 +75,9 @@ object ProfileManager {
                 AudioStateRepository.updateStepSize(getStepSize())
                 AudioStateRepository.updateMeanInterval(getMeanInterval())
                 AudioStateRepository.updateHearingSafetyEnabled(getHearingSafetyEnabled())
+                AudioStateRepository.updateDynamicColorEnabled(getDynamicColorEnabled())
+                AudioStateRepository.updateFollowSystemDark(getFollowSystemDark())
+                AudioStateRepository.updateDarkModeManual(getDarkModeManual())
             } catch (e: Exception) {
                 Log.e("ProfileManager", "Failed to initialize profiles from DataStore", e)
                 AudioStateRepository.updateActiveProfile(VolumeProfile.STANDARD)
@@ -79,6 +85,9 @@ object ProfileManager {
                 AudioStateRepository.updateStepSize(3)
                 AudioStateRepository.updateMeanInterval(7)
                 AudioStateRepository.updateHearingSafetyEnabled(true)
+                AudioStateRepository.updateDynamicColorEnabled(true)
+                AudioStateRepository.updateFollowSystemDark(true)
+                AudioStateRepository.updateDarkModeManual(false)
             }
         }
     }
@@ -228,5 +237,48 @@ object ProfileManager {
             preferences[KEY_HEARING_SAFETY_ENABLED] = enabled
         }
         AudioStateRepository.updateHearingSafetyEnabled(enabled)
+    }
+
+    // --- Dynamic Color (Material You) ---
+
+    suspend fun getDynamicColorEnabled(): Boolean {
+        return appContext.dataStore.data.map { preferences ->
+            preferences[KEY_DYNAMIC_COLOR_ENABLED] ?: true
+        }.first()
+    }
+
+    suspend fun setDynamicColorEnabled(enabled: Boolean) {
+        appContext.dataStore.edit { preferences ->
+            preferences[KEY_DYNAMIC_COLOR_ENABLED] = enabled
+        }
+        AudioStateRepository.updateDynamicColorEnabled(enabled)
+    }
+
+    // --- Dark Mode (Follow System / Manual) ---
+
+    suspend fun getFollowSystemDark(): Boolean {
+        return appContext.dataStore.data.map { preferences ->
+            preferences[KEY_FOLLOW_SYSTEM_DARK] ?: true
+        }.first()
+    }
+
+    suspend fun setFollowSystemDark(enabled: Boolean) {
+        appContext.dataStore.edit { preferences ->
+            preferences[KEY_FOLLOW_SYSTEM_DARK] = enabled
+        }
+        AudioStateRepository.updateFollowSystemDark(enabled)
+    }
+
+    suspend fun getDarkModeManual(): Boolean {
+        return appContext.dataStore.data.map { preferences ->
+            preferences[KEY_DARK_MODE_MANUAL] ?: false
+        }.first()
+    }
+
+    suspend fun setDarkModeManual(enabled: Boolean) {
+        appContext.dataStore.edit { preferences ->
+            preferences[KEY_DARK_MODE_MANUAL] = enabled
+        }
+        AudioStateRepository.updateDarkModeManual(enabled)
     }
 }

@@ -32,8 +32,6 @@ import android.media.AudioFormat
 import android.media.AudioManager
 import android.media.AudioRecord
 import android.media.MediaRecorder
-import android.media.AudioAttributes
-import android.media.AudioFocusRequest
 import android.media.AudioDeviceInfo
 import android.media.audiofx.AcousticEchoCanceler
 import android.graphics.BitmapFactory
@@ -185,16 +183,34 @@ class VolumeControlService : Service() {
         serviceScope.launch { ProfileManager.setServiceWasActive(true) }
         AudioStateRepository.setServiceRunning(true)
         val notification = createNotification()
-        
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            ServiceCompat.startForeground(
-                this, 
-                NOTIFICATION_ID, 
-                notification, 
-                ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
-            )
-        } else {
-            startForeground(NOTIFICATION_ID, notification)
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                ServiceCompat.startForeground(
+                    this,
+                    NOTIFICATION_ID,
+                    notification,
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+                )
+            } else {
+                startForeground(NOTIFICATION_ID, notification)
+            }
+        } catch (e: Exception) {
+            // On Android 14+, starting a FOREGROUND_SERVICE_TYPE_MICROPHONE service from a
+            // background context (e.g. the onTaskRemoved -> AlarmManager restart path) can
+            // throw ForegroundServiceStartNotAllowedException. This is an OS policy decision,
+            // not a recoverable error here — fail cleanly instead of crashing the process.
+            // The app's onResume self-heal (triggered from a foreground Activity context,
+            // which is exempt from this restriction) is the real recovery path in that case.
+            if (BuildConfig.DEBUG) Log.e("VolumeControlService", "Foreground service start blocked by OS", e)
+            AudioStateRepository.setServiceRunning(false)
+            // Deliberately NOT clearing KEY_SERVICE_WAS_ACTIVE here: the user's intent (engine
+            // should be running) hasn't changed, only this specific background restart attempt
+            // was blocked by OS policy. Leaving the flag true is what lets onResume self-heal
+            // — which runs in a foreground context and isn't subject to this restriction —
+            // successfully restart the engine next time the user opens the app.
+            stopSelf()
+            return START_NOT_STICKY
         }
 
         // Acquire wake lock to keep CPU alive for audio processing
@@ -207,19 +223,6 @@ class VolumeControlService : Service() {
         startListening()
 
         return START_STICKY
-    }
-
-    private val audioFocusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
-        when (focusChange) {
-            AudioManager.AUDIOFOCUS_LOSS,
-            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {
-                // Another app needs the mic or audio focus (like Assistant or Phone)
-                if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Audio focus lost. Pausing engine sensing.")
-            }
-            AudioManager.AUDIOFOCUS_GAIN -> {
-                if (BuildConfig.DEBUG) Log.d("VolumeControlService", "Audio focus regained.")
-            }
-        }
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
@@ -341,23 +344,10 @@ class VolumeControlService : Service() {
                         actualBufferSize
                     )
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        val focusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
-                            .setAudioAttributes(AudioAttributes.Builder()
-                                .setUsage(AudioAttributes.USAGE_MEDIA)
-                                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                                .build())
-                            .setOnAudioFocusChangeListener(audioFocusChangeListener)
-                            .build()
-                        audioManager.requestAudioFocus(focusRequest)
-                    } else {
-                        @Suppress("DEPRECATION")
-                        audioManager.requestAudioFocus(
-                            audioFocusChangeListener,
-                            AudioManager.STREAM_MUSIC,
-                            AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
-                        )
-                    }
+                    // NOTE: No audio focus is requested here. This is a pure AudioRecord
+                    // capture session for RMS analysis — it never plays audio, so requesting
+                    // focus (especially AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK) only served to
+                    // duck the user's currently playing media every duty cycle for no reason.
 
                     if (AcousticEchoCanceler.isAvailable()) {
                         echoCanceler = AcousticEchoCanceler.create(loopAudioRecord.audioSessionId)
@@ -393,10 +383,18 @@ class VolumeControlService : Service() {
 
                             if (rms > 0) {
                                 var processedRms = rms
-                                if (echoCanceler == null || !echoCanceler!!.enabled) {
+                                val needsSoftwareCorrection = (echoCanceler == null || !echoCanceler!!.enabled) &&
+                                        !isExternalAudioOutputActive()
+                                if (needsSoftwareCorrection) {
                                     val systemVolumePercent = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC).toDouble() / maxVolumeLevel.toDouble()
                                     val reduction = systemVolumePercent * SOFTWARE_AEC_MAX_RMS_REDUCTION
-                                    processedRms = sqrt((rms * rms - reduction * reduction).coerceAtLeast(0.0))
+                                    // Cap the reduction at 90% of the measured RMS. The flat,
+                                    // content-agnostic model can't tell a quiet passage from a
+                                    // loud one, so an uncapped subtraction can zero out the
+                                    // signal on quiet playback and freeze the engine entirely.
+                                    // Capping guarantees at least some signal always survives.
+                                    val cappedReduction = reduction.coerceAtMost(rms * 0.9)
+                                    processedRms = sqrt((rms * rms - cappedReduction * cappedReduction).coerceAtLeast(0.0))
                                 }
 
                                 if (processedRms > 0) {
@@ -639,6 +637,27 @@ class VolumeControlService : Service() {
         } else {
             @Suppress("DEPRECATION")
             audioManager.isBluetoothA2dpOn || audioManager.isBluetoothScoOn
+        }
+    }
+
+    /**
+     * Speaker-to-mic bleed-through is only physically possible when audio is routed to the
+     * device's built-in speaker. Wired and Bluetooth output make it impossible, so the
+     * software AEC fallback (a static estimate with no knowledge of actual playback content)
+     * must never run in those cases — it would just be corrupting a clean ambient reading.
+     */
+    private fun isExternalAudioOutputActive(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+            devices.any {
+                it.type == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP ||
+                it.type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO ||
+                it.type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
+                it.type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            audioManager.isBluetoothA2dpOn || audioManager.isBluetoothScoOn || audioManager.isWiredHeadsetOn
         }
     }
 

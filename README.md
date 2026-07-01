@@ -4,7 +4,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![Platform](https://img.shields.io/badge/Platform-Android%209%2B-brightgreen.svg)
-![Version](https://img.shields.io/badge/Version-1.10.0-orange.svg)
+![Version](https://img.shields.io/badge/Version-1.11.0-orange.svg)
 ![Build](https://img.shields.io/badge/Build-Kotlin%20DSL-purple.svg)
 
 ---
@@ -42,6 +42,11 @@ The engine runs as a battery-optimised foreground service using a **duty-cycled 
 - Maps dB levels (50 dB to 30% volume, 90 dB to 100% volume) to system media volume.
 - Applies a configurable **dB offset** so your preferred loudness profile is always respected.
 - Supports wired headphones and **Bluetooth A2DP/SCO** output (with 500 ms write buffer for wireless latency).
+
+### Personalization and Theme
+- **Material You Dynamic Color:** Follows system wallpaper palette on Android 12+.
+- **Light/Dark Mode Override:** Toggle between following the system theme or manually selecting Light/Dark mode.
+- **Persistent Settings:** All appearance and engine preferences are stored in DataStore and survive process death.
 
 ### Intelligent Silence Gating
 - Uses `AudioManager.isMusicActive()` to skip microphone activation entirely when nothing is playing.
@@ -94,7 +99,7 @@ The engine runs as a battery-optimised foreground service using a **duty-cycled 
 ### Three-Tab Material 3 UI
 - **Monitor tab** — Real-time dB gauge and current volume display.
 - **Engine tab** — Start/Stop control, active profile selector, and smoothing interval slider.
-- **Settings tab** — Theme toggle (Material You dynamic colour on Android 12+), step size, haptic toggle, hearing safety, OEM battery optimisation deep-link, and debug log export.
+- **Settings tab** — Theme controls (Follow System / Manual Light/Dark / Material You), step size, haptic toggle, hearing safety, OEM battery optimisation deep-link, and debug log export.
 
 ---
 
@@ -191,6 +196,8 @@ All settings are persisted across reboots using **Jetpack DataStore (Preferences
 | Smoothing Interval | 7 s | 5 / 7 / 10 / 15 / 20 s | Rolling mean window for noise averaging |
 | Haptic Feedback | Off | On / Off | Vibrate on automated volume change |
 | Hearing Safety | On | On / Off | 60/60 rule daily high-volume tracking |
+| Follow System Theme | On | On / Off | Automatically match system Light/Dark mode |
+| Dark Mode | Off | On / Off | Manual Dark Mode override (when Follow System is Off) |
 | Dynamic Theme | On | On / Off | Follow system wallpaper colour (Android 12+) |
 
 ---
@@ -293,7 +300,19 @@ app/build/outputs/apk/release/app-release.apk
 
 ## Version History
 
-### v1.10.0 — Stability and Engine Performance Update *(Current)*
+### v1.11.0 — Appearance Settings and Audio Correctness Fixes *(Current)*
+`versionCode 33`
+
+- **[NEW]** Light/Dark mode manual override with "Follow system theme" toggle.
+- **[FIXED]** Critical bug: "Material You theme" (dynamic colour) setting now persists across app restarts and process death.
+- **[IMPROVED]** Added `AnimatedVisibility` for a smoother transition when revealing manual theme controls.
+- **[FIXED]** Duty-cycle loop was requesting `AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK` on every 1s sampling window with no matching abandon call, causing the user's own media playback to audibly duck every 5 seconds while the engine was running.
+- **[FIXED]** Software AEC fallback (used when hardware `AcousticEchoCanceler` is unavailable) now only applies when output is routed to the built-in speaker — bleed-through is not physically possible over wired or Bluetooth output, so the correction was previously corrupting clean ambient readings on those routes.
+- **[FIXED]** Software AEC fallback correction is now capped at 90% of measured RMS instead of being allowed to zero out the signal, preventing the engine from going inert during quiet playback on devices without hardware AEC.
+- **[FIXED]** Foreground service start (`ServiceCompat.startForeground`) is now wrapped in a try/catch. On Android 14+, an OS-level restriction can block starting a `FOREGROUND_SERVICE_TYPE_MICROPHONE` service from the `onTaskRemoved` → `AlarmManager` background restart path; this previously crashed the process instead of failing gracefully and deferring recovery to the existing `onResume` self-heal.
+- **[UPDATED]** Semantic version bump to 1.11.0.
+
+### v1.10.0 — Stability and Engine Performance Update
 `versionCode 32`
 
 - **[FIXED]** Critical threading issues in `ProfileManager` preventing ANRs on startup.

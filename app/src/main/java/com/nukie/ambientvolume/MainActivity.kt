@@ -31,6 +31,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.app.NotificationManagerCompat
+import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -147,7 +148,9 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            var useSystemTheme by remember { mutableStateOf(value = true) }
+            val useSystemTheme by AudioStateRepository.dynamicColorEnabled.collectAsStateWithLifecycle()
+            val followSystemDark by AudioStateRepository.followSystemDark.collectAsStateWithLifecycle()
+            val manualDarkMode by AudioStateRepository.darkModeManual.collectAsStateWithLifecycle()
             val lifecycleOwner = LocalLifecycleOwner.current
 
             DisposableEffect(lifecycleOwner) {
@@ -173,7 +176,11 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-            AmbientVolumeTheme(useSystemTheme = useSystemTheme) {
+            AmbientVolumeTheme(
+                followSystemDark = followSystemDark,
+                manualDarkMode = manualDarkMode,
+                useSystemTheme = useSystemTheme
+            ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
@@ -181,7 +188,8 @@ class MainActivity : ComponentActivity() {
                     PermissionsWrapper {
                         MainNavigation(
                             useSystemTheme = useSystemTheme,
-                            onThemeToggle = { useSystemTheme = it },
+                            followSystemDark = followSystemDark,
+                            manualDarkMode = manualDarkMode,
                             onExportLogs = {
                                 exportLogsLauncher.launch("ambient_volume_debug_${System.currentTimeMillis()}.log")
                             },
@@ -209,13 +217,15 @@ enum class ScreenTab(val icon: androidx.compose.ui.graphics.vector.ImageVector, 
  * The top-level navigation composable that manages the pager and bottom bar.
  *
  * @param useSystemTheme Whether to use the system theme or a specific app theme.
- * @param onThemeToggle Callback triggered when the theme is toggled.
+ * @param followSystemDark Whether to follow the system dark/light mode.
+ * @param manualDarkMode The manual dark mode setting when not following the system.
  * @param onExportLogs Callback triggered when the user requests to export logs.
  */
 @Composable
 fun MainNavigation(
     useSystemTheme: Boolean,
-    onThemeToggle: (Boolean) -> Unit,
+    followSystemDark: Boolean,
+    manualDarkMode: Boolean,
     onExportLogs: () -> Unit,
 ) {
     var selectedTab by remember { mutableStateOf(ScreenTab.MONITOR) }
@@ -274,7 +284,12 @@ fun MainNavigation(
                 when (tab) {
                     ScreenTab.MONITOR -> MonitorScreen()
                     ScreenTab.ENGINE -> EngineScreen()
-                    ScreenTab.SETTINGS -> SettingsScreen(useSystemTheme, onThemeToggle, onExportLogs)
+                    ScreenTab.SETTINGS -> SettingsScreen(
+                        useSystemTheme = useSystemTheme,
+                        followSystemDark = followSystemDark,
+                        manualDarkMode = manualDarkMode,
+                        onExportLogs = onExportLogs
+                    )
                 }
             }
 
@@ -679,12 +694,18 @@ fun EngineScreen() {
  * and battery optimization settings. In debug builds, it also provides access to
  * debug log management.
  *
- * @param useSystemTheme Current theme setting.
- * @param onThemeToggle Callback to change the theme setting.
+ * @param useSystemTheme Current dynamic color setting.
+ * @param followSystemDark Whether to follow system light/dark theme.
+ * @param manualDarkMode Manual dark mode setting.
  * @param onExportLogs Callback to export debug logs.
  */
 @Composable
-fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, onExportLogs: () -> Unit) {
+fun SettingsScreen(
+    useSystemTheme: Boolean,
+    followSystemDark: Boolean,
+    manualDarkMode: Boolean,
+    onExportLogs: () -> Unit
+) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val vibrateEnabled by AudioStateRepository.vibrateEnabled.collectAsStateWithLifecycle()
@@ -701,10 +722,32 @@ fun SettingsScreen(useSystemTheme: Boolean, onThemeToggle: (Boolean) -> Unit, on
         // General Settings
         DashboardCard {
             Column(modifier = Modifier.padding(16.dp)) {
-                // Theme
+                // Follow System Dark Mode
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                    Text(stringResource(R.string.label_follow_system_theme), style = MaterialTheme.typography.bodyLarge)
+                    Switch(checked = followSystemDark, onCheckedChange = { scope.launch { ProfileManager.setFollowSystemDark(it) } })
+                }
+                
+                AnimatedVisibility(visible = !followSystemDark) {
+                    Column {
+                        Spacer(modifier = Modifier.height(16.dp))
+                        HorizontalDivider()
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                            Text(stringResource(R.string.label_dark_mode), style = MaterialTheme.typography.bodyLarge)
+                            Switch(checked = manualDarkMode, onCheckedChange = { scope.launch { ProfileManager.setDarkModeManual(it) } })
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+                HorizontalDivider()
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Material You Theme
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                     Text(stringResource(R.string.label_material_you_theme), style = MaterialTheme.typography.bodyLarge)
-                    Switch(checked = useSystemTheme, onCheckedChange = onThemeToggle)
+                    Switch(checked = useSystemTheme, onCheckedChange = { scope.launch { ProfileManager.setDynamicColorEnabled(it) } })
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 HorizontalDivider()

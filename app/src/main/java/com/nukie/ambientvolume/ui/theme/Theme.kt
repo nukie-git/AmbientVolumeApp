@@ -44,11 +44,12 @@ private val BlueIndigoLightColorScheme = lightColorScheme(
 
 @Composable
 fun AmbientVolumeTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Toggle provided by UI
+    followSystemDark: Boolean = true,
+    manualDarkMode: Boolean = false,
     useSystemTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
+    val darkTheme = if (followSystemDark) isSystemInDarkTheme() else manualDarkMode
     val colorScheme = when {
         useSystemTheme && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current

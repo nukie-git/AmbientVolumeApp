@@ -61,6 +61,15 @@ object AudioStateRepository {
     private val _hearingSafetyEnabled = MutableStateFlow(true)
     val hearingSafetyEnabled: StateFlow<Boolean> = _hearingSafetyEnabled.asStateFlow()
 
+    private val _dynamicColorEnabled = MutableStateFlow(true)
+    val dynamicColorEnabled: StateFlow<Boolean> = _dynamicColorEnabled.asStateFlow()
+
+    private val _followSystemDark = MutableStateFlow(true)
+    val followSystemDark: StateFlow<Boolean> = _followSystemDark.asStateFlow()
+
+    private val _darkModeManual = MutableStateFlow(false)
+    val darkModeManual: StateFlow<Boolean> = _darkModeManual.asStateFlow()
+
     fun updateDb(db: Float) {
         _currentDb.value = db
     }
@@ -103,5 +112,17 @@ object AudioStateRepository {
 
     fun updateHearingSafetyEnabled(enabled: Boolean) {
         _hearingSafetyEnabled.value = enabled
+    }
+
+    fun updateDynamicColorEnabled(enabled: Boolean) {
+        _dynamicColorEnabled.value = enabled
+    }
+
+    fun updateFollowSystemDark(enabled: Boolean) {
+        _followSystemDark.value = enabled
+    }
+
+    fun updateDarkModeManual(enabled: Boolean) {
+        _darkModeManual.value = enabled
     }
 }
